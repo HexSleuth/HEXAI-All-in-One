@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puter AI</title>
+    <!-- Google Fonts: Roboto (Material Design 3) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ==========================================================================
+           CSS MULTI-THEME SYSTEM · 33 Themes
+           ========================================================================== */
+
+        /* Default Theme (Fallback) */
+        :root {
+            --primary: #4b6bfb;
+            --secondary: #7b92b2;
+            --accent: #67cba0;
+            --neutral: #181a2a;
+            --base-100: #ffffff;
+            --base-200: #f2f2f2;
+            --base-300: #e6e6e6;
+            --base-content: #181a2a;
+            --info: #3abff8;
+            --success: #36d399;
+            --warning: #fbbd23;
+            --error: #f87272;
+        }
+
+        [data-theme="cupcake"] {
+            --primary: #65c3c8;
+            --secondary: #ef9fbc;
+            --accent: #eeaf3a;
+            --neutral: #291334;
+            --base-100: #faf7f5;
+            --base-200: #efeae6;
+            --base-300: #e7e2df;
+            --base-content: #291334;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="bumblebee"] {
+            --primary: #e0a82e;
+            --secondary: #f9d72f;
+            --accent: #181830;
+            --neutral: #181830;
+            --base-100: #ffffff;
+            --base-200: #f2f2f2;
+            --base-300: #e6e6e6;
+            --base-content: #181830;
+            --info: #3b82f6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        [data-theme="emerald"] {
+            --primary: #66cc8a;
+            --secondary: #377cfb;
+            --accent: #ea5234;
+            --neutral: #333c4d;
+            --base-100: #ffffff;
+            --base-200: #f9fafb;
+            --base-300: #f3f4f6;
+            --base-content: #333c4d;
+            --info: #3abff8;
+            --success: #36d399;
+            --warning: #fbbd23;
+            --error: #f87272;
+        }
+
+        [data-theme="corporate"] {
+            --primary: #4b6bfb;
+            --secondary: #7b92b2;
+            --accent: #67cba0;
+            --neutral: #181a2a;
+            --base-100: #ffffff;
+            --base-200: #f3f4f6;
+            --base-300: #d1d5db;
+            --base-content: #181a2a;
+            --info: #3abff8;
+            --success: #36d399;
+            --warning: #fbbd23;
+            --error: #f87272;
+        }
+
+        [data-theme="synthwave"] {
+            --primary: #e779c1;
+            --secondary: #58c7f3;
+            --accent: #f3cc30;
+            --neutral: #20134e;
+            --base-100: #2d1b69;
+            --base-200: #21144f;
+            --base-300: #150d33;
+            --base-content: #f9f7fd;
+            --info: #53c0f3;
+            --success: #71ead2;
+            --warning: #f3cc30;
+            --error: #e24056;
+        }
+
+        [data-theme="retro"] {
+            --primary: #ef9995;
+            --secondary: #a4cbb4;
+            --accent: #ebdc99;
+            --neutral: #7d7259;
+            --base-100: #e4d8b4;
+            --base-200: #d2c59d;
+            --base-300: #c1b386;
+            --base-content: #282425;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="cyberpunk"] {
+            --primary: #ff7598;
+            --secondary: #75d1f0;
+            --accent: #c07eec;
+            --neutral: #423f00;
+            --base-100: #ffee00;
+            --base-200: #dbcd00;
+            --base-300: #b8ab00;
+            --base-content: #282425;
+            --info: #2094f3;
+            --success: #009485;
+            --warning: #ff9900;
+            --error: #ff5724;
+        }
+
+        [data-theme="valentine"] {
+            --primary: #e96d7b;
+            --secondary: #a991f7;
+            --accent: #88dbdd;
+            --neutral: #af4670;
+            --base-100: #f0d6eb;
+            --base-200: #e1c3da;
+            --base-300: #d1b1ca;
+            --base-content: #632c3b;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="halloween"] {
+            --primary: #f28c18;
+            --secondary: #6d3a9c;
+            --accent: #51a800;
+            --neutral: #1b1d1d;
+            --base-100: #212121;
+            --base-200: #171717;
+            --base-300: #0d0d0d;
+            --base-content: #ffffff;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="garden"] {
+            --primary: #5c7f67;
+            --secondary: #ecf4e7;
+            --accent: #fae5e5;
+            --neutral: #5d5656;
+            --base-100: #e9e7e7;
+            --base-200: #d1cfcf;
+            --base-300: #b8b6b6;
+            --base-content: #100f0f;
+            --info: #0ca5e9;
+            --success: #2dd4bf;
+            --warning: #f43f5e;
+            --error: #e11d48;
+        }
+
+        [data-theme="forest"] {
+            --primary: #1eb854;
+            --secondary: #1fd65f;
+            --accent: #d99330;
+            --neutral: #110e0e;
+            --base-100: #171212;
+            --base-200: #0e0a0a;
+            --base-300: #000000;
+            --base-content: #ffffff;
+            --info: #0284c7;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="aqua"] {
+            --primary: #09ecf3;
+            --secondary: #966fb3;
+            --accent: #ffe999;
+            --neutral: #3b8ea5;
+            --base-100: #345c72;
+            --base-200: #294c60;
+            --base-300: #1f3b4d;
+            --base-content: #ffffff;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="lofi"] {
+            --primary: #808080;
+            --secondary: #4d4d4d;
+            --accent: #1a1a1a;
+            --neutral: #000000;
+            --base-100: #ffffff;
+            --base-200: #f2f2f2;
+            --base-300: #e6e6e6;
+            --base-content: #000000;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="pastel"] {
+            --primary: #d1c1d7;
+            --secondary: #f6cbd1;
+            --accent: #b4e9d6;
+            --neutral: #70acc7;
+            --base-100: #ffffff;
+            --base-200: #f2f2f2;
+            --base-300: #e6e6e6;
+            --base-content: #898d90;
+            --info: #38bdf8;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --error: #f87171;
+        }
+
+        [data-theme="fantasy"] {
+            --primary: #6e0b75;
+            --secondary: #007ebd;
+            --accent: #f8860d;
+            --neutral: #1f2937;
+            --base-100: #ffffff;
+            --base-200: #f9fafb;
+            --base-300: #f3f4f6;
+            --base-content: #1f2937;
+            --info: #0284c7;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="wireframe"] {
+            --primary: #b8b8b8;
+            --secondary: #b8b8b8;
+            --accent: #b8b8b8;
+            --neutral: #ebebeb;
+            --base-100: #ffffff;
+            --base-200: #eeeeee;
+            --base-300: #dddddd;
+            --base-content: #000000;
+            --info: #0000ff;
+            --success: #008000;
+            --warning: #ffa500;
+            --error: #ff0000;
+        }
+
+        [data-theme="black"] {
+            --primary: #333333;
+            --secondary: #333333;
+            --accent: #333333;
+            --neutral: #141414;
+            --base-100: #000000;
+            --base-200: #111111;
+            --base-300: #222222;
+            --base-content: #ffffff;
+            --info: #3b82f6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        [data-theme="luxury"] {
+            --primary: #ffffff;
+            --secondary: #152747;
+            --accent: #513448;
+            --neutral: #331800;
+            --base-100: #09090b;
+            --base-200: #171618;
+            --base-300: #2e2d31;
+            --base-content: #dca54c;
+            --info: #0284c7;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="dracula"] {
+            --primary: #ff79c6;
+            --secondary: #bd93f9;
+            --accent: #ffb86c;
+            --neutral: #414558;
+            --base-100: #282a36;
+            --base-200: #191a21;
+            --base-300: #0d0d12;
+            --base-content: #f8f8f2;
+            --info: #8be9fd;
+            --success: #50fa7b;
+            --warning: #f1fa8c;
+            --error: #ff5555;
+        }
+
+        [data-theme="cmyk"] {
+            --primary: #45aeee;
+            --secondary: #e8488a;
+            --accent: #fff232;
+            --neutral: #1a1a1a;
+            --base-100: #ffffff;
+            --base-200: #f2f2f2;
+            --base-300: #e6e6e6;
+            --base-content: #1a1a1a;
+            --info: #4aa8c0;
+            --success: #82b04c;
+            --warning: #e8b15d;
+            --error: #d15656;
+        }
+
+        [data-theme="autumn"] {
+            --primary: #8c0327;
+            --secondary: #d85251;
+            --accent: #d59b6a;
+            --neutral: #826a5c;
+            --base-100: #f1f1f1;
+            --base-200: #e4e4e4;
+            --base-300: #d6d6d6;
+            --base-content: #826a5c;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="business"] {
+            --primary: #1c4e80;
+            --secondary: #7c909a;
+            --accent: #ea6947;
+            --neutral: #23282e;
+            --base-100: #202020;
+            --base-200: #1a1a1a;
+            --base-300: #141414;
+            --base-content: #d5d5d5;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="acid"] {
+            --primary: #ff00ff;
+            --secondary: #ff7f00;
+            --accent: #c4ff00;
+            --neutral: #150f82;
+            --base-100: #fafafa;
+            --base-200: #ebebeb;
+            --base-300: #dbdbdb;
+            --base-content: #111111;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="lemonade"] {
+            --primary: #519903;
+            --secondary: #e9e92e;
+            --accent: #f7f9ca;
+            --neutral: #191a3f;
+            --base-100: #ffffff;
+            --base-200: #f2f2f2;
+            --base-300: #e6e6e6;
+            --base-content: #191a3f;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="night"] {
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --accent: #f472b6;
+            --neutral: #1e293b;
+            --base-100: #0f172a;
+            --base-200: #020617;
+            --base-300: #000000;
+            --base-content: #f8fafc;
+            --info: #0ea5e9;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        [data-theme="coffee"] {
+            --primary: #db924b;
+            --secondary: #263e3f;
+            --accent: #10576d;
+            --neutral: #120c12;
+            --base-100: #20161f;
+            --base-200: #150f14;
+            --base-300: #0a0709;
+            --base-content: #c59f60;
+            --info: #3b82f6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        [data-theme="winter"] {
+            --primary: #047aff;
+            --secondary: #463aa2;
+            --accent: #c148ac;
+            --neutral: #021431;
+            --base-100: #ffffff;
+            --base-200: #f2f6ff;
+            --base-300: #e3e9f5;
+            --base-content: #394e6a;
+            --info: #0ea5e9;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        [data-theme="dim"] {
+            --primary: #9ca3af;
+            --secondary: #6b7280;
+            --accent: #4b5563;
+            --neutral: #374151;
+            --base-100: #1f2937;
+            --base-200: #111827;
+            --base-300: #030712;
+            --base-content: #f3f4f6;
+            --info: #3b82f6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        [data-theme="nord"] {
+            --primary: #5e81ac;
+            --secondary: #81a1c1;
+            --accent: #88c0d0;
+            --neutral: #4c566a;
+            --base-100: #2e3440;
+            --base-200: #242933;
+            --base-300: #1a1d24;
+            --base-content: #d8dee9;
+            --info: #3b82f6;
+            --success: #a3be8c;
+            --warning: #ebcb8b;
+            --error: #bf616a;
+        }
+
+        [data-theme="sunset"] {
+            --primary: #ff865b;
+            --secondary: #fd6f9c;
+            --accent: #b387fa;
+            --neutral: #1b1626;
+            --base-100: #120c18;
+            --base-200: #0a070e;
+            --base-300: #040306;
+            --base-content: #f6f3f9;
+            --info: #3b82f6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        [data-theme="caramellatte"] {
+            --primary: #d18f50;
+            --secondary: #8e6844;
+            --accent: #b25828;
+            --neutral: #3b2c23;
+            --base-100: #faeedc;
+            --base-200: #f3dfc6;
+            --base-300: #e6cdb2;
+            --base-content: #4a3424;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        [data-theme="abyss"] {
+            --primary: #0077b6;
+            --secondary: #00b4d8;
+            --accent: #90e0ef;
+            --neutral: #03045e;
+            --base-100: #000000;
+            --base-200: #000814;
+            --base-300: #001233;
+            --base-content: #ffffff;
+            --info: #3b82f6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        [data-theme="silk"] {
+            --primary: #ffc2d4;
+            --secondary: #ffb5a7;
+            --accent: #fcd5ce;
+            --neutral: #e8e8e4;
+            --base-100: #f8edeb;
+            --base-200: #fae1dd;
+            --base-300: #fec5bb;
+            --base-content: #6d6875;
+            --info: #2563eb;
+            --success: #16a34a;
+            --warning: #d97706;
+            --error: #dc2626;
+        }
+
+        /* --------------------------------------------------------------------------
+           MATERIAL DESIGN 3 TOKENS mapped to theme variables
+           -------------------------------------------------------------------------- */
+        :root {
+            --md-sys-color-primary: var(--primary);
+            --md-sys-color-on-primary: var(--base-100);
+            --md-sys-color-primary-container: color-mix(in srgb, var(--primary) 85%, var(--base-100));
+            --md-sys-color-on-primary-container: var(--base-content);
+            --md-sys-color-secondary: var(--secondary);
+            --md-sys-color-on-secondary: var(--base-100);
+            --md-sys-color-secondary-container: color-mix(in srgb, var(--secondary) 85%, var(--base-100));
+            --md-sys-color-on-secondary-container: var(--base-content);
+            --md-sys-color-surface: var(--base-100);
+            --md-sys-color-surface-variant: var(--base-200);
+            --md-sys-color-on-surface: var(--base-content);
+            --md-sys-color-on-surface-variant: var(--base-content);
+            --md-sys-color-outline: var(--base-300);
+            --md-sys-color-shadow: #000000;
+            --md-sys-color-error: var(--error);
+            --md-sys-color-on-error: #FFFFFF;
+
+            --md-elevation-level1: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+            --md-elevation-level2: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+            --md-elevation-level3: 0px 1px 8px 0px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 3px -2px rgba(0, 0, 0, 0.12);
+
+            --md-shape-corner-extra-small: 4px;
+            --md-shape-corner-small: 8px;
+            --md-shape-corner-medium: 12px;
+            --md-shape-corner-large: 16px;
+            --md-shape-corner-extra-large: 28px;
+        }
+
+        @supports not (color: color-mix(in srgb, red, blue)) {
+            :root {
+                --md-sys-color-primary-container: var(--primary);
+                --md-sys-color-secondary-container: var(--secondary);
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           CORE STYLES
+           -------------------------------------------------------------------------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", sans-serif;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 920px;
+            width: 100%;
+            background: var(--md-sys-color-surface);
+            border-radius: var(--md-shape-corner-large);
+            box-shadow: var(--md-elevation-level2);
+            padding: 2rem;
+        }
+
+        /* --------------------------------------------------------------------------
+           HEADER & THEME SELECTOR
+           -------------------------------------------------------------------------- */
+        .header-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--md-sys-color-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .theme-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-selector label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface-variant);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .theme-selector select {
+            padding: 0.4rem 0.75rem;
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: var(--md-shape-corner-small);
+            font-family: inherit;
+            font-size: 0.85rem;
+            background: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            outline: none;
+            cursor: pointer;
+            transition: border 0.2s, box-shadow 0.2s;
+            min-width: 130px;
+        }
+
+        .theme-selector select:focus {
+            border-color: var(--md-sys-color-primary);
+            box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.15);
+        }
+
+        .subtitle {
+            color: var(--md-sys-color-on-surface-variant);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .model-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            margin-left: 0.5rem;
+        }
+
+        /* --------------------------------------------------------------------------
+           TABS
+           -------------------------------------------------------------------------- */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--md-sys-color-surface-variant);
+            padding-bottom: 0.75rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--md-shape-corner-small);
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--md-sys-color-on-surface-variant);
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            background: var(--md-sys-color-secondary-container);
+            color: var(--md-sys-color-on-secondary-container);
+        }
+
+        .tab-btn.active {
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           INPUTS & BUTTONS
+           -------------------------------------------------------------------------- */
+        .input-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .input-group>* {
+            flex: 1 1 180px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: var(--md-shape-corner-small);
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: var(--md-sys-color-primary);
+            box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.15);
+        }
+
+        input[type="file"] {
+            padding: 0.6rem 1rem;
+            border-style: dashed;
+            background: var(--md-sys-color-surface-variant);
+        }
+
+        button.action {
+            padding: 0.75rem 1.5rem;
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            border-radius: var(--md-shape-corner-small);
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+
+        button.action:hover {
+            background: color-mix(in srgb, var(--md-sys-color-primary) 85%, black);
+            box-shadow: var(--md-elevation-level1);
+        }
+
+        button.action:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* --------------------------------------------------------------------------
+           OUTPUT BOXES
+           -------------------------------------------------------------------------- */
+        .output-box {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: var(--md-shape-corner-medium);
+            padding: 1.25rem;
+            min-height: 80px;
+            border: 1px solid transparent;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.6;
+            color: var(--md-sys-color-on-surface);
+            margin-top: 1rem;
+            transition: 0.2s;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .output-box .empty {
+            color: var(--md-sys-color-on-surface-variant);
+            font-style: italic;
+        }
+
+        .output-box.error {
+            border-color: var(--md-sys-color-error);
+            background: color-mix(in srgb, var(--md-sys-color-error) 15%, var(--md-sys-color-surface));
+            color: var(--md-sys-color-error);
+        }
+
+        .output-box .loading-text {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .output-box .loading-text i {
+            animation: spin 1s linear infinite;
+            font-size: 1.2rem;
+            color: var(--md-sys-color-primary);
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .output-box .model-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --------------------------------------------------------------------------
+           MEDIA PREVIEWS
+           -------------------------------------------------------------------------- */
+        .img-preview {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: var(--md-shape-corner-small);
+            margin-top: 0.5rem;
+            box-shadow: var(--md-elevation-level1);
+        }
+
+        audio,
+        video {
+            width: 100%;
+            margin-top: 0.5rem;
+            border-radius: var(--md-shape-corner-small);
+            background: #000;
+        }
+
+        /* --------------------------------------------------------------------------
+           MODELS TAB (Central Model Configuration)
+           -------------------------------------------------------------------------- */
+        .model-config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .model-config-item {
+            background: var(--md-sys-color-surface-variant);
+            padding: 1rem 1.25rem;
+            border-radius: var(--md-shape-corner-medium);
+            border: 1px solid var(--md-sys-color-outline);
+        }
+
+        .model-config-item label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--md-sys-color-on-surface-variant);
+            margin-bottom: 0.5rem;
+        }
+
+        .model-config-item label i {
+            color: var(--md-sys-color-primary);
+        }
+
+        .model-config-item select {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: var(--md-shape-corner-small);
+            font-family: inherit;
+            font-size: 0.9rem;
+            background: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .model-config-item select:focus {
+            border-color: var(--md-sys-color-primary);
+            box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.15);
+        }
+
+        .model-config-item .helper {
+            font-size: 0.75rem;
+            color: var(--md-sys-color-on-surface-variant);
+            opacity: 0.7;
+            margin-top: 0.3rem;
+        }
+
+        /* --------------------------------------------------------------------------
+           FOOTER
+           -------------------------------------------------------------------------- */
+        .footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--md-sys-color-on-surface-variant);
+            border-top: 1px solid var(--md-sys-color-surface-variant);
+            padding-top: 1.5rem;
+        }
+
+        .footer a {
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .serve-note {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--md-sys-color-on-surface-variant);
+            opacity: 0.7;
+        }
+
+        /* --------------------------------------------------------------------------
+           RESPONSIVE
+           -------------------------------------------------------------------------- */
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.25rem;
+            }
+            .header-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-left {
+                justify-content: center;
+            }
+            .theme-selector {
+                justify-content: center;
+            }
+            .tabs .tab-btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.75rem;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+            .input-group>* {
+                flex: 1 1 auto;
+            }
+            button.action {
+                width: 100%;
+            }
+            .model-config-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tab-btn i {
+            font-size: 1rem;
+        }
+        .action i {
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with theme selector -->
+        <div class="header-row">
+            <div class="header-left">
+                <h1><i class="fas fa-brain"></i> Puter AI</h1>
+                <span class="model-badge">500+ Models</span>
+            </div>
+            <div class="theme-selector">
+                <label for="themeSelect"><i class="fas fa-palette"></i> Theme</label>
+                <select id="themeSelect">
+                    <option value="default">Default</option>
+                    <option value="cupcake">Cupcake</option>
+                    <option value="bumblebee">Bumblebee</option>
+                    <option value="emerald">Emerald</option>
+                    <option value="corporate">Corporate</option>
+                    <option value="synthwave">Synthwave</option>
+                    <option value="retro">Retro</option>
+                    <option value="cyberpunk">Cyberpunk</option>
+                    <option value="valentine">Valentine</option>
+                    <option value="halloween">Halloween</option>
+                    <option value="garden">Garden</option>
+                    <option value="forest">Forest</option>
+                    <option value="aqua">Aqua</option>
+                    <option value="lofi">Lofi</option>
+                    <option value="pastel">Pastel</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="wireframe">Wireframe</option>
+                    <option value="black">Black</option>
+                    <option value="luxury">Luxury</option>
+                    <option value="dracula">Dracula</option>
+                    <option value="cmyk">CMYK</option>
+                    <option value="autumn">Autumn</option>
+                    <option value="business">Business</option>
+                    <option value="acid">Acid</option>
+                    <option value="lemonade">Lemonade</option>
+                    <option value="night">Night</option>
+                    <option value="coffee">Coffee</option>
+                    <option value="winter">Winter</option>
+                    <option value="dim">Dim</option>
+                    <option value="nord">Nord</option>
+                    <option value="sunset">Sunset</option>
+                    <option value="caramellatte">Caramellatte</option>
+                    <option value="abyss">Abyss</option>
+                    <option value="silk">Silk</option>
+                </select>
+            </div>
+        </div>
+        <p class="subtitle">Configure all models in one place · 33 themes · 6 AI capabilities</p>
+
+        <!-- Tabs -->
+        <div class="tabs" id="tabContainer">
+            <button class="tab-btn active" data-tab="chat"><i class="fas fa-comment"></i> Chat</button>
+            <button class="tab-btn" data-tab="txt2img"><i class="fas fa-image"></i> Text→Image</button>
+            <button class="tab-btn" data-tab="img2txt"><i class="fas fa-file-image"></i> OCR</button>
+            <button class="tab-btn" data-tab="txt2speech"><i class="fas fa-volume-up"></i> Text→Speech</button>
+            <button class="tab-btn" data-tab="speech2txt"><i class="fas fa-microphone"></i> Speech→Text</button>
+            <button class="tab-btn" data-tab="txt2vid"><i class="fas fa-video"></i> Text→Video</button>
+            <button class="tab-btn" data-tab="models"><i class="fas fa-cubes"></i> Models</button>
+        </div>
+
+        <!-- ========== CHAT ========== -->
+        <div class="tab-content active" id="chat">
+            <div class="input-group">
+                <input type="text" id="chatPrompt" placeholder="Ask anything..." />
+                <button class="action" id="chatBtn"><i class="fas fa-paper-plane"></i> Send</button>
+            </div>
+            <div class="output-box" id="chatOutput"><span class="empty">Your reply will appear here...</span></div>
+        </div>
+
+        <!-- ========== TEXT-TO-IMAGE ========== -->
+        <div class="tab-content" id="txt2img">
+            <div class="input-group">
+                <input type="text" id="imgPrompt" placeholder="Describe the image you want..." />
+                <button class="action" id="imgBtn"><i class="fas fa-magic"></i> Generate</button>
+            </div>
+            <div class="output-box" id="imgOutput"><span class="empty">Your image will appear here...</span></div>
+        </div>
+
+        <!-- ========== OCR ========== -->
+        <div class="tab-content" id="img2txt">
+            <div class="input-group">
+                <input type="file" id="ocrFile" accept="image/*" />
+                <button class="action" id="ocrBtn"><i class="fas fa-arrow-right"></i> Extract Text</button>
+            </div>
+            <div class="output-box" id="ocrOutput"><span class="empty">Extracted text will appear here...</span></div>
+        </div>
+
+        <!-- ========== TEXT-TO-SPEECH ========== -->
+        <div class="tab-content" id="txt2speech">
+            <div class="input-group">
+                <input type="text" id="ttsPrompt" placeholder="Text to speak..." />
+                <button class="action" id="ttsBtn"><i class="fas fa-play"></i> Generate Speech</button>
+            </div>
+            <div class="output-box" id="ttsOutput"><span class="empty">Audio will appear here...</span></div>
+        </div>
+
+        <!-- ========== SPEECH-TO-TEXT ========== -->
+        <div class="tab-content" id="speech2txt">
+            <div class="input-group">
+                <input type="file" id="sttFile" accept="audio/*" />
+                <button class="action" id="sttBtn"><i class="fas fa-wave-square"></i> Transcribe</button>
+            </div>
+            <div class="output-box" id="sttOutput"><span class="empty">Transcription will appear here...</span></div>
+        </div>
+
+        <!-- ========== TEXT-TO-VIDEO ========== -->
+        <div class="tab-content" id="txt2vid">
+            <div class="input-group">
+                <input type="text" id="vidPrompt" placeholder="Describe the video you want..." />
+                <button class="action" id="vidBtn"><i class="fas fa-film"></i> Generate Video</button>
+            </div>
+            <div class="output-box" id="vidOutput"><span class="empty">Your video will appear here...</span></div>
+        </div>
+
+        <!-- ========== MODELS (Central Configuration) ========== -->
+        <div class="tab-content" id="models">
+            <p style="margin-bottom: 1.2rem; color: var(--md-sys-color-on-surface-variant);">
+                <i class="fas fa-info-circle"></i> Select the model for each capability. All tabs will use these selections.
+            </p>
+            <div class="model-config-grid">
+                <div class="model-config-item">
+                    <label for="chatModelSelect"><i class="fas fa-comment"></i> Chat Model</label>
+                    <select id="chatModelSelect">
+                        <optgroup label="GPT">
+                            <option value="gpt-5.4-nano">GPT-5.4 Nano</option>
+                            <option value="gpt-4o">GPT-4o</option>
+                            <option value="gpt-4o-mini">GPT-4o Mini</option>
+                            <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                            <option value="gpt-4">GPT-4</option>
+                            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                        </optgroup>
+                        <optgroup label="Claude">
+                            <option value="claude-3.5-sonnet">Claude 3.5 Sonnet</option>
+                            <option value="claude-3-opus">Claude 3 Opus</option>
+                            <option value="claude-3-sonnet">Claude 3 Sonnet</option>
+                            <option value="claude-3-haiku">Claude 3 Haiku</option>
+                            <option value="claude-2.1">Claude 2.1</option>
+                        </optgroup>
+                        <optgroup label="Gemini">
+                            <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+                            <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+                            <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+                            <option value="gemini-1.5-flash-lite">Gemini 1.5 Flash Lite</option>
+                            <option value="gemini-1.0-pro">Gemini 1.0 Pro</option>
+                        </optgroup>
+                        <optgroup label="Llama">
+                            <option value="llama-3.3-70b">Llama 3.3 70B</option>
+                            <option value="llama-3.2-11b">Llama 3.2 11B</option>
+                            <option value="llama-3.2-3b">Llama 3.2 3B</option>
+                            <option value="llama-3.1-405b">Llama 3.1 405B</option>
+                            <option value="llama-3.1-70b">Llama 3.1 70B</option>
+                            <option value="llama-3.1-8b">Llama 3.1 8B</option>
+                            <option value="llama-3-70b">Llama 3 70B</option>
+                            <option value="llama-3-8b">Llama 3 8B</option>
+                        </optgroup>
+                        <optgroup label="Mistral">
+                            <option value="mistral-large-2">Mistral Large 2</option>
+                            <option value="mistral-large">Mistral Large</option>
+                            <option value="mistral-medium">Mistral Medium</option>
+                            <option value="mistral-small">Mistral Small</option>
+                            <option value="mixtral-8x7b">Mixtral 8x7B</option>
+                            <option value="mixtral-8x22b">Mixtral 8x22B</option>
+                        </optgroup>
+                        <optgroup label="Other">
+                            <option value="qwen-2.5-72b">Qwen 2.5 72B</option>
+                            <option value="qwen-2.5-7b">Qwen 2.5 7B</option>
+                            <option value="deepseek-v3">DeepSeek V3</option>
+                            <option value="deepseek-r1">DeepSeek R1</option>
+                            <option value="yi-34b">Yi 34B</option>
+                            <option value="gemma-2-27b">Gemma 2 27B</option>
+                            <option value="gemma-2-9b">Gemma 2 9B</option>
+                            <option value="falcon-7b">Falcon 7B</option>
+                            <option value="falcon-40b">Falcon 40B</option>
+                        </optgroup>
+                    </select>
+                    <div class="helper">Used for Chat and multi‑modal analysis</div>
+                </div>
+
+                <div class="model-config-item">
+                    <label for="imageModelSelect"><i class="fas fa-image"></i> Image Model</label>
+                    <select id="imageModelSelect">
+                        <option value="dall-e-3">DALL-E 3</option>
+                        <option value="dall-e-2">DALL-E 2</option>
+                        <option value="flux">FLUX</option>
+                        <option value="flux-schnell">FLUX Schnell</option>
+                        <option value="stable-diffusion-xl">Stable Diffusion XL</option>
+                        <option value="stable-diffusion-3">Stable Diffusion 3</option>
+                        <option value="midjourney-v6">Midjourney v6</option>
+                        <option value="gpt-image">GPT Image</option>
+                        <option value="nano-banana">Nano Banana</option>
+                        <option value="grok-image">Grok Image</option>
+                    </select>
+                    <div class="helper">Used for Text→Image generation</div>
+                </div>
+
+                <div class="model-config-item">
+                    <label for="videoModelSelect"><i class="fas fa-video"></i> Video Model</label>
+                    <select id="videoModelSelect">
+                        <option value="default">Default (Puter)</option>
+                        <option value="sora">Sora</option>
+                        <option value="runway-gen-2">Runway Gen-2</option>
+                        <option value="pika">Pika</option>
+                        <option value="stable-video">Stable Video</option>
+                    </select>
+                    <div class="helper">Used for Text→Video generation</div>
+                </div>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant);">
+                <i class="fas fa-save"></i> Selections are saved automatically in your browser.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <a href="https://hexsleuth.github.io/hexai_webapp/" target="_blank"><i class="fas fa-cube"></i> Powered by HEX AI · 500+ Models</a>
+            <div class="serve-note">⚠️ Serve over HTTP (not file://). Use a local server or host online.</div>
+        </div>
+    </div>
+
+    <!-- Puter SDK -->
+    <script src="https://js.puter.com/v2/"></script>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- Theme Selector ----
+            const themeSelect = document.getElementById('themeSelect');
+            const htmlEl = document.documentElement;
+
+            const savedTheme = localStorage.getItem('puter-theme');
+            if (savedTheme && savedTheme !== 'default') {
+                htmlEl.setAttribute('data-theme', savedTheme);
+                themeSelect.value = savedTheme;
+            } else {
+                htmlEl.removeAttribute('data-theme');
+                themeSelect.value = 'default';
+            }
+
+            themeSelect.addEventListener('change', function() {
+                const val = this.value;
+                if (val === 'default') {
+                    htmlEl.removeAttribute('data-theme');
+                    localStorage.removeItem('puter-theme');
+                } else {
+                    htmlEl.setAttribute('data-theme', val);
+                    localStorage.setItem('puter-theme', val);
+                }
+            });
+
+            // ---- Tabs ----
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+                    document.getElementById(btn.dataset.tab).classList.add('active');
+                });
+            });
+
+            // ---- Central Model Configuration ----
+            const chatModelSelect = document.getElementById('chatModelSelect');
+            const imageModelSelect = document.getElementById('imageModelSelect');
+            const videoModelSelect = document.getElementById('videoModelSelect');
+
+            // Default values
+            const defaultModels = {
+                chat: 'gpt-5.4-nano',
+                image: 'dall-e-3',
+                video: 'default'
+            };
+
+            // Load saved models from localStorage
+            function loadModels() {
+                try {
+                    const stored = localStorage.getItem('puter-models');
+                    if (stored) {
+                        const parsed = JSON.parse(stored);
+                        chatModelSelect.value = parsed.chat || defaultModels.chat;
+                        imageModelSelect.value = parsed.image || defaultModels.image;
+                        videoModelSelect.value = parsed.video || defaultModels.video;
+                    } else {
+                        chatModelSelect.value = defaultModels.chat;
+                        imageModelSelect.value = defaultModels.image;
+                        videoModelSelect.value = defaultModels.video;
+                    }
+                } catch (e) {
+                    chatModelSelect.value = defaultModels.chat;
+                    imageModelSelect.value = defaultModels.image;
+                    videoModelSelect.value = defaultModels.video;
+                }
+            }
+
+            function saveModels() {
+                const models = {
+                    chat: chatModelSelect.value,
+                    image: imageModelSelect.value,
+                    video: videoModelSelect.value
+                };
+                localStorage.setItem('puter-models', JSON.stringify(models));
+            }
+
+            // Save on change
+            chatModelSelect.addEventListener('change', saveModels);
+            imageModelSelect.addEventListener('change', saveModels);
+            videoModelSelect.addEventListener('change', saveModels);
+
+            // Load initial values
+            loadModels();
+
+            // Helper functions to get current models
+            function getChatModel() { return chatModelSelect.value; }
+
+            function getImageModel() { return imageModelSelect.value; }
+
+            function getVideoModel() { return videoModelSelect.value; }
+
+            // ---- UI Helpers ----
+            function setOutput(elementId, content, isError = false) {
+                const el = document.getElementById(elementId);
+                el.innerHTML = content;
+                el.classList.toggle('error', isError);
+            }
+
+            function setLoading(elementId, buttonId) {
+                const el = document.getElementById(elementId);
+                el.innerHTML =
+                    `<span class="loading-text"><i class="fas fa-spinner"></i> Working...</span>`;
+                el.classList.remove('error');
+                if (buttonId) document.getElementById(buttonId).disabled = true;
+            }
+
+            function restoreUI(buttonId) {
+                if (buttonId) document.getElementById(buttonId).disabled = false;
+            }
+
+            function formatOutput(content, modelName) {
+                const tag = `<span class="model-tag"><i class="fas fa-cube"></i> ${modelName}</span>`;
+                return tag + '<br>' + content;
+            }
+
+            // ---- 1. CHAT ----
+            document.getElementById('chatBtn').addEventListener('click', async () => {
+                const prompt = document.getElementById('chatPrompt').value.trim();
+                if (!prompt) { setOutput('chatOutput', 'Please enter a message.', true); return; }
+                const model = getChatModel();
+                setLoading('chatOutput', 'chatBtn');
+                try {
+                    const reply = await puter.ai.chat(prompt, { model });
+                    setOutput('chatOutput', formatOutput(reply, model));
+                } catch (err) {
+                    setOutput('chatOutput', `Error: ${err.message || err}`, true);
+                } finally {
+                    restoreUI('chatBtn');
+                }
+            });
+
+            // ---- 2. TEXT-TO-IMAGE ----
+            document.getElementById('imgBtn').addEventListener('click', async () => {
+                const prompt = document.getElementById('imgPrompt').value.trim();
+                if (!prompt) { setOutput('imgOutput', 'Please describe the image.', true); return; }
+                const model = getImageModel();
+                setLoading('imgOutput', 'imgBtn');
+                try {
+                    const result = await puter.ai.txt2img(prompt, { model });
+                    const imgUrl = typeof result === 'string' ? result : result.url;
+                    if (!imgUrl) throw new Error('No image URL returned');
+                    setOutput('imgOutput', formatOutput(
+                        `<img src="${imgUrl}" alt="Generated image" class="img-preview" />`, model
+                    ));
+                } catch (err) {
+                    setOutput('imgOutput', `Error: ${err.message || err}`, true);
+                } finally {
+                    restoreUI('imgBtn');
+                }
+            });
+
+            // ---- 3. OCR ----
+            document.getElementById('ocrBtn').addEventListener('click', async () => {
+                const fileInput = document.getElementById('ocrFile');
+                if (!fileInput.files || !fileInput.files[0]) {
+                    setOutput('ocrOutput', 'Please select an image file.', true);
+                    return;
+                }
+                const file = fileInput.files[0];
+                setLoading('ocrOutput', 'ocrBtn');
+                try {
+                    const result = await puter.ai.img2txt(file);
+                    const text = typeof result === 'string' ? result : result.text || result;
+                    setOutput('ocrOutput', text || 'No text extracted.');
+                } catch (err) {
+                    setOutput('ocrOutput', `Error: ${err.message || err}`, true);
+                } finally {
+                    restoreUI('ocrBtn');
+                }
+            });
+
+            // ---- 4. TEXT-TO-SPEECH ----
+            document.getElementById('ttsBtn').addEventListener('click', async () => {
+                const text = document.getElementById('ttsPrompt').value.trim();
+                if (!text) { setOutput('ttsOutput', 'Please enter text to speak.', true); return; }
+                setLoading('ttsOutput', 'ttsBtn');
+                try {
+                    const result = await puter.ai.txt2speech(text);
+                    const audioUrl = typeof result === 'string' ? result : result.url;
+                    if (!audioUrl) throw new Error('No audio URL returned');
+                    setOutput('ttsOutput', `<audio controls src="${audioUrl}"></audio>`);
+                } catch (err) {
+                    setOutput('ttsOutput', `Error: ${err.message || err}`, true);
+                } finally {
+                    restoreUI('ttsBtn');
+                }
+            });
+
+            // ---- 5. SPEECH-TO-TEXT ----
+            document.getElementById('sttBtn').addEventListener('click', async () => {
+                const fileInput = document.getElementById('sttFile');
+                if (!fileInput.files || !fileInput.files[0]) {
+                    setOutput('sttOutput', 'Please select an audio file.', true);
+                    return;
+                }
+                const file = fileInput.files[0];
+                setLoading('sttOutput', 'sttBtn');
+                try {
+                    const result = await puter.ai.speech2txt(file);
+                    const text = typeof result === 'string' ? result : result.text || result;
+                    setOutput('sttOutput', text || 'No transcription.');
+                } catch (err) {
+                    setOutput('sttOutput', `Error: ${err.message || err}`, true);
+                } finally {
+                    restoreUI('sttBtn');
+                }
+            });
+
+            // ---- 6. TEXT-TO-VIDEO ----
+            document.getElementById('vidBtn').addEventListener('click', async () => {
+                const prompt = document.getElementById('vidPrompt').value.trim();
+                if (!prompt) { setOutput('vidOutput', 'Please describe the video.', true); return; }
+                const model = getVideoModel();
+                setLoading('vidOutput', 'vidBtn');
+                try {
+                    // Note: if puter.ai.txt2vid supports model param, pass it; else ignore
+                    const result = await puter.ai.txt2vid(prompt);
+                    const videoUrl = typeof result === 'string' ? result : result.url;
+                    if (!videoUrl) throw new Error('No video URL returned');
+                    setOutput('vidOutput', formatOutput(
+                        `<video controls src="${videoUrl}"></video>`, model
+                    ));
+                } catch (err) {
+                    setOutput('vidOutput', `Error: ${err.message || err}`, true);
+                } finally {
+                    restoreUI('vidBtn');
+                }
+            });
+
+            // ---- Keyboard shortcuts ----
+            document.getElementById('chatPrompt').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') document.getElementById('chatBtn').click();
+            });
+            document.getElementById('imgPrompt').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') document.getElementById('imgBtn').click();
+            });
+            document.getElementById('ttsPrompt').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') document.getElementById('ttsBtn').click();
+            });
+            document.getElementById('vidPrompt').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') document.getElementById('vidBtn').click();
+            });
+
+            // ---- Initial focus ----
+            document.getElementById('chatPrompt').focus();
+
+            console.log('🎨 Puter AI Playground · 33 themes · centralised model configuration');
+            console.log('Current theme:', themeSelect.value);
+            console.log('Models:', {
+                chat: getChatModel(),
+                image: getImageModel(),
+                video: getVideoModel()
+            });
+        })();
+    </script>
+</body>
+</html>
