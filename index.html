@@ -2,7 +2,7 @@
 <html lang="en" data-theme="corporate">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
     <title>HEX AI · Theme Studio</title>
 
     <!-- Font Awesome 6 (Free) -->
@@ -503,6 +503,10 @@
             margin: 0;
             padding: 0;
         }
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--base-100);
@@ -511,6 +515,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
             overflow: hidden;
             height: 100vh;
+            height: 100dvh;
         }
         ::-webkit-scrollbar {
             width: 4px;
@@ -530,7 +535,9 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
+            height: 100dvh;
             max-height: 100vh;
+            max-height: 100dvh;
             overflow: hidden;
         }
 
@@ -543,16 +550,21 @@
             justify-content: space-between;
             padding: 0 16px;
             height: 60px;
+            min-height: 60px;
             background: var(--base-200);
             border-bottom: 1px solid var(--base-300);
             flex-shrink: 0;
             transition: background 0.3s, border-color 0.3s;
             z-index: 10;
+            gap: 6px;
         }
         .header-left {
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: nowrap;
+            min-width: 0;
+            flex: 1;
         }
         .header-left .logo {
             font-size: 22px;
@@ -561,6 +573,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
+            white-space: nowrap;
         }
         .header-left .logo span {
             -webkit-text-fill-color: var(--base-content);
@@ -577,6 +590,8 @@
             background: rgba(54, 211, 153, 0.15);
             color: var(--success);
             border: 1px solid rgba(54, 211, 153, 0.25);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .status-badge .dot {
             width: 7px;
@@ -599,7 +614,8 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            flex-shrink: 0;
         }
         .header-right button {
             background: none;
@@ -613,13 +629,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         .header-right button:hover {
             background: var(--base-300);
             color: var(--primary);
         }
 
-        /* ---- Theme badge in header ---- */
         .theme-badge {
             display: inline-flex;
             align-items: center;
@@ -634,6 +650,7 @@
             transition: opacity 0.2s;
             cursor: default;
             white-space: nowrap;
+            flex-shrink: 0;
         }
         .theme-badge .swatch {
             width: 14px;
@@ -662,6 +679,7 @@
             overflow-y: auto;
             padding: 16px 16px 80px;
             animation: fadeIn 0.3s ease;
+            -webkit-overflow-scrolling: touch;
         }
         .section.active {
             display: block;
@@ -685,10 +703,11 @@
             align-items: center;
             justify-content: space-around;
             height: 64px;
+            min-height: 64px;
             background: var(--base-200);
             border-top: 1px solid var(--base-300);
             flex-shrink: 0;
-            padding: 0 8px;
+            padding: 0 4px;
             transition: background 0.3s, border-color 0.3s;
             z-index: 10;
         }
@@ -703,12 +722,14 @@
             font-size: 11px;
             font-weight: 500;
             cursor: pointer;
-            padding: 6px 12px;
+            padding: 6px 10px;
             border-radius: 12px;
             transition: all 0.2s;
             position: relative;
-            min-width: 56px;
+            min-width: 48px;
             opacity: 0.7;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
         .nav-item .icon {
             font-size: 22px;
@@ -718,6 +739,7 @@
         .nav-item .label {
             font-size: 10px;
             letter-spacing: 0.3px;
+            white-space: nowrap;
         }
         .nav-item:hover {
             opacity: 1;
@@ -757,6 +779,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            -webkit-overflow-scrolling: touch;
         }
         .chat-message {
             display: flex;
@@ -863,6 +886,7 @@
             padding: 2px 6px;
             border-radius: 4px;
             transition: all 0.2s;
+            touch-action: manipulation;
         }
         .message-actions button:hover {
             opacity: 1;
@@ -915,6 +939,7 @@
             transition: background 0.3s;
             flex-shrink: 0;
             align-items: flex-end;
+            flex-wrap: wrap;
         }
         .chat-input-area textarea {
             flex: 1;
@@ -931,6 +956,8 @@
             transition: background 0.3s, border-color 0.3s;
             outline: none;
             line-height: 1.5;
+            width: 100%;
+            min-width: 120px;
         }
         .chat-input-area textarea:focus {
             border-color: var(--primary);
@@ -950,6 +977,7 @@
             justify-content: center;
             transition: background 0.2s, transform 0.15s;
             flex-shrink: 0;
+            touch-action: manipulation;
         }
         .chat-input-area .action-btn:hover {
             opacity: 0.9;
@@ -972,6 +1000,7 @@
             justify-content: center;
             transition: all 0.2s;
             flex-shrink: 0;
+            touch-action: manipulation;
         }
         .chat-input-area .icon-btn:hover {
             background: var(--base-300);
@@ -991,6 +1020,7 @@
             justify-content: center;
             transition: all 0.2s;
             flex-shrink: 0;
+            touch-action: manipulation;
         }
         .voice-btn:hover {
             background: var(--base-300);
@@ -1024,6 +1054,9 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
+            touch-action: manipulation;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
         .pdf-upload-btn:hover {
             background: var(--base-300);
@@ -1031,6 +1064,26 @@
         }
         .pdf-upload-btn input {
             display: none;
+        }
+
+        .file-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 4px 0;
+            min-height: 6px;
+            width: 100%;
+        }
+        .file-preview-container>div {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--base-200);
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--base-300);
+            margin: 2px;
+            font-size: 13px;
         }
 
         /* ------------------------------------------------------------------ */
@@ -1074,6 +1127,7 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background 0.2s, transform 0.15s;
+            touch-action: manipulation;
         }
         .emoji-picker-3d .emoji-3d-item:hover {
             background: var(--base-300);
@@ -1129,6 +1183,7 @@
             cursor: pointer;
             transition: opacity 0.2s;
             align-self: flex-start;
+            touch-action: manipulation;
         }
         .image-container .gen-btn:hover {
             opacity: 0.9;
@@ -1151,6 +1206,7 @@
             border: 1px solid var(--base-300);
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
+            touch-action: manipulation;
         }
         .image-grid img:hover {
             transform: scale(1.02);
@@ -1200,6 +1256,7 @@
             cursor: pointer;
             transition: opacity 0.2s;
             align-self: flex-start;
+            touch-action: manipulation;
         }
         .video-container .gen-btn:hover {
             opacity: 0.9;
@@ -1244,6 +1301,7 @@
             transition: border-color 0.2s, background 0.2s;
             background: var(--base-200);
             position: relative;
+            touch-action: manipulation;
         }
         .music-container .upload-area:hover {
             border-color: var(--primary);
@@ -1321,6 +1379,7 @@
             color: var(--base-content);
             transition: background 0.2s, transform 0.15s;
             flex-shrink: 0;
+            touch-action: manipulation;
         }
         .music-player-panel .controls button:hover {
             background: var(--primary);
@@ -1437,6 +1496,7 @@
             margin-top: 12px;
             border-top: 1px solid var(--base-300);
             padding-top: 8px;
+            -webkit-overflow-scrolling: touch;
         }
         .playlist-container .playlist-item {
             display: flex;
@@ -1446,6 +1506,7 @@
             cursor: pointer;
             transition: background 0.2s;
             gap: 10px;
+            touch-action: manipulation;
         }
         .playlist-container .playlist-item:hover {
             background: var(--base-300);
@@ -1486,6 +1547,7 @@
             cursor: pointer;
             transition: opacity 0.2s;
             padding: 0 4px;
+            touch-action: manipulation;
         }
         .playlist-container .playlist-item .remove-btn:hover {
             opacity: 1;
@@ -1508,7 +1570,7 @@
             cursor: pointer;
             color: var(--base-content);
             transition: background 0.2s;
-            margin-top: 8px;
+            touch-action: manipulation;
         }
         .clear-playlist-btn:hover {
             background: var(--error);
@@ -1558,8 +1620,10 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--base-300);
             max-height: 90vh;
+            max-height: 90dvh;
             overflow-y: auto;
             transition: background 0.3s, border-color 0.3s;
+            -webkit-overflow-scrolling: touch;
         }
         .modal h2 {
             font-size: 20px;
@@ -1578,6 +1642,7 @@
             color: var(--base-content);
             opacity: 0.6;
             transition: opacity 0.2s;
+            touch-action: manipulation;
         }
         .modal .close-btn:hover {
             opacity: 1;
@@ -1605,6 +1670,8 @@
             font-family: inherit;
             transition: background 0.3s, border-color 0.3s;
             outline: none;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .modal .form-group input:focus,
         .modal .form-group select:focus {
@@ -1618,7 +1685,6 @@
             margin-top: 3px;
         }
 
-        /* ---- THEME GALLERY (Visual Theme Selector) ---- */
         .theme-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -1627,6 +1693,7 @@
             max-height: 300px;
             overflow-y: auto;
             padding: 4px 2px;
+            -webkit-overflow-scrolling: touch;
         }
         .theme-card {
             cursor: pointer;
@@ -1637,6 +1704,7 @@
             text-align: center;
             background: var(--base-100);
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            touch-action: manipulation;
         }
         .theme-card:hover {
             transform: translateY(-2px);
@@ -1676,7 +1744,6 @@
             display: inline;
         }
 
-        /* ---- Provider sections ---- */
         .provider-section {
             transition: opacity 0.2s;
         }
@@ -1694,6 +1761,7 @@
             font-size: 13px;
             cursor: pointer;
             transition: background 0.2s, transform 0.15s;
+            touch-action: manipulation;
         }
         .modal .btn-row button:active {
             transform: scale(0.96);
@@ -1722,11 +1790,11 @@
         }
 
         /* ------------------------------------------------------------------ */
-        /* RESPONSIVE                                                       */
+        /* RESPONSIVE — Mobile-first with auto-adjust                        */
         /* ------------------------------------------------------------------ */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .header-left .logo {
-                font-size: 18px;
+                font-size: 19px;
             }
             .status-badge {
                 font-size: 10px;
@@ -1736,24 +1804,24 @@
                 display: none;
             }
             .modal {
-                padding: 16px 18px;
+                padding: 18px 16px;
             }
             .chat-message {
                 max-width: 94%;
             }
             .emoji-picker-dropdown {
-                width: 260px;
+                width: 280px;
                 right: 0;
                 bottom: 52px;
             }
             .emoji-picker-3d {
-                grid-template-columns: repeat(6, 1fr);
+                grid-template-columns: repeat(7, 1fr);
             }
             .image-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
             .video-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
             .nav-item {
                 min-width: 44px;
@@ -1769,46 +1837,434 @@
                 gap: 6px;
             }
             .music-player-panel .volume-control input[type="range"] {
-                width: 40px;
+                width: 50px;
             }
             .theme-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
             }
         }
-        @media (max-width: 400px) {
+
+        @media (max-width: 600px) {
             .header {
-                padding: 0 10px;
+                padding: 0 12px;
+                height: 54px;
+                min-height: 54px;
             }
             .header-left .logo {
-                font-size: 16px;
+                font-size: 17px;
+            }
+            .status-badge {
+                font-size: 9px;
+                padding: 2px 6px;
+                gap: 3px;
+            }
+            .status-badge .dot {
+                width: 5px;
+                height: 5px;
+            }
+            .header-right button {
+                font-size: 18px;
+                padding: 4px;
+            }
+            .theme-badge {
+                font-size: 10px;
+                padding: 1px 6px 1px 4px;
+            }
+            .theme-badge .swatch {
+                width: 12px;
+                height: 12px;
+            }
+            .bottom-nav {
+                height: 58px;
+                min-height: 58px;
+                padding: 0 2px;
+            }
+            .nav-item {
+                min-width: 40px;
+                padding: 4px 6px;
+                gap: 1px;
+            }
+            .nav-item .icon {
+                font-size: 24px;
+            }
+            .nav-item .label {
+                display: none;
+            }
+            .nav-item.active::after {
+                left: 25%;
+                right: 25%;
+                height: 2px;
+            }
+            .section {
+                padding: 12px 12px 70px;
+            }
+            .chat-input-area {
+                gap: 6px;
+                padding: 8px 0 2px;
+            }
+            .chat-input-area textarea {
+                font-size: 14px;
+                min-height: 40px;
+                padding: 8px 12px;
             }
             .chat-input-area .action-btn,
             .chat-input-area .icon-btn,
             .chat-input-area .voice-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 17px;
-            }
-            .modal .btn-row button {
-                font-size: 12px;
-                padding: 7px 14px;
-            }
-            .music-player-panel .controls button {
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
-            }
-            .music-player-panel .controls button.play-btn {
                 width: 40px;
                 height: 40px;
                 font-size: 18px;
             }
-            .music-player-panel .progress .time {
-                min-width: 30px;
-                font-size: 10px;
+            .chat-input-area .action-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .pdf-upload-btn {
+                font-size: 12px;
+                padding: 4px 10px;
+            }
+            .chat-message .bubble {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+            .chat-message .avatar {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+            .emoji-picker-dropdown {
+                width: 240px;
+                max-height: 280px;
+                bottom: 48px;
+                padding: 4px;
+            }
+            .emoji-picker-3d {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 2px;
+            }
+            .emoji-picker-3d .emoji-3d-item img {
+                width: 28px;
+                height: 28px;
+            }
+            .modal {
+                padding: 14px 14px;
+                max-width: 98%;
+                max-height: 92vh;
+                max-height: 92dvh;
+            }
+            .modal h2 {
+                font-size: 18px;
+            }
+            .modal .form-group input,
+            .modal .form-group select {
+                font-size: 14px;
+                padding: 8px 10px;
             }
             .theme-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+                gap: 6px;
+            }
+            .theme-card {
+                padding: 4px 4px 4px;
+            }
+            .theme-card .swatch-strip {
+                height: 16px;
+            }
+            .theme-card .theme-label {
+                font-size: 8px;
+            }
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 8px;
+            }
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 8px;
+            }
+            .music-player-panel {
+                padding: 12px 14px;
+            }
+            .music-player-panel .controls button {
+                width: 34px;
+                height: 34px;
+                font-size: 15px;
+            }
+            .music-player-panel .controls button.play-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+            }
+            .music-player-panel .progress .time {
+                min-width: 32px;
+                font-size: 10px;
+            }
+            .music-player-panel .volume-control input[type="range"] {
+                width: 40px;
+            }
+            .music-player-panel .track-info .thumb {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            .music-player-panel .track-info .details .title {
+                font-size: 13px;
+            }
+            .playlist-container .playlist-item {
+                padding: 4px 8px;
+                gap: 6px;
+            }
+            .playlist-container .playlist-item .song-name {
+                font-size: 13px;
+            }
+            .visualizer-container {
+                height: 48px;
+            }
+            .music-container .upload-area {
+                padding: 20px 14px;
+            }
+            .music-container .upload-area .icon {
+                font-size: 28px;
+            }
+            .app-footer {
+                font-size: 11px;
+                padding: 6px;
+            }
+            .file-preview-container>div {
+                font-size: 12px;
+                padding: 3px 8px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header {
+                padding: 0 8px;
+                height: 48px;
+                min-height: 48px;
+            }
+            .header-left .logo {
+                font-size: 15px;
+            }
+            .header-left {
+                gap: 6px;
+            }
+            .status-badge {
+                font-size: 8px;
+                padding: 1px 4px;
+                gap: 2px;
+            }
+            .status-badge .dot {
+                width: 4px;
+                height: 4px;
+            }
+            .header-right button {
+                font-size: 16px;
+                padding: 3px;
+            }
+            .theme-badge {
+                font-size: 9px;
+                padding: 1px 4px 1px 3px;
+            }
+            .theme-badge .swatch {
+                width: 10px;
+                height: 10px;
+            }
+            .bottom-nav {
+                height: 52px;
+                min-height: 52px;
+            }
+            .nav-item {
+                min-width: 34px;
+                padding: 2px 4px;
+            }
+            .nav-item .icon {
+                font-size: 22px;
+            }
+            .nav-item.active::after {
+                left: 20%;
+                right: 20%;
+                height: 2px;
+            }
+            .section {
+                padding: 8px 8px 60px;
+            }
+            .chat-input-area {
+                gap: 4px;
+            }
+            .chat-input-area textarea {
+                font-size: 13px;
+                min-height: 36px;
+                padding: 6px 10px;
+            }
+            .chat-input-area .action-btn,
+            .chat-input-area .icon-btn,
+            .chat-input-area .voice-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .pdf-upload-btn {
+                font-size: 11px;
+                padding: 3px 8px;
+            }
+            .chat-message .bubble {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+            .chat-message .avatar {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+            }
+            .emoji-picker-dropdown {
+                width: 200px;
+                max-height: 220px;
+                bottom: 42px;
+                padding: 4px;
+            }
+            .emoji-picker-3d {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .emoji-picker-3d .emoji-3d-item img {
+                width: 24px;
+                height: 24px;
+            }
+            .modal {
+                padding: 12px 10px;
+                max-width: 100%;
+            }
+            .modal h2 {
+                font-size: 16px;
+            }
+            .modal .form-group input,
+            .modal .form-group select {
+                font-size: 13px;
+                padding: 6px 8px;
+            }
+            .modal .btn-row button {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+            .theme-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+                gap: 4px;
+            }
+            .theme-card {
+                padding: 3px 3px 3px;
+            }
+            .theme-card .swatch-strip {
+                height: 14px;
+            }
+            .theme-card .theme-label {
+                font-size: 7px;
+            }
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 6px;
+            }
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 6px;
+            }
+            .music-player-panel {
+                padding: 10px 10px;
+            }
+            .music-player-panel .controls button {
+                width: 30px;
+                height: 30px;
+                font-size: 13px;
+            }
+            .music-player-panel .controls button.play-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 18px;
+            }
+            .music-player-panel .progress {
+                min-width: 80px;
+                gap: 4px;
+            }
+            .music-player-panel .progress .time {
+                min-width: 28px;
+                font-size: 9px;
+            }
+            .music-player-panel .volume-control input[type="range"] {
+                width: 30px;
+            }
+            .music-player-panel .track-info .thumb {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+            .music-player-panel .track-info .details .title {
+                font-size: 12px;
+            }
+            .playlist-container .playlist-item {
+                padding: 3px 6px;
+                gap: 4px;
+            }
+            .playlist-container .playlist-item .song-name {
+                font-size: 12px;
+            }
+            .visualizer-container {
+                height: 40px;
+            }
+            .music-container .upload-area {
+                padding: 14px 10px;
+            }
+            .music-container .upload-area .icon {
+                font-size: 24px;
+            }
+            .app-footer {
+                font-size: 10px;
+                padding: 4px;
+            }
+        }
+
+        /* Tall phones / small landscape */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .header {
+                height: 44px;
+                min-height: 44px;
+                padding: 0 12px;
+            }
+            .bottom-nav {
+                height: 48px;
+                min-height: 48px;
+            }
+            .section {
+                padding: 8px 12px 56px;
+            }
+            .chat-input-area {
+                padding: 4px 0 0;
+            }
+            .chat-input-area textarea {
+                min-height: 32px;
+                max-height: 80px;
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+            .chat-input-area .action-btn,
+            .chat-input-area .icon-btn,
+            .chat-input-area .voice-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 15px;
+            }
+            .music-player-panel {
+                padding: 8px 12px;
+            }
+            .visualizer-container {
+                height: 36px;
+            }
+            .playlist-container {
+                max-height: 100px;
+            }
+            .theme-gallery {
+                max-height: 160px;
+            }
+            .modal {
+                max-height: 85vh;
+                max-height: 85dvh;
+                padding: 12px 14px;
             }
         }
 
@@ -1818,6 +2274,7 @@
         .emoji-animate {
             display: inline-block;
             animation: emojiPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            vertical-align: middle;
         }
         @keyframes emojiPop {
             0% {
@@ -2254,7 +2711,6 @@
             localStorage.setItem('hex_theme', theme);
             updateHeaderBadge(theme);
             updateThemeGallery(theme);
-            // Also update the dropdown in settings if present
             const selector = document.getElementById('themeSelector');
             if (selector) selector.value = theme;
         }
@@ -2290,7 +2746,6 @@
                 `;
                 card.addEventListener('click', () => {
                     setTheme(name);
-                    // Also update the selected value in the old dropdown if it exists
                     const oldSelect = document.getElementById('themeSelector');
                     if (oldSelect) oldSelect.value = name;
                 });
@@ -2316,10 +2771,8 @@
             themeCycleIndex = (themeCycleIndex + 1) % THEME_NAMES.length;
             const nextTheme = THEME_NAMES[themeCycleIndex];
             setTheme(nextTheme);
-            // Update the old selector if it exists
             const oldSelect = document.getElementById('themeSelector');
             if (oldSelect) oldSelect.value = nextTheme;
-            // Update gallery
             updateThemeGallery(nextTheme);
         });
 
@@ -2333,7 +2786,6 @@
         settingsToggle.addEventListener('click', () => {
             settingsModal.classList.add('open');
             loadSettings();
-            // Refresh gallery to show active
             updateThemeGallery(getCurrentTheme());
             const provider = document.getElementById('aiProvider').value;
             if (provider === 'puter') fetchPuterModels(false);
@@ -2346,7 +2798,6 @@
             if (e.target === settingsModal) settingsModal.classList.remove('open');
         });
 
-        // Build the theme gallery on load
         buildThemeGallery();
         updateHeaderBadge(getCurrentTheme());
 
@@ -2962,15 +3413,19 @@
                 addMessage(response, 'bot');
                 chatHistory.push({ role: 'assistant', content: response });
 
+                // ✨ FIXED: Append the animated emoji to the message-text, not the bubble
                 const emojis = ['🫵', '😎', '🤖', '✨', '🚀', '🌟', '💡', '🎯'];
                 const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-                const lastBubble = chatMessages.querySelector('.chat-message:last-child .bubble');
-                if (lastBubble) {
-                    const span = document.createElement('span');
-                    span.className = 'emoji-animate';
-                    span.textContent = ' ' + randomEmoji;
-                    span.style.fontSize = '24px';
-                    lastBubble.appendChild(span);
+                const lastMsg = chatMessages.querySelector('.chat-message:last-child');
+                if (lastMsg) {
+                    const textContainer = lastMsg.querySelector('.message-text');
+                    if (textContainer) {
+                        const span = document.createElement('span');
+                        span.className = 'emoji-animate';
+                        span.textContent = ' ' + randomEmoji;
+                        span.style.fontSize = '24px';
+                        textContainer.appendChild(span);
+                    }
                 }
 
             } catch (err) {
@@ -3410,9 +3865,9 @@
                 return;
             }
             container.innerHTML = STATE.attachedFiles.map((file, i) => `
-                <div style="display:inline-flex;align-items:center;gap:6px;background:var(--base-200);padding:4px 10px;border-radius:var(--radius-sm);border:1px solid var(--base-300);margin:2px;">
+                <div>
                     <i class="fas fa-file"></i> ${file.name}
-                    <button onclick="removeFile(${i})" style="background:none;border:none;color:var(--error);cursor:pointer;font-size:14px;">×</button>
+                    <button onclick="removeFile(${i})" style="background:none;border:none;color:var(--error);cursor:pointer;font-size:14px;touch-action:manipulation;">×</button>
                 </div>
             `).join('');
         }
@@ -3425,8 +3880,6 @@
         // Add a file preview container near chat input
         const filePreviewContainer = document.createElement('div');
         filePreviewContainer.className = 'file-preview-container';
-        filePreviewContainer.style.cssText =
-            'display:flex;flex-wrap:wrap;gap:4px;padding:4px 0;min-height:6px;';
         const chatInputArea = document.querySelector('.chat-input-area');
         if (chatInputArea) {
             chatInputArea.insertBefore(filePreviewContainer, chatInputArea.firstChild);
@@ -4267,14 +4720,13 @@
                 welcome.appendChild(span);
             }
 
-            // Sync theme gallery & badge after load
             updateThemeGallery(getCurrentTheme());
             updateHeaderBadge(getCurrentTheme());
         }
 
         init().catch(console.warn);
 
-        console.log('✓ HEX AI — Theme Studio Edition');
+        console.log('✓ HEX AI — Theme Studio Edition (fixed animated emojis)');
         console.log(`🎨 33 themes with visual gallery & live preview`);
         console.log('🔐 API keys stored securely in localStorage');
         console.log('📦 Providers: Puter, OpenRouter, Gemini');
