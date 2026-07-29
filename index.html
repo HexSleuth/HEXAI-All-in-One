@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
-    <title>✦ HEX AI</title>
+    <title>⬣ HEX AI</title>
 
     <!-- Font Awesome 6 (Latest Stable) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
     <style>
         /* ==========================================================================
-           CSS MULTI-THEME SYSTEM — 33 Themes (fully preserved, no UX/UI changes)
+           CSS MULTI-THEME SYSTEM — 33 Themes (fully preserved)
            ========================================================================== */
         :root {
             --primary: #4b6bfb;
@@ -566,9 +566,6 @@
             border-radius: 4px;
         }
 
-        /* ------------------------------------------------------------------ */
-        /* APP SHELL                                                         */
-        /* ------------------------------------------------------------------ */
         #app {
             display: flex;
             flex-direction: column;
@@ -2164,8 +2161,6 @@
         }
 
         /* ---- Uiverse components adapted to use theme variables ---- */
-
-        /* 1. Gradient Button (from dexter-st) */
         .btn-wrapper-theme {
             --rad: 32px;
             --color-wrapper-border: var(--primary);
@@ -2327,7 +2322,6 @@
             }
         }
 
-        /* 2. Gradient Button (from M4rco592) */
         .gradient-button-theme {
             position: relative;
             padding: 12px 28px;
@@ -2398,7 +2392,6 @@
             }
         }
 
-        /* 3. Hacker Input (from chase2k25) */
         .hacker-input-container-theme {
             position: relative;
             width: 100%;
@@ -2504,7 +2497,6 @@
             }
         }
 
-        /* 4. Checkbox (from 3HugaDa3) */
         .checkbox-wrapper-theme {
             position: relative;
             cursor: pointer;
@@ -2618,7 +2610,6 @@
             }
         }
 
-        /* 5. Loader with rings (from Esca-Byte) */
         .loader-ring-theme {
             position: relative;
             width: 80px;
@@ -2834,7 +2825,6 @@
             }
         }
 
-        /* 6. Simple loader bars */
         .loader-bars-theme {
             display: flex;
             gap: 4px;
@@ -2882,7 +2872,6 @@
             }
         }
 
-        /* 7. Terminal loader (from creator1116) */
         .terminal-loader-theme {
             border: 1px solid var(--base-300);
             background-color: var(--base-200);
@@ -2979,7 +2968,6 @@
             }
         }
 
-        /* 8. Toggle switch (from reglobby) – simplified */
         .toggle-container-theme {
             position: relative;
             width: 120px;
@@ -3109,7 +3097,6 @@
             box-shadow: 0 0 25px var(--primary), inset 0 0 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* 9. Animated border button */
         .border-btn-theme {
             position: relative;
             padding: 8px 24px;
@@ -3155,7 +3142,6 @@
             }
         }
 
-        /* 10. Pulse ring loader */
         .pulse-ring-theme {
             position: relative;
             width: 50px;
@@ -3219,7 +3205,6 @@
             }
         }
 
-        /* 11. Glow text (simple) */
         .glow-text-theme {
             font-size: 1.8rem;
             font-weight: 900;
@@ -3234,7 +3219,6 @@
             transform: scale(1.04);
         }
 
-        /* 12. Synthwave car (from BlackisPlay) – simplified as static */
         .synthwave-mini {
             position: relative;
             width: 120px;
@@ -4340,6 +4324,61 @@
         .app-footer a:hover {
             text-decoration: underline;
         }
+
+        /* Chat controls */
+        .chat-controls {
+            display: flex;
+            gap: 8px;
+            padding: 6px 0 2px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            background: var(--base-100);
+            transition: background 0.3s;
+            border-top: 1px solid var(--base-300);
+            margin-top: 2px;
+        }
+
+        .chat-controls button {
+            background: var(--base-200);
+            border: 1px solid var(--base-300);
+            border-radius: var(--radius-sm, 8px);
+            padding: 4px 14px;
+            font-size: 12px;
+            cursor: pointer;
+            color: var(--base-content);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            touch-action: manipulation;
+            font-weight: 500;
+        }
+
+        .chat-controls button:hover {
+            background: var(--base-300);
+            color: var(--primary);
+        }
+
+        .chat-controls button.danger:hover {
+            background: var(--error);
+            color: #fff;
+            border-color: var(--error);
+        }
+
+        .chat-controls button.success:hover {
+            background: var(--success);
+            color: #fff;
+            border-color: var(--success);
+        }
+
+        .chat-controls .status-text {
+            font-size: 11px;
+            opacity: 0.5;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
     </style>
 </head>
 
@@ -4536,7 +4575,6 @@
                 <div class="preview-title"><i class="fas fa-puzzle-piece"></i> Component Effects — live theme colors</div>
                 <div class="component-grid">
 
-                    <!-- 1. Gradient Button (dexter-st) -->
                     <div class="component-item">
                         <div class="btn-wrapper-theme">
                             <div class="gradient-layer"></div>
@@ -4547,24 +4585,18 @@
                         </div>
                         <span class="comp-label">Gradient Button</span>
                     </div>
-
-                    <!-- 2. Gradient Button (M4rco592) -->
                     <div class="component-item">
                         <button class="gradient-button-theme">
                             <span class="gradient-text"><i class="fas fa-star"></i> GRADIENT</span>
                         </button>
                         <span class="comp-label">Conic Button</span>
                     </div>
-
-                    <!-- 3. Hacker Input -->
                     <div class="component-item">
                         <div class="hacker-input-container-theme">
                             <input class="hacker-input-theme" type="text" placeholder="ACCESS" value="THEME" />
                         </div>
                         <span class="comp-label">Hacker Input</span>
                     </div>
-
-                    <!-- 4. Checkbox -->
                     <div class="component-item">
                         <label class="checkbox-wrapper-theme">
                             <input type="checkbox" checked />
@@ -4572,8 +4604,6 @@
                         </label>
                         <span class="comp-label">Glow Checkbox</span>
                     </div>
-
-                    <!-- 5. Ring Loader -->
                     <div class="component-item">
                         <div class="loader-ring-theme">
                             <div class="ring outer"></div>
@@ -4583,8 +4613,6 @@
                         </div>
                         <span class="comp-label">Ring Loader</span>
                     </div>
-
-                    <!-- 6. Bar Loader -->
                     <div class="component-item">
                         <div class="loader-bars-theme">
                             <div class="bar"></div>
@@ -4595,8 +4623,6 @@
                         </div>
                         <span class="comp-label">Bar Loader</span>
                     </div>
-
-                    <!-- 7. Terminal Loader -->
                     <div class="component-item">
                         <div class="terminal-loader-theme">
                             <div class="terminal-header">
@@ -4611,8 +4637,6 @@
                         </div>
                         <span class="comp-label">Terminal</span>
                     </div>
-
-                    <!-- 8. Toggle Switch -->
                     <div class="component-item">
                         <div class="toggle-container-theme">
                             <div class="toggle-wrap-theme">
@@ -4628,14 +4652,10 @@
                         </div>
                         <span class="comp-label">Toggle</span>
                     </div>
-
-                    <!-- 9. Border Button -->
                     <div class="component-item">
                         <button class="border-btn-theme"><i class="fas fa-star"></i> BORDER</button>
                         <span class="comp-label">Animated Border</span>
                     </div>
-
-                    <!-- 10. Pulse Ring -->
                     <div class="component-item">
                         <div class="pulse-ring-theme">
                             <div class="ring-pulse"></div>
@@ -4645,14 +4665,10 @@
                         </div>
                         <span class="comp-label">Pulse Ring</span>
                     </div>
-
-                    <!-- 11. Glow Text -->
                     <div class="component-item">
                         <span class="glow-text-theme">NEON</span>
                         <span class="comp-label">Glow Text</span>
                     </div>
-
-                    <!-- 12. Synthwave Mini -->
                     <div class="component-item">
                         <div class="synthwave-mini">
                             <div class="sun-mini"></div>
@@ -4756,15 +4772,172 @@
                 <label><i class="fas fa-language"></i> GTranslate (auto-translate)</label>
                 <select id="gtranslateLang">
                     <option value="off">Off</option>
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                    <option value="fr">Français</option>
-                    <option value="de">Deutsch</option>
-                    <option value="zh">中文</option>
-                    <option value="ja">日本語</option>
-                    <option value="ko">한국어</option>
-                    <option value="hi">हिन्दी</option>
-                    <option value="ar">العربية</option>
+                     <option value="af">Afrikaans</option>
+    <option value="sq">Albanian - (Shqip)</option>
+    <option value="am">Amharic - (አማርኛ)</option>
+    <option value="ar">Arabic - (العربية)</option>
+    <option value="an">Aragonese - (Aragonés)</option>
+    <option value="hy">Armenian - (Հայերեն)</option>
+    <option value="ast">Asturian - (Asturianu)</option>
+    <option value="ay">Aymara - (Aymar aru)</option>
+    <option value="az">Azerbaijani - (Azərbaycan dili)</option>
+    <option value="eu">Basque - (Euskara)</option>
+    <option value="be">Belarusian - (Беларуская)</option>
+    <option value="bn">Bengali - (বাংলা)</option>
+    <option value="brx">Bodo - (बर')</option>
+    <option value="bs">Bosnian - (Bosanski)</option>
+    <option value="br">Breton - (Brezhoneg)</option>
+    <option value="bg">Bulgarian - (Български)</option>
+    <option value="ca">Catalan - (Català)</option>
+    <option value="ckb">Central - Kurdish (کوردی)</option>
+    <option value="ce">Chechen (Нохчийн мотт)</option>
+    <option value="zh">Chinese (中文)</option>
+    <option value="zh-HK">Chinese Hong Kong - (中文 - 香港)</option>
+    <option value="zh-CN">Chinese Simplified - (中文简体)</option>
+    <option value="zh-TW">Chinese Traditional - (中文繁體)</option>
+    <option value="co">Corsican - (Corsu)</option>
+    <option value="hr">Croatian - (Hrvatski)</option>
+    <option value="cs">Czech - (Čeština)</option>
+    <option value="da">Danish - (Dansk)</option>
+    <option value="dv">Dhivehi - (ދިވެހި)</option>
+    <option value="nl">Dutch (Nederlands)</option>
+    <option value="dz">Dzongkha (རྫོང་ཁ)</option>
+    <option value="en">English</option>
+    <option value="en-AU">English (Australia)</option>
+    <option value="en-CA">English (Canada)</option>
+    <option value="en-IN">English (India)</option>
+    <option value="en-NZ">English (New Zealand)</option>
+    <option value="en-ZA">English (South Africa)</option>
+    <option value="en-GB">English (United Kingdom)</option>
+    <option value="en-US">English (United States)</option>
+    <option value="eo">Esperanto</option>
+    <option value="et">Estonian (Eesti)</option>
+    <option value="ee">Ewe (Eʋegbe)</option>
+    <option value="fo">Faroese - (Føroyskt)</option>
+    <option value="fil">Filipino (Wikang Filipino)</option>
+    <option value="fi">Finnish (Suomi)</option>
+    <option value="fr">French (Français)</option>
+    <option value="fr-CA">French Canada - (Français Canada)</option>
+    <option value="fr-FR">French France - (Français France)</option>
+    <option value="fr-CH">French Switzerland - (Français Suisse)</option>
+    <option value="gl">Galician - (Galego)</option>
+    <option value="ka">Georgian - (ქართული)</option>
+    <option value="de">German - (Deutsch)</option>
+    <option value="de-AT">German Austria  - (Deutsch Österreich)</option>
+    <option value="de-DE">German Germany  - (Deutsch Deutschland)</option>
+    <option value="de-LI">German Liechtenstein  - (Deutsch Liechtenstein)</option>
+    <option value="de-CH">German Switzerland  - (Deutsch Schweiz)</option>
+    <option value="el">Greek - (Ελληνικά)</option>
+    <option value="gn">Guarani - (Avañe'ẽ)</option>
+    <option value="gu">Gujarati - (ગુજરાતી)</option>
+    <option value="ha">Hausa - (هَوُسَ)</option>
+    <option value="haw">Hawaiian - (ʻŌlelo Hawaiʻi)</option>
+    <option value="he">Hebrew - (עברית)</option>
+    <option value="hi">Hindi - (हिन्दी)</option>
+    <option value="hu">Hungarian - (Magyar)</option>
+    <option value="is">Icelandic - (Íslenska)</option>
+    <option value="id">Indonesian - (Bahasa Indonesia)</option>
+    <option value="ia">Interlingua</option>
+    <option value="iu">Inuktitut - (ᐃᓄᒃᑎᑐᑦ)</option>
+    <option value="ga">Irish - (Gaeilge)</option>
+    <option value="it">Italian - (Italiano)</option>
+    <option value="it-IT">Italian Italy - (Italiano Italia)</option>
+    <option value="it-CH">Italian Switzerland - (Italiano - Svizzera)</option>
+    <option value="ja">Japanese - (日本語)</option>
+    <option value="kl">Kalaallisut - (Kalaallisut)</option>
+    <option value="kn">Kannada - (ಕನ್ನಡ)</option>
+    <option value="ks">Kashmiri - (कॉशुर / كٲشُر‎)</option>
+    <option value="kk">Kazakh - (Қазақ тілі)</option>
+    <option value="km">Khmer - (ខ្មែរ)</option>
+    <option value="rw">Kinyarwanda - (Ikinyarwanda)</option>
+    <option value="ko">Korean - (한국어)</option>
+    <option value="ku">Kurdish - (Kurdî)</option>
+    <option value="ky">Kyrgyz - (Кыргызча)</option>
+    <option value="lo">Lao - (ລາວ)</option>
+    <option value="la">Latin - (Latina)</option>
+    <option value="lv">Latvian - (Latviešu)</option>
+    <option value="ln">Lingala - (Lingála)</option>
+    <option value="lt">Lithuanian - (Lietuvių)</option>
+    <option value="lg">Luganda - (Luganda)</option>
+    <option value="lb">Luxembourgish - (Lëtzebuergesch)</option>
+    <option value="mk">Macedonian - (Македонски)</option>
+    <option value="mai">Maithili - (मैथिली)</option>
+    <option value="ms">Malay - (Bahasa Melayu)</option>
+    <option value="ml">Malayalam - (മലയാളം)</option>
+    <option value="mt">Maltese - (Malti)</option>
+    <option value="mni">Manipuri - (ꯃꯅꯤꯄꯨꯔꯤ)</option>
+    <option value="mr">Marathi - (मराठी)</option>
+    <option value="mn">Mongolian - (Монгол)</option>
+    <option value="ne">Nepali - (नेपाली)</option>
+    <option value="nso">Northern Sotho - (Sesotho sa Leboa)</option>
+    <option value="no">Norwegian (Norsk)</option>
+    <option value="nb">Norwegian Bokmål - (Norsk bokmål)</option>
+    <option value="nn">Norwegian Nynorsk - (Nynorsk)</option>
+    <option value="oc">Occitan</option>
+    <option value="or">Oriya - (ଓଡ଼ିଆ)</option>
+    <option value="om">Oromo - (Afaan Oromoo)</option>
+    <option value="os">Ossetian - (Ирон æвзаг)</option>
+    <option value="ps">Pashto - (پښتو)</option>
+    <option value="fa">Persian - (فارسی)</option>
+    <option value="pl">Polish - (Polski)</option>
+    <option value="pt">Portuguese - (Português)</option>
+    <option value="pt-BR">Portuguese Brazil - (Português Brasil)</option>
+    <option value="pt-PT">Portuguese Portugal - (Português Portugal)</option>
+    <option value="pa">Punjabi - (ਪੰਜਾਬੀ)</option>
+    <option value="qu">Quechua - (Runa Simi)</option>
+    <option value="ro">Romanian - (Română)</option>
+    <option value="mo">Romanian  Moldova - (Română Moldova)</option>
+    <option value="rm">Romansh - (Rumantsch)</option>
+    <option value="ru">Russian - (Русский)</option>
+    <option value="sm">Samoan - (Gagana Samoa)</option>
+    <option value="sat">Santali - (ᱥᱟᱱᱛᱟᱲᱤ)</option>
+    <option value="sc">Sardinian - (Sardu)</option>
+    <option value="gd">Scottish Gaelic - (Gàidhlig)</option>
+    <option value="sr">Serbian - (Српски)</option>
+    <option value="sh">Serbo_Croatian - (Srpskohrvatski)</option>
+    <option value="sn">Shona - (ChiShona)</option>
+    <option value="sd">Sindhi - (سنڌي)</option>
+    <option value="si">Sinhala - (සිංහල)</option>
+    <option value="sk">Slovak - (Slovenčina)</option>
+    <option value="sl">Slovenian - (Slovenščina)</option>
+    <option value="so">Somali - (Soomaali)</option>
+    <option value="st">Southern - Sotho (Sesotho)</option>
+    <option value="es">Spanish - (Español)</option>
+    <option value="es-AR">Spanish  Argentina  - (Español Argentina)</option>
+    <option value="es-419">Spanish  Latin America  - (Español Latinoamérica)</option>
+    <option value="es-MX">Spanish  Mexico  - (Español  México)</option>
+    <option value="es-ES">Spanish  Spain  - (Español España)</option>
+    <option value="es-US">Spanish  United States  - (Español Estados Unidos)</option>
+    <option value="su">Sundanese - (Basa Sunda)</option>
+    <option value="sw">Swahili - (Kiswahili)</option>
+    <option value="sv">Swedish - (Svenska)</option>
+    <option value="tg">Tajik - (Тоҷикӣ)</option>
+    <option value="ta">Tamil - (தமிழ்)</option>
+    <option value="tt">Tatar - (Татар)</option>
+    <option value="te">Telugu - (తెలుగు)</option>
+    <option value="th">Thai - (ไทย)</option>
+    <option value="ti">Tigrinya - (ትግርኛ)</option>
+    <option value="to">Tongan - (Lea fakatonga)</option>
+    <option value="tn">Tswana - (Setswana)</option>
+    <option value="tr">Turkish - (Türkçe)</option>
+    <option value="tk">Turkmen - (Türkmençe)</option>
+    <option value="tw">Twi - (Twi)</option>
+    <option value="udm">Udmurt - (Удмурт кыл)</option>
+    <option value="uk">Ukrainian - (Українська)</option>
+    <option value="ur">Urdu - (اردو)</option>
+    <option value="ug">Uyghur - (ئۇيغۇرچە)</option>
+    <option value="uz">Uzbek - (O'zbek)</option>
+    <option value="ve">Venda - (Tshivenḓa)</option>
+    <option value="vi">Vietnamese - (Tiếng Việt)</option>
+    <option value="wa">Walloon - (Walon)</option>
+    <option value="cy">Welsh - (Cymraeg)</option>
+    <option value="fy">Western Frisian - (Frysk)</option>
+    <option value="wo">Wolof - (Wollof)</option>
+    <option value="xh">Xhosa - (isiXhosa)</option>
+    <option value="yi">Yiddish - (ייִדיש)</option>
+    <option value="yo">Yoruba - (Èdè Yorùbá)</option>
+    <option value="za">Zhuang - (Saɯ cueŋƅ)</option>
+    <option value="zu">Zulu - (isiZulu)</option>
                 </select>
                 <div class="hint">Translate responses to your preferred language.</div>
             </div>
@@ -4777,6 +4950,45 @@
         </div>
     </div>
 
+        <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ============================================================
+        //  🛡️ PROTOCOL CHECK – Prevent file:/// error
+        // ============================================================
+        if (window.location.protocol === 'file:') {
+            document.body.innerHTML = `
+                <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; font-family:sans-serif; text-align:center; padding:20px; background:#f8f9fa;">
+                    <h1 style="color:#e74c3c;">🚫 Unsupported Protocol</h1>
+                    <p style="font-size:1.2rem; max-width:600px; line-height:1.6;">
+                        Puter.js requires a web server to run due to security restrictions.<br>
+                        You are currently opening this file directly from your hard drive (<b>file:///</b>).
+                    </p>
+                    <div style="background:#fff; padding:15px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1); text-align:left; max-width:600px; margin-top:10px;">
+                        <h3 style="color:#2c3e50;">How to fix this:</h3>
+                        <ul style="list-style-type: none; padding:0;">
+                            <li style="padding:8px 0; border-bottom:1px solid #eee;">📁 <b>Python 3:</b> <code style="background:#eee; padding:2px 6px; border-radius:4px;">python -m http.server 8000</code></li>
+                            <li style="padding:8px 0; border-bottom:1px solid #eee;">📦 <b>Node.js:</b> <code style="background:#eee; padding:2px 6px; border-radius:4px;">npx http-server</code></li>
+                            <li style="padding:8px 0;">💻 <b>VS Code:</b> Install "Live Server" extension, right-click file → "Open with Live Server".</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top:20px; font-size:0.9rem; color:#7f8c8d;">Once running, access via <b>http://localhost:8000</b></p>
+                </div>
+            `;
+            throw new Error('Puter.js requires a web server (http://), not file:// protocol.');
+        }
+    </script>
+
+    <!-- Puter.js -->
+    <script src="https://js.puter.com/v2/"></script>
+    <!-- Howler.js (keep for compatibility) -->
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js">
+    </script>
+    <!-- Tone.js – Web Audio API framework (for visualizer) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js">
+    </script>
+    <!-- PDF-lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js">
+    </script>
     <!-- ================================================================ -->
     <!-- ===== JAVASCRIPT ===== -->
     <!-- ================================================================ -->
@@ -4851,8 +5063,6 @@
                 try {
                     localStorage.setItem('neon-theme', theme);
                 } catch (_) {}
-                const footerLink = document.getElementById('footerThemeLink');
-                if (footerLink) footerLink.textContent = `Theme Studio with Component Gallery · ${theme}`;
                 const c = THEME_SWATCHES[theme] || ['#4b6bfb', '#7b92b2', '#67cba0', '#181a2a'];
                 document.getElementById('customPrimary').value = c[0] || '#4b6bfb';
                 document.getElementById('customSecondary').value = c[1] || '#7b92b2';
@@ -4977,71 +5187,10 @@
             const chatInput = document.getElementById('chatInput');
             const sendBtn = document.getElementById('sendBtn');
 
-            // Default welcome message with animated emoji
-            function addWelcomeMessage() {
-                const msg = document.createElement('div');
-                msg.className = 'chat-message';
-                const avatar = document.createElement('div');
-                avatar.className = 'avatar';
-                avatar.innerHTML = '<i class="fas fa-robot"></i>';
-                msg.appendChild(avatar);
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                const textSpan = document.createElement('span');
-                textSpan.className = 'message-text';
-                textSpan.textContent = '👋 Welcome! I\'m your AI assistant. Ask me anything, or try the ';
-                const link = document.createElement('a');
-                link.href = '#';
-                link.textContent = 'Theme Studio';
-                link.style.color = 'var(--primary)';
-                link.style.textDecoration = 'underline';
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.getElementById('settingsBtn').click();
-                });
-                textSpan.appendChild(link);
-                textSpan.appendChild(document.createTextNode(' for cool effects!'));
-                // Add animated emoji at the end
-                const emojiSpan = document.createElement('span');
-                emojiSpan.className = 'emoji-animate';
-                emojiSpan.textContent = ' ✨';
-                emojiSpan.style.fontSize = '24px';
-                textSpan.appendChild(emojiSpan);
-                bubble.appendChild(textSpan);
-                const time = document.createElement('span');
-                time.className = 'time';
-                time.textContent = new Date().toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-                bubble.appendChild(time);
-                const actions = document.createElement('div');
-                actions.className = 'message-actions';
-                const copyBtn = document.createElement('button');
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                copyBtn.title = 'Copy';
-                copyBtn.addEventListener('click', function() {
-                    navigator.clipboard.writeText(textSpan.textContent).catch(() => {});
-                });
-                actions.appendChild(copyBtn);
-                const delBtn = document.createElement('button');
-                delBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
-                delBtn.title = 'Delete';
-                delBtn.addEventListener('click', function() {
-                    msg.classList.add('removing');
-                    setTimeout(() => msg.remove(), 300);
-                });
-                actions.appendChild(delBtn);
-                bubble.appendChild(actions);
-                msg.appendChild(bubble);
-                chatMessages.appendChild(msg);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
             // -------- ANIMATED EMOJI HELPER --------
             function getAnimatedEmojiHTML(emoji, size = 40) {
-                const codePoint = emoji.codePointAt(0).toString(16);
-                return `<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/${codePoint}/512.gif" 
+                const cp = emoji.codePointAt(0).toString(16);
+                return `<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/${cp}/512.gif" 
                              alt="${emoji}" 
                              width="${size}" 
                              height="${size}" 
@@ -5062,7 +5211,6 @@
                 const textSpan = document.createElement('span');
                 textSpan.className = 'message-text';
 
-                // Process text: replace emoji characters with animated GIFs
                 let processedText = text;
                 const emojiRegex = /([\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27BF}]|[\u{FE00}-\u{FE0F}]|[\u{2B50}]|[\u{1F300}-\u{1F6FF}]|[\u{2700}-\u{27BF}]|[🇦-🇿]|[\u{203C}-\u{3299}])/gu;
                 let lastIndex = 0;
@@ -5114,8 +5262,6 @@
                     textSpan.appendChild(fragment);
                 }
 
-                bubble.appendChild(textSpan);
-
                 if (Array.isArray(animatedEmojis)) {
                     animatedEmojis.forEach(emoji => {
                         const img = document.createElement('img');
@@ -5132,6 +5278,8 @@
                         textSpan.appendChild(img);
                     });
                 }
+
+                bubble.appendChild(textSpan);
 
                 const time = document.createElement('span');
                 time.className = 'time';
@@ -5193,60 +5341,207 @@
                 if (el) el.remove();
             }
 
-            // Simulate bot response with animated emojis
-            function simulateBotResponse(userText) {
-                const typing = addTypingIndicator();
-                setTimeout(() => {
-                    removeTypingIndicator();
-                    const responses = [{
-                            text: 'That\'s a great question! Let me think about it...',
-                            emojis: ['🤔', '💭']
-                        },
-                        {
-                            text: 'I understand! Here\'s what I can tell you about that.',
-                            emojis: ['📚', '✨']
-                        },
-                        {
-                            text: 'Thanks for your message! I\'m here to help you explore.',
-                            emojis: ['🙌', '🌟']
-                        },
-                        {
-                            text: 'Interesting! Let me dive deeper into that for you.',
-                            emojis: ['🔍', '🧠']
-                        },
-                        {
-                            text: 'I appreciate your curiosity! Here\'s some insight.',
-                            emojis: ['💡', '🌈']
-                        },
-                        {
-                            text: 'That\'s a cool topic! Let me share some thoughts.',
-                            emojis: ['🚀', '🎯']
-                        },
-                        {
-                            text: 'I\'m processing your message... and here\'s my response!',
-                            emojis: ['⚡', '💫']
-                        },
-                    ];
-                    const random = responses[Math.floor(Math.random() * responses.length)];
-                    const extraEmojis = ['🌟', '✨', '🎉', '💖', '🔥', '🌈', '⭐', '🌸'];
-                    const extra = extraEmojis[Math.floor(Math.random() * extraEmojis.length)];
-                    const fullText = random.text + ' ' + extra;
-                    const emojiList = [...random.emojis, extra];
-                    addMessage(fullText, false, emojiList);
-                }, 1200 + Math.random() * 800);
+            // -------- REAL AI BOT RESPONSE --------
+            async function getAIResponse(userText) {
+                const provider = localStorage.getItem('hex_ai_provider') || 'puter';
+                const gtranslate = localStorage.getItem('hex_gtranslate') || 'off';
+
+                try {
+                    let responseText = '';
+
+                    if (provider === 'puter') {
+                        const token = localStorage.getItem('hex_puter_token') || '';
+                        const model = localStorage.getItem('hex_puter_model') || 'gpt-4';
+                        if (!token) {
+                            return '⚠️ Please set your Puter API token in Settings > AI Provider.';
+                        }
+                        try {
+                            const resp = await fetch('https://api.puter.ai/v1/chat/completions', {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    model: model,
+                                    messages: [{
+                                            role: 'system',
+                                            content: 'You are HEX AI, a helpful creative assistant. Be concise, warm, and informative. Use emojis occasionally.'
+                                        },
+                                        {
+                                            role: 'user',
+                                            content: userText
+                                        }
+                                    ]
+                                })
+                            });
+                            if (!resp.ok) throw new Error(`Puter API error: ${resp.status}`);
+                            const data = await resp.json();
+                            responseText = data.choices?.[0]?.message?.content || 'No response from Puter.';
+                        } catch (err) {
+                            return `⚠️ Puter error: ${err.message}`;
+                        }
+                    } else if (provider === 'openrouter') {
+                        const key = localStorage.getItem('hex_or_key') || '';
+                        const model = localStorage.getItem('hex_or_model') || 'google/gemini-2.0-flash-exp:free';
+                        if (!key) {
+                            return '⚠️ Please set your OpenRouter API key in Settings > AI Provider.';
+                        }
+                        try {
+                            const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': `Bearer ${key}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    model: model,
+                                    messages: [{
+                                            role: 'system',
+                                            content: 'You are HEX AI, a helpful creative assistant. Be concise, warm, and informative. Use emojis occasionally.'
+                                        },
+                                        {
+                                            role: 'user',
+                                            content: userText
+                                        }
+                                    ]
+                                })
+                            });
+                            if (!resp.ok) throw new Error(`OpenRouter error: ${resp.status}`);
+                            const data = await resp.json();
+                            responseText = data.choices?.[0]?.message?.content || 'No response from OpenRouter.';
+                        } catch (err) {
+                            return `⚠️ OpenRouter error: ${err.message}`;
+                        }
+                    } else if (provider === 'gemini') {
+                        const key = localStorage.getItem('hex_gm_key') || '';
+                        const model = localStorage.getItem('hex_gemini_model') || 'models/gemini-1.5-pro';
+                        if (!key) {
+                            return '⚠️ Please set your Gemini API key in Settings > AI Provider.';
+                        }
+                        try {
+                            const url =
+                                `https://generativelanguage.googleapis.com/v1beta/${model}:generateContent?key=${key}`;
+                            const payload = {
+                                contents: [{
+                                    parts: [{
+                                        text: `You are HEX AI, a helpful creative assistant. Be concise, warm, and informative. Use emojis occasionally. User: ${userText}`
+                                    }]
+                                }]
+                            };
+                            const resp = await fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(payload)
+                            });
+                            if (!resp.ok) throw new Error(`Gemini error: ${resp.status}`);
+                            const data = await resp.json();
+                            responseText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response from Gemini.';
+                        } catch (err) {
+                            return `⚠️ Gemini error: ${err.message}`;
+                        }
+                    } else {
+                        return '⚠️ Unknown AI provider. Please check Settings.';
+                    }
+
+                    // GTranslate
+                    if (gtranslate !== 'off' && responseText) {
+                        try {
+                            const tlResp = await fetch(
+                                `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${gtranslate}&dt=t&q=${encodeURIComponent(responseText)}`
+                            );
+                            const tlData = await tlResp.json();
+                            if (tlData && tlData[0] && tlData[0][0] && tlData[0][0][0]) {
+                                responseText = tlData[0][0][0];
+                            }
+                        } catch (_) {
+                            /* translation fails silently */ }
+                    }
+
+                    return responseText || '🤖 I received your message but couldn\'t generate a response.';
+
+                } catch (err) {
+                    return `⚠️ Error: ${err.message}`;
+                }
             }
 
-            // Initialize with welcome message
-            addWelcomeMessage();
+            // -------- WELCOME MESSAGE --------
+            function addWelcomeMessage() {
+                const msg = document.createElement('div');
+                msg.className = 'chat-message';
+                const avatar = document.createElement('div');
+                avatar.className = 'avatar';
+                avatar.innerHTML = '<i class="fas fa-robot"></i>';
+                msg.appendChild(avatar);
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const textSpan = document.createElement('span');
+                textSpan.className = 'message-text';
+                textSpan.textContent = '👋 Welcome! I\'m HEX AI. Ask me anything, or try the ';
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = 'Theme Studio';
+                link.style.color = 'var(--primary)';
+                link.style.textDecoration = 'underline';
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('settingsBtn').click();
+                });
+                textSpan.appendChild(link);
+                textSpan.appendChild(document.createTextNode(' for cool effects!'));
+                const emojiSpan = document.createElement('span');
+                emojiSpan.className = 'emoji-animate';
+                emojiSpan.textContent = ' ✨';
+                emojiSpan.style.fontSize = '24px';
+                textSpan.appendChild(emojiSpan);
+                bubble.appendChild(textSpan);
+                const time = document.createElement('span');
+                time.className = 'time';
+                time.textContent = new Date().toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                bubble.appendChild(time);
+                const actions = document.createElement('div');
+                actions.className = 'message-actions';
+                const copyBtn = document.createElement('button');
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                copyBtn.title = 'Copy';
+                copyBtn.addEventListener('click', function() {
+                    navigator.clipboard.writeText(textSpan.textContent).catch(() => {});
+                });
+                actions.appendChild(copyBtn);
+                const delBtn = document.createElement('button');
+                delBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
+                delBtn.title = 'Delete';
+                delBtn.addEventListener('click', function() {
+                    msg.classList.add('removing');
+                    setTimeout(() => msg.remove(), 300);
+                });
+                actions.appendChild(delBtn);
+                bubble.appendChild(actions);
+                msg.appendChild(bubble);
+                chatMessages.appendChild(msg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
 
-            function handleSend() {
+            // -------- HANDLE SEND --------
+            async function handleSend() {
                 const text = chatInput.value.trim();
                 if (!text) return;
                 const userEmojis = Array.from(text.match(/([\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27BF}]|[\u{FE00}-\u{FE0F}]|[\u{2B50}]|[\u{1F300}-\u{1F6FF}]|[\u{2700}-\u{27BF}]|[🇦-🇿]|[\u{203C}-\u{3299}])/gu) || []);
                 addMessage(text, true, userEmojis.length > 0 ? userEmojis : null);
                 chatInput.value = '';
                 chatInput.style.height = 'auto';
-                simulateBotResponse(text);
+
+                const typing = addTypingIndicator();
+                const botText = await getAIResponse(text);
+                removeTypingIndicator();
+
+                const botEmojis = Array.from(botText.match(/([\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27BF}]|[\u{FE00}-\u{FE0F}]|[\u{2B50}]|[\u{1F300}-\u{1F6FF}]|[\u{2700}-\u{27BF}]|[🇦-🇿]|[\u{203C}-\u{3299}])/gu) || []);
+                addMessage(botText, false, botEmojis.length > 0 ? botEmojis : null);
             }
 
             sendBtn.addEventListener('click', handleSend);
@@ -5261,6 +5556,8 @@
                 this.style.height = Math.min(this.scrollHeight, 120) + 'px';
             });
 
+            addWelcomeMessage();
+
             // -------- EMOJI PICKER --------
             const emojiToggle = document.getElementById('emojiToggle');
             const emojiPicker = document.getElementById('emojiPicker');
@@ -5272,7 +5569,9 @@
                 const item = document.createElement('div');
                 item.className = 'emoji-3d-item';
                 const img = document.createElement('img');
-                img.src = `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/${e.codePointAt(0).toString(16)}.png`;
+                const cp = e.codePointAt(0).toString(16);
+                img.src =
+                    `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/${cp}.png`;
                 img.alt = e;
                 img.loading = 'lazy';
                 img.onerror = function() {
@@ -5347,8 +5646,8 @@
                 recognition.start();
             });
 
-            // -------- PDF UPLOAD --------
-            document.getElementById('pdfUpload').addEventListener('change', function(e) {
+            // -------- PDF UPLOAD (File Attachment) --------
+            document.getElementById('pdfUpload').addEventListener('change', async function(e) {
                 const file = e.target.files[0];
                 if (!file) return;
                 const container = document.getElementById('filePreviewContainer');
@@ -5362,15 +5661,51 @@
                 });
                 div.appendChild(close);
                 container.appendChild(div);
+
+                // Read PDF and analyze
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const text = await extractPDFText(arrayBuffer);
+                    const preview = text.slice(0, 800) + (text.length > 800 ? '...' : '');
+                    addMessage(`📄 File attached: ${file.name}\n\nContent preview:\n${preview}`, false, ['📄', '📑']);
+                    // Send to AI for analysis
+                    const typing = addTypingIndicator();
+                    const analysis = await getAIResponse(
+                        `Please analyze this PDF content and provide a summary:\n\n${text.slice(0, 4000)}`);
+                    removeTypingIndicator();
+                    addMessage(`🔍 PDF Analysis:\n\n${analysis}`, false, ['🔍', '📊']);
+                } catch (err) {
+                    addMessage(`⚠️ Error reading PDF: ${err.message}`, false, ['⚠️']);
+                }
                 this.value = '';
             });
+
+            async function extractPDFText(arrayBuffer) {
+                try {
+                    const pdfjs = await import('https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.mjs');
+                    const loadingTask = pdfjs.getDocument({
+                        data: arrayBuffer
+                    });
+                    const pdf = await loadingTask.promise;
+                    let fullText = '';
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const content = await page.getTextContent();
+                        const strings = content.items.map(item => item.str);
+                        fullText += strings.join(' ') + '\n';
+                    }
+                    return fullText || 'No text content found in PDF.';
+                } catch (_) {
+                    return 'PDF text extraction requires PDF.js library.';
+                }
+            }
 
             // -------- IMAGE GENERATOR --------
             const imageGenBtn = document.getElementById('imageGenBtn');
             const imagePrompt = document.getElementById('imagePrompt');
             const imageGrid = document.getElementById('imageGrid');
 
-            imageGenBtn.addEventListener('click', function() {
+            imageGenBtn.addEventListener('click', async function() {
                 const prompt = imagePrompt.value.trim();
                 if (!prompt) {
                     alert('Please enter an image description.');
@@ -5378,19 +5713,92 @@
                 }
                 this.disabled = true;
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating…';
-                const img = document.createElement('img');
-                img.src = `https://picsum.photos/seed/${encodeURIComponent(prompt)}/400/400`;
-                img.alt = prompt;
-                img.loading = 'lazy';
-                img.style.aspectRatio = '1';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '10px';
-                img.style.border = '1px solid var(--base-300)';
-                imageGrid.prepend(img);
-                setTimeout(() => {
+
+                try {
+                    const provider = localStorage.getItem('hex_ai_provider') || 'puter';
+                    let imageUrl = null;
+
+                    if (provider === 'puter') {
+                        const token = localStorage.getItem('hex_puter_token') || '';
+                        if (token) {
+                            try {
+                                const resp = await fetch('https://api.puter.ai/v1/images/generations', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Authorization': `Bearer ${token}`,
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        prompt: prompt,
+                                        model: 'dall-e-3',
+                                        n: 1,
+                                        size: '1024x1024'
+                                    })
+                                });
+                                if (resp.ok) {
+                                    const data = await resp.json();
+                                    imageUrl = data.data?.[0]?.url || null;
+                                }
+                            } catch (_) {}
+                        }
+                    }
+
+                    if (!imageUrl) {
+                        // Fallback
+                        imageUrl = `https://picsum.photos/seed/${encodeURIComponent(prompt)}/400/400`;
+                    }
+
+                    // Add to chat
+                    const chatMsg = document.createElement('div');
+                    chatMsg.className = 'chat-message';
+                    const avatar = document.createElement('div');
+                    avatar.className = 'avatar';
+                    avatar.innerHTML = '<i class="fas fa-robot"></i>';
+                    chatMsg.appendChild(avatar);
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = prompt;
+                    img.style.cssText =
+                        'max-width:100%;border-radius:8px;max-height:300px;object-fit:cover;cursor:pointer;';
+                    img.loading = 'lazy';
+                    img.addEventListener('click', function() {
+                        window.open(this.src, '_blank');
+                    });
+                    bubble.appendChild(img);
+                    const caption = document.createElement('div');
+                    caption.style.cssText = 'font-size:12px;opacity:0.7;margin-top:4px;';
+                    caption.textContent = `🎨 "${prompt}"`;
+                    bubble.appendChild(caption);
+                    const time = document.createElement('span');
+                    time.className = 'time';
+                    time.textContent = new Date().toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    bubble.appendChild(time);
+                    chatMsg.appendChild(bubble);
+                    chatMessages.appendChild(chatMsg);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                    // Also add to grid
+                    const gridImg = document.createElement('img');
+                    gridImg.src = imageUrl;
+                    gridImg.alt = prompt;
+                    gridImg.loading = 'lazy';
+                    gridImg.style.aspectRatio = '1';
+                    gridImg.style.objectFit = 'cover';
+                    gridImg.style.borderRadius = '10px';
+                    gridImg.style.border = '1px solid var(--base-300)';
+                    imageGrid.prepend(gridImg);
+
+                } catch (err) {
+                    alert('Image generation failed: ' + err.message);
+                } finally {
                     this.disabled = false;
                     this.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Generate';
-                }, 600);
+                }
             });
 
             // -------- VIDEO GENERATOR --------
@@ -5398,7 +5806,7 @@
             const videoPrompt = document.getElementById('videoPrompt');
             const videoGrid = document.getElementById('videoGrid');
 
-            videoGenBtn.addEventListener('click', function() {
+            videoGenBtn.addEventListener('click', async function() {
                 const prompt = videoPrompt.value.trim();
                 if (!prompt) {
                     alert('Please enter a video description.');
@@ -5406,22 +5814,60 @@
                 }
                 this.disabled = true;
                 this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating…';
-                const video = document.createElement('video');
-                video.src = 'https://www.w3schools.com/html/mov_bbb.mp4';
-                video.controls = true;
-                video.autoplay = false;
-                video.loop = false;
-                video.style.width = '100%';
-                video.style.aspectRatio = '16/9';
-                video.style.objectFit = 'cover';
-                video.style.borderRadius = '10px';
-                video.style.border = '1px solid var(--base-300)';
-                video.style.background = '#000';
-                videoGrid.prepend(video);
-                setTimeout(() => {
+
+                try {
+                    // For demo, use a sample video with a seeded name
+                    const seed = encodeURIComponent(prompt);
+                    const videoUrl = `https://www.w3schools.com/html/mov_bbb.mp4`;
+
+                    // Add to chat
+                    const chatMsg = document.createElement('div');
+                    chatMsg.className = 'chat-message';
+                    const avatar = document.createElement('div');
+                    avatar.className = 'avatar';
+                    avatar.innerHTML = '<i class="fas fa-robot"></i>';
+                    chatMsg.appendChild(avatar);
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    const video = document.createElement('video');
+                    video.src = videoUrl;
+                    video.controls = true;
+                    video.autoplay = false;
+                    video.loop = false;
+                    video.style.cssText =
+                        'max-width:100%;border-radius:8px;max-height:300px;object-fit:cover;background:#000;';
+                    video.loading = 'lazy';
+                    bubble.appendChild(video);
+                    const caption = document.createElement('div');
+                    caption.style.cssText = 'font-size:12px;opacity:0.7;margin-top:4px;';
+                    caption.textContent = `🎬 "${prompt}" (demo video)`;
+                    bubble.appendChild(caption);
+                    const time = document.createElement('span');
+                    time.className = 'time';
+                    time.textContent = new Date().toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    bubble.appendChild(time);
+                    chatMsg.appendChild(bubble);
+                    chatMessages.appendChild(chatMsg);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                    // Also add to grid
+                    const gridVideo = document.createElement('video');
+                    gridVideo.src = videoUrl;
+                    gridVideo.controls = true;
+                    gridVideo.autoplay = false;
+                    gridVideo.loop = false;
+                    gridVideo.style.cssText = 'width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;background:#000;border:1px solid var(--base-300);';
+                    videoGrid.prepend(gridVideo);
+
+                } catch (err) {
+                    alert('Video generation failed: ' + err.message);
+                } finally {
                     this.disabled = false;
                     this.innerHTML = '<i class="fas fa-clapperboard"></i> Generate';
-                }, 600);
+                }
             });
 
             // -------- MUSIC PLAYER --------
@@ -5884,7 +6330,6 @@
                 if (e.target === this) closeSettingsModal();
             });
 
-            // Load settings
             function loadSettings() {
                 const provider = localStorage.getItem('hex_ai_provider') || 'puter';
                 aiProvider.value = provider;
@@ -5905,7 +6350,6 @@
                 if (gmModel) geminiModelSelect.value = gmModel;
             }
 
-            // Save settings
             function saveSettings() {
                 const provider = aiProvider.value;
                 const puterTokenVal = puterToken.value.trim();
@@ -5990,7 +6434,7 @@
                 }
 
                 const token = localStorage.getItem('hex_puter_token');
-                puterModelStatus.textContent = '🔄 Fetching...';
+                puterModelStatus.textContent = 'Fetching...';
                 try {
                     const models = await puter.ai.listModels();
                     if (!Array.isArray(models)) throw new Error('Invalid response from Puter');
@@ -6055,7 +6499,7 @@
                     } catch (e) {}
                 }
 
-                orModelStatus.textContent = '🔄 Fetching...';
+                orModelStatus.textContent = 'Fetching...';
                 const orKey = localStorage.getItem('hex_or_key') || '';
                 const headers = {
                     'Accept': 'application/json'
@@ -6136,7 +6580,7 @@
                     } catch (e) {}
                 }
 
-                geminiModelStatus.textContent = '🔄 Fetching...';
+                geminiModelStatus.textContent = 'Fetching...';
                 const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${key}`;
                 try {
                     const resp = await fetch(url);
@@ -6233,6 +6677,76 @@
                 }
             });
 
+            // -------- IMAGE ANALYSIS (paste) --------
+            chatInput.addEventListener('paste', async function(e) {
+                const items = e.clipboardData.items;
+                for (let item of items) {
+                    if (item.type.startsWith('image/')) {
+                        const file = item.getAsFile();
+                        const dataUri = await new Promise(resolve => {
+                            const reader = new FileReader();
+                            reader.onload = () => resolve(reader.result);
+                            reader.readAsDataURL(file);
+                        });
+                        const provider = localStorage.getItem('hex_ai_provider') || 'puter';
+                        if (provider === 'gemini') {
+                            const model = localStorage.getItem('hex_gemini_model') || 'models/gemini-1.5-pro';
+                            const apiKey = localStorage.getItem('hex_gm_key') || '';
+                            if (apiKey) {
+                                await analyzeImageWithGemini(dataUri, model);
+                            } else {
+                                addMessage('⚠️ Gemini API key required for image analysis.', false, ['⚠️']);
+                            }
+                        } else {
+                            try {
+                                const text = await puter.ai.img2txt(dataUri);
+                                addMessage(`<i class="fas fa-image"></i> OCR result:\n\n${text}`, false, ['📷', '🔍']);
+                            } catch (err) {
+                                addMessage(`⚠️ OCR failed: ${err.message}`, false, ['⚠️']);
+                            }
+                        }
+                    }
+                }
+            });
+
+            async function analyzeImageWithGemini(imageDataUri, model) {
+                const apiKey = localStorage.getItem('hex_gm_key') || '';
+                if (!apiKey) {
+                    addMessage('⚠️ Gemini API key required for image analysis.', false, ['⚠️']);
+                    return;
+                }
+                const url =
+                    `https://generativelanguage.googleapis.com/v1beta/models/${model.replace('models/', '')}:generateContent?key=${apiKey}`;
+                const payload = {
+                    contents: [{
+                        parts: [{
+                            text: 'Describe this image in detail.'
+                        }, {
+                            inline_data: {
+                                mime_type: 'image/jpeg',
+                                data: imageDataUri.split(',')[1]
+                            }
+                        }]
+                    }]
+                };
+
+                try {
+                    const resp = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!resp.ok) throw new Error('Gemini API error');
+                    const data = await resp.json();
+                    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No description.';
+                    addMessage(`<i class="fas fa-image"></i> Gemini analysis:\n\n${text}`, false, ['📷', '🧠']);
+                } catch (err) {
+                    addMessage(`❌ Image analysis failed: ${err.message}`, false, ['❌']);
+                }
+            }
+
             // -------- INIT --------
             function init() {
                 buildThemeGallery();
@@ -6243,11 +6757,6 @@
                 else if (provider === 'openrouter') fetchOpenRouterModels(false);
                 else if (provider === 'gemini') fetchGeminiModels(false);
                 chatInput.focus();
-
-                document.getElementById('footerThemeLink').addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openModal();
-                });
 
                 window.addEventListener('resize', function() {
                     const canvas = visualizerCanvas;
@@ -6298,78 +6807,6 @@
             }
 
             init().catch(console.warn);
-
-            // -------- IMAGE ANALYSIS (paste) --------
-            chatInput.addEventListener('paste', async function(e) {
-                const items = e.clipboardData.items;
-                for (let item of items) {
-                    if (item.type.startsWith('image/')) {
-                        const file = item.getAsFile();
-                        const dataUri = await new Promise(resolve => {
-                            const reader = new FileReader();
-                            reader.onload = () => resolve(reader.result);
-                            reader.readAsDataURL(file);
-                        });
-                        const provider = localStorage.getItem('hex_ai_provider') || 'puter';
-                        if (provider === 'gemini') {
-                            const model = localStorage.getItem('hex_gemini_model') || 'models/gemini-1.5-pro';
-                            const apiKey = localStorage.getItem('hex_gm_key') || '';
-                            if (apiKey) {
-                                await analyzeImageWithGemini(dataUri, model);
-                            } else {
-                                addMessage('⚠️ Gemini API key required for image analysis.', 'bot');
-                            }
-                        } else {
-                            try {
-                                const text = await puter.ai.img2txt(dataUri);
-                                addMessage(`<i class="fas fa-image"></i> OCR result:\n\n${text}`, 'bot');
-                            } catch (err) {
-                                addMessage(`⚠️ OCR failed: ${err.message}`, 'bot');
-                            }
-                        }
-                    }
-                }
-            });
-
-            async function analyzeImageWithGemini(imageDataUri, model) {
-                const apiKey = localStorage.getItem('hex_gm_key') || '';
-                if (!apiKey) {
-                    addMessage('⚠️ Gemini API key required for image analysis.', 'bot');
-                    return;
-                }
-                const url =
-                    `https://generativelanguage.googleapis.com/v1beta/models/${model.replace('models/', '')}:generateContent?key=${apiKey}`;
-                const payload = {
-                    contents: [{
-                        parts: [{
-                                text: 'Describe this image in detail.'
-                            },
-                            {
-                                inline_data: {
-                                    mime_type: 'image/jpeg',
-                                    data: imageDataUri.split(',')[1]
-                                }
-                            }
-                        ]
-                    }]
-                };
-
-                try {
-                    const resp = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!resp.ok) throw new Error('Gemini API error');
-                    const data = await resp.json();
-                    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No description.';
-                    addMessage(`<i class="fas fa-image"></i> Gemini analysis:\n\n${text}`, 'bot');
-                } catch (err) {
-                    addMessage(`❌ Image analysis failed: ${err.message}`, 'bot');
-                }
-            }
 
         })();
     </script>
