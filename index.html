@@ -526,6 +526,252 @@
             --error: #dc2626;
         }
 
+        /* =========================================
+           NEON EFFECTS — upgraded CSS (fully preserved)
+           ========================================= */
+        .neon-effect-demo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 0;
+            gap: 6px;
+        }
+
+        .neon-effect-demo .neon-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--base-content);
+            opacity: 0.4;
+            text-align: center;
+        }
+
+        .neon-effect-demo .neon-text {
+            font-family: 'Orbitron', 'Courier New', monospace;
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.2;
+            cursor: default;
+            user-select: none;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 600px) {
+            .neon-effect-demo .neon-text {
+                font-size: 1.6rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .neon-effect-demo .neon-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* A: Cyber Glow Pulse (Cyan/Blue) */
+        .cyber-pulse {
+            color: #fff;
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff,
+                0 0 40px #0077ff,
+                0 0 80px #0077ff,
+                0 0 90px #0077ff;
+            animation: cyberGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes cyberGlow {
+            0% {
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff,
+                    0 0 40px #0077ff,
+                    0 0 80px #0077ff;
+            }
+            100% {
+                text-shadow:
+                    0 0 2px #00ffff,
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff,
+                    0 0 20px #0077ff,
+                    0 0 30px #0077ff;
+            }
+        }
+
+        .cyber-pulse:hover {
+            animation: cyberGlow 0.5s ease-in-out infinite alternate;
+            transform: scale(1.04);
+        }
+
+        /* B: Broken Neon Sign (Hot Pink / Magenta) */
+        .broken-neon {
+            color: #ffd1ff;
+            text-shadow:
+                0 0 5px #ff00ff,
+                0 0 10px #ff00ff,
+                0 0 20px #ff00ff,
+                0 0 40px #ff0055,
+                0 0 80px #ff0055;
+            animation: flickerSign 4s infinite;
+        }
+
+        @keyframes flickerSign {
+            0%,
+            18%,
+            22%,
+            25%,
+            53%,
+            57%,
+            100% {
+                text-shadow:
+                    0 0 5px #ff00ff,
+                    0 0 10px #ff00ff,
+                    0 0 20px #ff00ff,
+                    0 0 40px #ff0055,
+                    0 0 80px #ff0055;
+                color: #ffd1ff;
+            }
+            20%,
+            24%,
+            55% {
+                text-shadow: none;
+                color: #330033;
+            }
+        }
+
+        .broken-neon:hover {
+            animation: flickerSign 1.5s infinite;
+            transform: scale(1.04);
+        }
+
+        /* C: Interactive Trail Glow (Orange / Amber) */
+        .trail-glow {
+            color: #fff;
+            text-shadow:
+                0 0 10px #ffa500,
+                0 0 20px #ff4500;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+        }
+
+        .trail-glow:hover {
+            transform: translate(-6px, -6px);
+            text-shadow:
+                1px 1px 0px #ff8c00,
+                2px 2px 0px #ff8c00,
+                3px 3px 0px #ff8c00,
+                4px 4px 0px #ff8c00,
+                5px 5px 0px #ff8c00,
+                6px 6px 0px #ff4500,
+                7px 7px 0px #ff4500,
+                8px 8px 0px #ff4500,
+                9px 9px 0px #ff4500,
+                10px 10px 0px #ff4500,
+                15px 15px 25px rgba(255, 69, 0, 0.8),
+                -5px -5px 30px rgba(255, 165, 0, 0.6);
+        }
+
+        /* D: Toxic Slime Flow (Lime Green) */
+        .toxic-slime {
+            color: #dfff00;
+            animation: slimeDrip 2.5s infinite alternate ease-in-out;
+            position: relative;
+        }
+
+        @keyframes slimeDrip {
+            0% {
+                transform: scaleY(1) skewX(0deg);
+                text-shadow:
+                    0 0 10px #74ff00,
+                    0 5px 15px #39ff14,
+                    0 15px 25px #00ff00,
+                    0 25px 35px #00aa00;
+            }
+            100% {
+                transform: scaleY(1.05) skewX(-2deg);
+                text-shadow:
+                    0 0 10px #74ff00,
+                    0 10px 15px #39ff14,
+                    0 25px 35px #00ff00,
+                    0 45px 55px #00aa00;
+            }
+        }
+
+        .toxic-slime:hover {
+            animation: slimeDrip 0.8s infinite alternate ease-in-out;
+            transform: scale(1.04);
+        }
+
+        /* =========================================
+           NEON GRID in modal
+           ========================================= */
+        .neon-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .neon-gallery-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 16px 8px 12px;
+            border-radius: var(--radius-sm, 8px);
+            background: var(--base-200);
+            border: 1px solid var(--base-300);
+            transition: background 0.3s, border-color 0.3s, transform 0.2s;
+            min-height: 100px;
+            justify-content: center;
+        }
+
+        .neon-gallery-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .neon-gallery-item .demo-label {
+            font-size: 9px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--base-content);
+            opacity: 0.4;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .neon-gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 10px;
+            }
+            .neon-gallery-item .neon-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .neon-gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .neon-gallery-item .neon-text {
+                font-size: 1.0rem;
+            }
+            .neon-gallery-item {
+                padding: 10px 4px 8px;
+                min-height: 70px;
+            }
+        }
+
         /* ------------------------------------------------------------------ */
         /* CORE RESETS                                                       */
         /* ------------------------------------------------------------------ */
@@ -1764,7 +2010,7 @@
         }
 
         /* ------------------------------------------------------------------ */
-        /* SETTINGS MODAL — THEME STUDIO with GLOW PREVIEW + COMPONENT GALLERY */
+        /* SETTINGS MODAL — THEME STUDIO with GLOW PREVIEW + COMPONENT GALLERY + NEON GALLERY */
         /* ------------------------------------------------------------------ */
         .modal-overlay {
             position: fixed;
@@ -1786,7 +2032,7 @@
         .modal {
             background: var(--base-200);
             border-radius: var(--radius, 16px);
-            max-width: 820px;
+            max-width: 860px;
             width: 100%;
             padding: 24px 28px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -3311,6 +3557,28 @@
             box-shadow: 18px 0 0 #222;
         }
 
+        /* ================================================================== */
+        /* NEON EFFECTS GALLERY — new section                                */
+        /* ================================================================== */
+        .neon-gallery-section {
+            margin: 16px 0 10px;
+            padding: 16px 14px;
+            border-radius: var(--radius-sm, 10px);
+            background: var(--base-100);
+            border: 1px solid var(--base-300);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .neon-gallery-section .preview-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--base-content);
+            opacity: 0.5;
+            margin-bottom: 14px;
+        }
+
         /* ------------------------------------------------------------------ */
         /* MODAL BUTTONS                                                     */
         /* ------------------------------------------------------------------ */
@@ -4528,7 +4796,7 @@
 
     </div>
 
-    <!-- ===== THEME STUDIO MODAL with GLOW + COMPONENT GALLERY ===== -->
+    <!-- ===== THEME STUDIO MODAL with GLOW + COMPONENT GALLERY + NEON GALLERY ===== -->
     <div class="modal-overlay" id="themeModal">
         <div class="modal">
             <button class="close-btn" id="modalClose"><i class="fas fa-xmark"></i></button>
@@ -4686,6 +4954,37 @@
                 </div>
             </div>
 
+            <!-- NEW: NEON EFFECTS GALLERY -->
+            <div class="neon-gallery-section">
+                <div class="preview-title"><i class="fas fa-bolt"></i> Neon Effects — animated text glow</div>
+                <div class="neon-gallery-grid">
+                    <div class="neon-gallery-item">
+                        <div class="neon-effect-demo">
+                            <div class="neon-text cyber-pulse">CyberNet</div>
+                            <div class="demo-label">Cyber Glow Pulse</div>
+                        </div>
+                    </div>
+                    <div class="neon-gallery-item">
+                        <div class="neon-effect-demo">
+                            <div class="neon-text broken-neon">Night City</div>
+                            <div class="demo-label">Broken Neon Sign</div>
+                        </div>
+                    </div>
+                    <div class="neon-gallery-item">
+                        <div class="neon-effect-demo">
+                            <div class="neon-text trail-glow">Overdrive</div>
+                            <div class="demo-label">Interactive Trail Glow</div>
+                        </div>
+                    </div>
+                    <div class="neon-gallery-item">
+                        <div class="neon-effect-demo">
+                            <div class="neon-text toxic-slime">Biohazard</div>
+                            <div class="demo-label">Toxic Slime Flow</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="btn-row">
                 <button class="btn-primary" id="applyCustomBtn">Apply Custom</button>
                 <button class="btn-secondary" id="resetThemeBtn">Reset to Default</button>
@@ -4772,172 +5071,172 @@
                 <label><i class="fas fa-language"></i> GTranslate (auto-translate)</label>
                 <select id="gtranslateLang">
                     <option value="off">Off</option>
-                     <option value="af">Afrikaans</option>
-    <option value="sq">Albanian - (Shqip)</option>
-    <option value="am">Amharic - (አማርኛ)</option>
-    <option value="ar">Arabic - (العربية)</option>
-    <option value="an">Aragonese - (Aragonés)</option>
-    <option value="hy">Armenian - (Հայերեն)</option>
-    <option value="ast">Asturian - (Asturianu)</option>
-    <option value="ay">Aymara - (Aymar aru)</option>
-    <option value="az">Azerbaijani - (Azərbaycan dili)</option>
-    <option value="eu">Basque - (Euskara)</option>
-    <option value="be">Belarusian - (Беларуская)</option>
-    <option value="bn">Bengali - (বাংলা)</option>
-    <option value="brx">Bodo - (बर')</option>
-    <option value="bs">Bosnian - (Bosanski)</option>
-    <option value="br">Breton - (Brezhoneg)</option>
-    <option value="bg">Bulgarian - (Български)</option>
-    <option value="ca">Catalan - (Català)</option>
-    <option value="ckb">Central - Kurdish (کوردی)</option>
-    <option value="ce">Chechen (Нохчийн мотт)</option>
-    <option value="zh">Chinese (中文)</option>
-    <option value="zh-HK">Chinese Hong Kong - (中文 - 香港)</option>
-    <option value="zh-CN">Chinese Simplified - (中文简体)</option>
-    <option value="zh-TW">Chinese Traditional - (中文繁體)</option>
-    <option value="co">Corsican - (Corsu)</option>
-    <option value="hr">Croatian - (Hrvatski)</option>
-    <option value="cs">Czech - (Čeština)</option>
-    <option value="da">Danish - (Dansk)</option>
-    <option value="dv">Dhivehi - (ދިވެހި)</option>
-    <option value="nl">Dutch (Nederlands)</option>
-    <option value="dz">Dzongkha (རྫོང་ཁ)</option>
-    <option value="en">English</option>
-    <option value="en-AU">English (Australia)</option>
-    <option value="en-CA">English (Canada)</option>
-    <option value="en-IN">English (India)</option>
-    <option value="en-NZ">English (New Zealand)</option>
-    <option value="en-ZA">English (South Africa)</option>
-    <option value="en-GB">English (United Kingdom)</option>
-    <option value="en-US">English (United States)</option>
-    <option value="eo">Esperanto</option>
-    <option value="et">Estonian (Eesti)</option>
-    <option value="ee">Ewe (Eʋegbe)</option>
-    <option value="fo">Faroese - (Føroyskt)</option>
-    <option value="fil">Filipino (Wikang Filipino)</option>
-    <option value="fi">Finnish (Suomi)</option>
-    <option value="fr">French (Français)</option>
-    <option value="fr-CA">French Canada - (Français Canada)</option>
-    <option value="fr-FR">French France - (Français France)</option>
-    <option value="fr-CH">French Switzerland - (Français Suisse)</option>
-    <option value="gl">Galician - (Galego)</option>
-    <option value="ka">Georgian - (ქართული)</option>
-    <option value="de">German - (Deutsch)</option>
-    <option value="de-AT">German Austria  - (Deutsch Österreich)</option>
-    <option value="de-DE">German Germany  - (Deutsch Deutschland)</option>
-    <option value="de-LI">German Liechtenstein  - (Deutsch Liechtenstein)</option>
-    <option value="de-CH">German Switzerland  - (Deutsch Schweiz)</option>
-    <option value="el">Greek - (Ελληνικά)</option>
-    <option value="gn">Guarani - (Avañe'ẽ)</option>
-    <option value="gu">Gujarati - (ગુજરાતી)</option>
-    <option value="ha">Hausa - (هَوُسَ)</option>
-    <option value="haw">Hawaiian - (ʻŌlelo Hawaiʻi)</option>
-    <option value="he">Hebrew - (עברית)</option>
-    <option value="hi">Hindi - (हिन्दी)</option>
-    <option value="hu">Hungarian - (Magyar)</option>
-    <option value="is">Icelandic - (Íslenska)</option>
-    <option value="id">Indonesian - (Bahasa Indonesia)</option>
-    <option value="ia">Interlingua</option>
-    <option value="iu">Inuktitut - (ᐃᓄᒃᑎᑐᑦ)</option>
-    <option value="ga">Irish - (Gaeilge)</option>
-    <option value="it">Italian - (Italiano)</option>
-    <option value="it-IT">Italian Italy - (Italiano Italia)</option>
-    <option value="it-CH">Italian Switzerland - (Italiano - Svizzera)</option>
-    <option value="ja">Japanese - (日本語)</option>
-    <option value="kl">Kalaallisut - (Kalaallisut)</option>
-    <option value="kn">Kannada - (ಕನ್ನಡ)</option>
-    <option value="ks">Kashmiri - (कॉशुर / كٲشُر‎)</option>
-    <option value="kk">Kazakh - (Қазақ тілі)</option>
-    <option value="km">Khmer - (ខ្មែរ)</option>
-    <option value="rw">Kinyarwanda - (Ikinyarwanda)</option>
-    <option value="ko">Korean - (한국어)</option>
-    <option value="ku">Kurdish - (Kurdî)</option>
-    <option value="ky">Kyrgyz - (Кыргызча)</option>
-    <option value="lo">Lao - (ລາວ)</option>
-    <option value="la">Latin - (Latina)</option>
-    <option value="lv">Latvian - (Latviešu)</option>
-    <option value="ln">Lingala - (Lingála)</option>
-    <option value="lt">Lithuanian - (Lietuvių)</option>
-    <option value="lg">Luganda - (Luganda)</option>
-    <option value="lb">Luxembourgish - (Lëtzebuergesch)</option>
-    <option value="mk">Macedonian - (Македонски)</option>
-    <option value="mai">Maithili - (मैथिली)</option>
-    <option value="ms">Malay - (Bahasa Melayu)</option>
-    <option value="ml">Malayalam - (മലയാളം)</option>
-    <option value="mt">Maltese - (Malti)</option>
-    <option value="mni">Manipuri - (ꯃꯅꯤꯄꯨꯔꯤ)</option>
-    <option value="mr">Marathi - (मराठी)</option>
-    <option value="mn">Mongolian - (Монгол)</option>
-    <option value="ne">Nepali - (नेपाली)</option>
-    <option value="nso">Northern Sotho - (Sesotho sa Leboa)</option>
-    <option value="no">Norwegian (Norsk)</option>
-    <option value="nb">Norwegian Bokmål - (Norsk bokmål)</option>
-    <option value="nn">Norwegian Nynorsk - (Nynorsk)</option>
-    <option value="oc">Occitan</option>
-    <option value="or">Oriya - (ଓଡ଼ିଆ)</option>
-    <option value="om">Oromo - (Afaan Oromoo)</option>
-    <option value="os">Ossetian - (Ирон æвзаг)</option>
-    <option value="ps">Pashto - (پښتو)</option>
-    <option value="fa">Persian - (فارسی)</option>
-    <option value="pl">Polish - (Polski)</option>
-    <option value="pt">Portuguese - (Português)</option>
-    <option value="pt-BR">Portuguese Brazil - (Português Brasil)</option>
-    <option value="pt-PT">Portuguese Portugal - (Português Portugal)</option>
-    <option value="pa">Punjabi - (ਪੰਜਾਬੀ)</option>
-    <option value="qu">Quechua - (Runa Simi)</option>
-    <option value="ro">Romanian - (Română)</option>
-    <option value="mo">Romanian  Moldova - (Română Moldova)</option>
-    <option value="rm">Romansh - (Rumantsch)</option>
-    <option value="ru">Russian - (Русский)</option>
-    <option value="sm">Samoan - (Gagana Samoa)</option>
-    <option value="sat">Santali - (ᱥᱟᱱᱛᱟᱲᱤ)</option>
-    <option value="sc">Sardinian - (Sardu)</option>
-    <option value="gd">Scottish Gaelic - (Gàidhlig)</option>
-    <option value="sr">Serbian - (Српски)</option>
-    <option value="sh">Serbo_Croatian - (Srpskohrvatski)</option>
-    <option value="sn">Shona - (ChiShona)</option>
-    <option value="sd">Sindhi - (سنڌي)</option>
-    <option value="si">Sinhala - (සිංහල)</option>
-    <option value="sk">Slovak - (Slovenčina)</option>
-    <option value="sl">Slovenian - (Slovenščina)</option>
-    <option value="so">Somali - (Soomaali)</option>
-    <option value="st">Southern - Sotho (Sesotho)</option>
-    <option value="es">Spanish - (Español)</option>
-    <option value="es-AR">Spanish  Argentina  - (Español Argentina)</option>
-    <option value="es-419">Spanish  Latin America  - (Español Latinoamérica)</option>
-    <option value="es-MX">Spanish  Mexico  - (Español  México)</option>
-    <option value="es-ES">Spanish  Spain  - (Español España)</option>
-    <option value="es-US">Spanish  United States  - (Español Estados Unidos)</option>
-    <option value="su">Sundanese - (Basa Sunda)</option>
-    <option value="sw">Swahili - (Kiswahili)</option>
-    <option value="sv">Swedish - (Svenska)</option>
-    <option value="tg">Tajik - (Тоҷикӣ)</option>
-    <option value="ta">Tamil - (தமிழ்)</option>
-    <option value="tt">Tatar - (Татар)</option>
-    <option value="te">Telugu - (తెలుగు)</option>
-    <option value="th">Thai - (ไทย)</option>
-    <option value="ti">Tigrinya - (ትግርኛ)</option>
-    <option value="to">Tongan - (Lea fakatonga)</option>
-    <option value="tn">Tswana - (Setswana)</option>
-    <option value="tr">Turkish - (Türkçe)</option>
-    <option value="tk">Turkmen - (Türkmençe)</option>
-    <option value="tw">Twi - (Twi)</option>
-    <option value="udm">Udmurt - (Удмурт кыл)</option>
-    <option value="uk">Ukrainian - (Українська)</option>
-    <option value="ur">Urdu - (اردو)</option>
-    <option value="ug">Uyghur - (ئۇيغۇرچە)</option>
-    <option value="uz">Uzbek - (O'zbek)</option>
-    <option value="ve">Venda - (Tshivenḓa)</option>
-    <option value="vi">Vietnamese - (Tiếng Việt)</option>
-    <option value="wa">Walloon - (Walon)</option>
-    <option value="cy">Welsh - (Cymraeg)</option>
-    <option value="fy">Western Frisian - (Frysk)</option>
-    <option value="wo">Wolof - (Wollof)</option>
-    <option value="xh">Xhosa - (isiXhosa)</option>
-    <option value="yi">Yiddish - (ייִדיש)</option>
-    <option value="yo">Yoruba - (Èdè Yorùbá)</option>
-    <option value="za">Zhuang - (Saɯ cueŋƅ)</option>
-    <option value="zu">Zulu - (isiZulu)</option>
+                    <option value="af">Afrikaans</option>
+                    <option value="sq">Albanian - (Shqip)</option>
+                    <option value="am">Amharic - (አማርኛ)</option>
+                    <option value="ar">Arabic - (العربية)</option>
+                    <option value="an">Aragonese - (Aragonés)</option>
+                    <option value="hy">Armenian - (Հայերեն)</option>
+                    <option value="ast">Asturian - (Asturianu)</option>
+                    <option value="ay">Aymara - (Aymar aru)</option>
+                    <option value="az">Azerbaijani - (Azərbaycan dili)</option>
+                    <option value="eu">Basque - (Euskara)</option>
+                    <option value="be">Belarusian - (Беларуская)</option>
+                    <option value="bn">Bengali - (বাংলা)</option>
+                    <option value="brx">Bodo - (बर')</option>
+                    <option value="bs">Bosnian - (Bosanski)</option>
+                    <option value="br">Breton - (Brezhoneg)</option>
+                    <option value="bg">Bulgarian - (Български)</option>
+                    <option value="ca">Catalan - (Català)</option>
+                    <option value="ckb">Central - Kurdish (کوردی)</option>
+                    <option value="ce">Chechen (Нохчийн мотт)</option>
+                    <option value="zh">Chinese (中文)</option>
+                    <option value="zh-HK">Chinese Hong Kong - (中文 - 香港)</option>
+                    <option value="zh-CN">Chinese Simplified - (中文简体)</option>
+                    <option value="zh-TW">Chinese Traditional - (中文繁體)</option>
+                    <option value="co">Corsican - (Corsu)</option>
+                    <option value="hr">Croatian - (Hrvatski)</option>
+                    <option value="cs">Czech - (Čeština)</option>
+                    <option value="da">Danish - (Dansk)</option>
+                    <option value="dv">Dhivehi - (ދިވެހި)</option>
+                    <option value="nl">Dutch (Nederlands)</option>
+                    <option value="dz">Dzongkha (རྫོང་ཁ)</option>
+                    <option value="en">English</option>
+                    <option value="en-AU">English (Australia)</option>
+                    <option value="en-CA">English (Canada)</option>
+                    <option value="en-IN">English (India)</option>
+                    <option value="en-NZ">English (New Zealand)</option>
+                    <option value="en-ZA">English (South Africa)</option>
+                    <option value="en-GB">English (United Kingdom)</option>
+                    <option value="en-US">English (United States)</option>
+                    <option value="eo">Esperanto</option>
+                    <option value="et">Estonian (Eesti)</option>
+                    <option value="ee">Ewe (Eʋegbe)</option>
+                    <option value="fo">Faroese - (Føroyskt)</option>
+                    <option value="fil">Filipino (Wikang Filipino)</option>
+                    <option value="fi">Finnish (Suomi)</option>
+                    <option value="fr">French (Français)</option>
+                    <option value="fr-CA">French Canada - (Français Canada)</option>
+                    <option value="fr-FR">French France - (Français France)</option>
+                    <option value="fr-CH">French Switzerland - (Français Suisse)</option>
+                    <option value="gl">Galician - (Galego)</option>
+                    <option value="ka">Georgian - (ქართული)</option>
+                    <option value="de">German - (Deutsch)</option>
+                    <option value="de-AT">German Austria - (Deutsch Österreich)</option>
+                    <option value="de-DE">German Germany - (Deutsch Deutschland)</option>
+                    <option value="de-LI">German Liechtenstein - (Deutsch Liechtenstein)</option>
+                    <option value="de-CH">German Switzerland - (Deutsch Schweiz)</option>
+                    <option value="el">Greek - (Ελληνικά)</option>
+                    <option value="gn">Guarani - (Avañe'ẽ)</option>
+                    <option value="gu">Gujarati - (ગુજરાતી)</option>
+                    <option value="ha">Hausa - (هَوُسَ)</option>
+                    <option value="haw">Hawaiian - (ʻŌlelo Hawaiʻi)</option>
+                    <option value="he">Hebrew - (עברית)</option>
+                    <option value="hi">Hindi - (हिन्दी)</option>
+                    <option value="hu">Hungarian - (Magyar)</option>
+                    <option value="is">Icelandic - (Íslenska)</option>
+                    <option value="id">Indonesian - (Bahasa Indonesia)</option>
+                    <option value="ia">Interlingua</option>
+                    <option value="iu">Inuktitut - (ᐃᓄᒃᑎᑐᑦ)</option>
+                    <option value="ga">Irish - (Gaeilge)</option>
+                    <option value="it">Italian - (Italiano)</option>
+                    <option value="it-IT">Italian Italy - (Italiano Italia)</option>
+                    <option value="it-CH">Italian Switzerland - (Italiano - Svizzera)</option>
+                    <option value="ja">Japanese - (日本語)</option>
+                    <option value="kl">Kalaallisut - (Kalaallisut)</option>
+                    <option value="kn">Kannada - (ಕನ್ನಡ)</option>
+                    <option value="ks">Kashmiri - (कॉशुर / كٲشُر‎)</option>
+                    <option value="kk">Kazakh - (Қазақ тілі)</option>
+                    <option value="km">Khmer - (ខ្មែរ)</option>
+                    <option value="rw">Kinyarwanda - (Ikinyarwanda)</option>
+                    <option value="ko">Korean - (한국어)</option>
+                    <option value="ku">Kurdish - (Kurdî)</option>
+                    <option value="ky">Kyrgyz - (Кыргызча)</option>
+                    <option value="lo">Lao - (ລາວ)</option>
+                    <option value="la">Latin - (Latina)</option>
+                    <option value="lv">Latvian - (Latviešu)</option>
+                    <option value="ln">Lingala - (Lingála)</option>
+                    <option value="lt">Lithuanian - (Lietuvių)</option>
+                    <option value="lg">Luganda - (Luganda)</option>
+                    <option value="lb">Luxembourgish - (Lëtzebuergesch)</option>
+                    <option value="mk">Macedonian - (Македонски)</option>
+                    <option value="mai">Maithili - (मैथिली)</option>
+                    <option value="ms">Malay - (Bahasa Melayu)</option>
+                    <option value="ml">Malayalam - (മലയാളം)</option>
+                    <option value="mt">Maltese - (Malti)</option>
+                    <option value="mni">Manipuri - (ꯃꯅꯤꯄꯨꯔꯤ)</option>
+                    <option value="mr">Marathi - (मराठी)</option>
+                    <option value="mn">Mongolian - (Монгол)</option>
+                    <option value="ne">Nepali - (नेपाली)</option>
+                    <option value="nso">Northern Sotho - (Sesotho sa Leboa)</option>
+                    <option value="no">Norwegian (Norsk)</option>
+                    <option value="nb">Norwegian Bokmål - (Norsk bokmål)</option>
+                    <option value="nn">Norwegian Nynorsk - (Nynorsk)</option>
+                    <option value="oc">Occitan</option>
+                    <option value="or">Oriya - (ଓଡ଼ିଆ)</option>
+                    <option value="om">Oromo - (Afaan Oromoo)</option>
+                    <option value="os">Ossetian - (Ирон æвзаг)</option>
+                    <option value="ps">Pashto - (پښتو)</option>
+                    <option value="fa">Persian - (فارسی)</option>
+                    <option value="pl">Polish - (Polski)</option>
+                    <option value="pt">Portuguese - (Português)</option>
+                    <option value="pt-BR">Portuguese Brazil - (Português Brasil)</option>
+                    <option value="pt-PT">Portuguese Portugal - (Português Portugal)</option>
+                    <option value="pa">Punjabi - (ਪੰਜਾਬੀ)</option>
+                    <option value="qu">Quechua - (Runa Simi)</option>
+                    <option value="ro">Romanian - (Română)</option>
+                    <option value="mo">Romanian Moldova - (Română Moldova)</option>
+                    <option value="rm">Romansh - (Rumantsch)</option>
+                    <option value="ru">Russian - (Русский)</option>
+                    <option value="sm">Samoan - (Gagana Samoa)</option>
+                    <option value="sat">Santali - (ᱥᱟᱱᱛᱟᱲᱤ)</option>
+                    <option value="sc">Sardinian - (Sardu)</option>
+                    <option value="gd">Scottish Gaelic - (Gàidhlig)</option>
+                    <option value="sr">Serbian - (Српски)</option>
+                    <option value="sh">Serbo_Croatian - (Srpskohrvatski)</option>
+                    <option value="sn">Shona - (ChiShona)</option>
+                    <option value="sd">Sindhi - (سنڌي)</option>
+                    <option value="si">Sinhala - (සිංහල)</option>
+                    <option value="sk">Slovak - (Slovenčina)</option>
+                    <option value="sl">Slovenian - (Slovenščina)</option>
+                    <option value="so">Somali - (Soomaali)</option>
+                    <option value="st">Southern - Sotho (Sesotho)</option>
+                    <option value="es">Spanish - (Español)</option>
+                    <option value="es-AR">Spanish Argentina - (Español Argentina)</option>
+                    <option value="es-419">Spanish Latin America - (Español Latinoamérica)</option>
+                    <option value="es-MX">Spanish Mexico - (Español México)</option>
+                    <option value="es-ES">Spanish Spain - (Español España)</option>
+                    <option value="es-US">Spanish United States - (Español Estados Unidos)</option>
+                    <option value="su">Sundanese - (Basa Sunda)</option>
+                    <option value="sw">Swahili - (Kiswahili)</option>
+                    <option value="sv">Swedish - (Svenska)</option>
+                    <option value="tg">Tajik - (Тоҷикӣ)</option>
+                    <option value="ta">Tamil - (தமிழ்)</option>
+                    <option value="tt">Tatar - (Татар)</option>
+                    <option value="te">Telugu - (తెలుగు)</option>
+                    <option value="th">Thai - (ไทย)</option>
+                    <option value="ti">Tigrinya - (ትግርኛ)</option>
+                    <option value="to">Tongan - (Lea fakatonga)</option>
+                    <option value="tn">Tswana - (Setswana)</option>
+                    <option value="tr">Turkish - (Türkçe)</option>
+                    <option value="tk">Turkmen - (Türkmençe)</option>
+                    <option value="tw">Twi - (Twi)</option>
+                    <option value="udm">Udmurt - (Удмурт кыл)</option>
+                    <option value="uk">Ukrainian - (Українська)</option>
+                    <option value="ur">Urdu - (اردو)</option>
+                    <option value="ug">Uyghur - (ئۇيغۇرچە)</option>
+                    <option value="uz">Uzbek - (O'zbek)</option>
+                    <option value="ve">Venda - (Tshivenḓa)</option>
+                    <option value="vi">Vietnamese - (Tiếng Việt)</option>
+                    <option value="wa">Walloon - (Walon)</option>
+                    <option value="cy">Welsh - (Cymraeg)</option>
+                    <option value="fy">Western Frisian - (Frysk)</option>
+                    <option value="wo">Wolof - (Wollof)</option>
+                    <option value="xh">Xhosa - (isiXhosa)</option>
+                    <option value="yi">Yiddish - (ייִדיש)</option>
+                    <option value="yo">Yoruba - (Èdè Yorùbá)</option>
+                    <option value="za">Zhuang - (Saɯ cueŋƅ)</option>
+                    <option value="zu">Zulu - (isiZulu)</option>
                 </select>
                 <div class="hint">Translate responses to your preferred language.</div>
             </div>
@@ -4950,7 +5249,7 @@
         </div>
     </div>
 
-        <!-- ===== SCRIPTS ===== -->
+    <!-- ===== SCRIPTS ===== -->
     <script>
         // ============================================================
         //  🛡️ PROTOCOL CHECK – Prevent file:/// error
@@ -5341,7 +5640,9 @@
                 if (el) el.remove();
             }
 
-            // -------- REAL AI BOT RESPONSE --------
+            // ================================================================
+            //  ✅ FIXED: PUTER SDK INTEGRATION – NO MANUAL FETCH
+            // ================================================================
             async function getAIResponse(userText) {
                 const provider = localStorage.getItem('hex_ai_provider') || 'puter';
                 const gtranslate = localStorage.getItem('hex_gtranslate') || 'off';
@@ -5353,31 +5654,16 @@
                         const token = localStorage.getItem('hex_puter_token') || '';
                         const model = localStorage.getItem('hex_puter_model') || 'gpt-4';
                         if (!token) {
-                            return '⚠️ Please set your Puter API token in Settings > AI Provider.';
+                            return '⚠️ Please set your Puter API token in Settings.';
                         }
                         try {
-                            const resp = await fetch('https://api.puter.ai/v1/chat/completions', {
-                                method: 'POST',
-                                headers: {
-                                    'Authorization': `Bearer ${token}`,
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    model: model,
-                                    messages: [{
-                                            role: 'system',
-                                            content: 'You are HEX AI, a helpful creative assistant. Be concise, warm, and informative. Use emojis occasionally.'
-                                        },
-                                        {
-                                            role: 'user',
-                                            content: userText
-                                        }
-                                    ]
-                                })
+                            // ✅ Use SDK chat method – no fetch, no CORS issues
+                            const response = await puter.ai.chat(userText, {
+                                model: model,
+                                system: 'You are HEX AI, a helpful creative assistant. Be concise, warm, and informative. Use emojis occasionally.'
                             });
-                            if (!resp.ok) throw new Error(`Puter API error: ${resp.status}`);
-                            const data = await resp.json();
-                            responseText = data.choices?.[0]?.message?.content || 'No response from Puter.';
+                            // Response can be a string or an object with 'message'
+                            responseText = typeof response === 'string' ? response : (response.message || response);
                         } catch (err) {
                             return `⚠️ Puter error: ${err.message}`;
                         }
@@ -5385,7 +5671,7 @@
                         const key = localStorage.getItem('hex_or_key') || '';
                         const model = localStorage.getItem('hex_or_model') || 'google/gemini-2.0-flash-exp:free';
                         if (!key) {
-                            return '⚠️ Please set your OpenRouter API key in Settings > AI Provider.';
+                            return '⚠️ Please set your OpenRouter API key in Settings.';
                         }
                         try {
                             const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -5417,7 +5703,7 @@
                         const key = localStorage.getItem('hex_gm_key') || '';
                         const model = localStorage.getItem('hex_gemini_model') || 'models/gemini-1.5-pro';
                         if (!key) {
-                            return '⚠️ Please set your Gemini API key in Settings > AI Provider.';
+                            return '⚠️ Please set your Gemini API key in Settings.';
                         }
                         try {
                             const url =
@@ -5456,8 +5742,7 @@
                             if (tlData && tlData[0] && tlData[0][0] && tlData[0][0][0]) {
                                 responseText = tlData[0][0][0];
                             }
-                        } catch (_) {
-                            /* translation fails silently */ }
+                        } catch (_) { /* translation fails silently */ }
                     }
 
                     return responseText || '🤖 I received your message but couldn\'t generate a response.';
@@ -5700,7 +5985,7 @@
                 }
             }
 
-            // -------- IMAGE GENERATOR --------
+            // -------- IMAGE GENERATOR (fixed Puter SDK) --------
             const imageGenBtn = document.getElementById('imageGenBtn');
             const imagePrompt = document.getElementById('imagePrompt');
             const imageGrid = document.getElementById('imageGrid');
@@ -5722,24 +6007,21 @@
                         const token = localStorage.getItem('hex_puter_token') || '';
                         if (token) {
                             try {
-                                const resp = await fetch('https://api.puter.ai/v1/images/generations', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Authorization': `Bearer ${token}`,
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({
-                                        prompt: prompt,
-                                        model: 'dall-e-3',
-                                        n: 1,
-                                        size: '1024x1024'
-                                    })
+                                // ✅ Use SDK for image generation
+                                const result = await puter.ai.generateImage(prompt, {
+                                    model: 'dall-e-3',
+                                    n: 1,
+                                    size: '1024x1024'
                                 });
-                                if (resp.ok) {
-                                    const data = await resp.json();
-                                    imageUrl = data.data?.[0]?.url || null;
+                                // SDK returns an array of image objects
+                                if (result && result.length > 0 && result[0].url) {
+                                    imageUrl = result[0].url;
+                                } else if (typeof result === 'string') {
+                                    imageUrl = result;
+                                } else if (result && result.url) {
+                                    imageUrl = result.url;
                                 }
-                            } catch (_) {}
+                            } catch (_) { /* fallback */ }
                         }
                     }
 
@@ -5859,7 +6141,8 @@
                     gridVideo.controls = true;
                     gridVideo.autoplay = false;
                     gridVideo.loop = false;
-                    gridVideo.style.cssText = 'width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;background:#000;border:1px solid var(--base-300);';
+                    gridVideo.style.cssText =
+                        'width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;background:#000;border:1px solid var(--base-300);';
                     videoGrid.prepend(gridVideo);
 
                 } catch (err) {
@@ -6417,8 +6700,16 @@
                 else if (provider === 'gemini') fetchGeminiModels(false);
             });
 
-            // -------- PUTER MODELS --------
+            // ================================================================
+            //  ✅ FIXED: PUTER MODEL FETCHING – USE SDK
+            // ================================================================
             async function fetchPuterModels(forceRefresh = false) {
+                const token = localStorage.getItem('hex_puter_token') || puterToken.value.trim();
+                if (!token) {
+                    puterModelStatus.textContent = '⚠️ No token – set in Settings';
+                    return;
+                }
+
                 const cacheKey = 'hex_puter_models_cache';
                 const cacheTime = 'hex_puter_models_time';
                 const now = Date.now();
@@ -6429,13 +6720,14 @@
                     try {
                         const parsed = JSON.parse(cached);
                         populatePuterDropdown(parsed);
+                        puterModelStatus.textContent = `📦 Cached (${parsed.length} models)`;
                         return parsed;
                     } catch (e) {}
                 }
 
-                const token = localStorage.getItem('hex_puter_token');
                 puterModelStatus.textContent = 'Fetching...';
                 try {
+                    // ✅ Use SDK method – no manual fetch
                     const models = await puter.ai.listModels();
                     if (!Array.isArray(models)) throw new Error('Invalid response from Puter');
 
@@ -6455,11 +6747,9 @@
                             return parsed;
                         } catch (e) {}
                     }
+                    // Fallback to hardcoded list
                     const fallback = ['gpt-4', 'gpt-3.5-turbo', 'claude-3-opus', 'claude-3-sonnet', 'gemini-1.5-pro'];
-                    populatePuterDropdown(fallback.map(id => ({
-                        id,
-                        provider: 'Puter'
-                    })));
+                    populatePuterDropdown(fallback.map(id => ({ id, provider: 'Puter' })));
                     puterModelStatus.textContent = `⚠️ Using fallback list`;
                     return fallback;
                 }
@@ -6501,15 +6791,11 @@
 
                 orModelStatus.textContent = 'Fetching...';
                 const orKey = localStorage.getItem('hex_or_key') || '';
-                const headers = {
-                    'Accept': 'application/json'
-                };
+                const headers = { 'Accept': 'application/json' };
                 if (orKey) headers['Authorization'] = `Bearer ${orKey}`;
 
                 try {
-                    const resp = await fetch('https://openrouter.ai/api/v1/models', {
-                        headers
-                    });
+                    const resp = await fetch('https://openrouter.ai/api/v1/models', { headers });
                     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
                     const data = await resp.json();
                     const models = data.data || data.models || [];
@@ -6547,7 +6833,8 @@
                 models.forEach(m => {
                     const opt = document.createElement('option');
                     opt.value = m.id;
-                    opt.textContent = `${m.id} ${m.pricing && (m.pricing.input === '0' || m.pricing.input === 0) ? '🆓' : ''}`;
+                    opt.textContent =
+                        `${m.id} ${m.pricing && (m.pricing.input === '0' || m.pricing.input === 0) ? '🆓' : ''}`;
                     select.appendChild(opt);
                 });
                 const saved = localStorage.getItem('hex_or_model');
@@ -6699,6 +6986,7 @@
                             }
                         } else {
                             try {
+                                // ✅ Use SDK for image-to-text
                                 const text = await puter.ai.img2txt(dataUri);
                                 addMessage(`<i class="fas fa-image"></i> OCR result:\n\n${text}`, false, ['📷', '🔍']);
                             } catch (err) {
@@ -6733,9 +7021,7 @@
                 try {
                     const resp = await fetch(url, {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
                     if (!resp.ok) throw new Error('Gemini API error');
@@ -6766,9 +7052,11 @@
                     }
                 });
 
-                console.log('✦ HEX AI · Theme Studio with Component Gallery · 33 Themes + 12 Effects');
+                console.log('✦ HEX AI · Theme Studio with Component Gallery + Neon Effects');
+                console.log('✦ 33 Themes · 4 Neon Effects · 12 Components');
                 console.log('✦ Animated emojis powered by Google Noto Emoji Animation');
                 console.log('✦ AI Providers: Puter.ai, OpenRouter, Gemini');
+                console.log('✦ Puter SDK integration fixed – no more "Failed to fetch"');
 
                 setTimeout(() => {
                     if (playlist.length === 0) {
