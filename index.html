@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
     <title>HEX AI — All-in-One</title>
-    
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTK7ZL9PR8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
-        gtag('config', 'G-BTK7ZL9PR8', { page_path: location.pathname, page_title: document.title, page_referrer: document
-                    .referrer || undefined });
+        gtag('config', 'G-BTK7ZL9PR8', {
+            page_path: location.pathname,
+            page_title: document.title,
+            page_referrer: document
+                .referrer || undefined
+        });
     </script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
-     <!-- Howler.js for audio visualizer -->
+    <!-- Howler.js for audio visualizer -->
     <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js">
     </script>
     <!-- Tone.js – Web Audio API framework -->
@@ -4342,7 +4350,7 @@
             <!-- MUSIC -->
             <div class="panel" id="panel-music">
                 <div class="music-container">
-                    <h2><i class="fas fa-headphones"></i> Music Player</h2>
+                    <h2 style="display:flex;align-items:center;gap:10px;"><i class="fas fa-headphones"></i> Music Player <span style="font-size:13px;font-weight:400;opacity:0.5;display:flex;align-items:center;gap:6px;"><i class="fas fa-music" style="color:var(--primary);"></i> Now Playing</span></h2>
                     <div class="upload-area" id="uploadArea">
                         <div style="font-size:40px;margin-bottom:8px;"><i class="fas fa-cloud-upload-alt"></i></div>
                         <div style="font-weight:600;">Drop audio files here</div>
@@ -4679,7 +4687,7 @@
                         </div>
                     </div>
 
-                    <!-- ===== UPDATED Pollinations Card with Model Selector & Refresh ===== -->
+                    <!-- UPDATED Pollinations Card with Model Selector & Refresh (Save Model button REMOVED) -->
                     <div class="provider-card">
                         <div class="card-header">
                             <i class="fas fa-flower"></i> Pollinations.ai
@@ -4770,7 +4778,7 @@
                         </div>
                         <div class="card-actions">
                             <button class="btn-sm primary" id="savePollinationsKey"><i class="fas fa-save"></i> Save</button>
-                            <button class="btn-sm success" id="savePollinationsModel"><i class="fas fa-check"></i> Save Model</button>
+                            <!-- "Save Model" button REMOVED as requested -->
                         </div>
                         <div class="model-status" style="margin-top:10px;"><i class="fas fa-globe"></i> Base URL: https://gen.pollinations.ai</div>
                         <div class="model-status" style="margin-top:4px;"><i class="fas fa-check" style="color:var(--success);"></i> No key required for text &amp; image generation</div>
@@ -5087,7 +5095,6 @@
                 saveOpenRouterKey: $('#saveOpenRouterKey'),
                 saveGeminiKey: $('#saveGeminiKey'),
                 savePollinationsKey: $('#savePollinationsKey'),
-                savePollinationsModel: $('#savePollinationsModel'),
                 refreshModelsBtn: $('#refreshModelsBtn'),
                 refreshPollinationsModels: $('#refreshPollinationsModels'),
                 openRouterModelSelect: $('#openRouterModelSelect'),
@@ -5406,8 +5413,6 @@
 
             // ===== Prompt Caching support =====
             function buildCachedMessages(prompt, systemMsg) {
-                // For Gemini, Claude, Nova: use cache_control marker
-                // Static prefix is the system message, dynamic is the user prompt
                 return [{
                         role: 'system',
                         content: systemMsg
@@ -5508,13 +5513,11 @@
                 const url = 'https://gen.pollinations.ai/v1/chat/completions';
                 const systemMsg = 'You are HEX AI, a helpful assistant.';
 
-                // Build messages with cache_control for supported models
                 const cacheSupported = ['gemini', 'claude', 'nova'];
                 const isCacheSupported = cacheSupported.some(m => model.includes(m));
 
                 let messages;
                 if (isCacheSupported) {
-                    // Use cache_control marker: static prefix + dynamic prompt
                     messages = [{
                         role: 'system',
                         content: systemMsg,
@@ -5696,7 +5699,6 @@
                     return;
                 }
 
-                // If already recording, stop
                 if (isVoiceRecording) {
                     if (voiceRecognition) try {
                         voiceRecognition.stop();
@@ -5708,7 +5710,6 @@
                     return;
                 }
 
-                // Request microphone permission explicitly
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({
                         audio: true
@@ -5795,7 +5796,6 @@
                     '<div class="text-center"><i class="fas fa-spinner fa-pulse"></i> Generating...</div>';
 
                 try {
-                    // Use the new image endpoint: https://gen.pollinations.ai/image/{prompt}?model=flux
                     const baseUrl = 'https://gen.pollinations.ai/image/';
                     const encodedPrompt = encodeURIComponent(prompt);
                     const url =
@@ -6172,7 +6172,6 @@
                 dom.ttsBtn.disabled = true;
                 dom.ttsBtn.innerHTML = '<span class="refresh-spinner"></span>';
                 try {
-                    // Use new audio endpoint: https://gen.pollinations.ai/audio/{text}?voice=nova
                     const audioUrl =
                         `https://gen.pollinations.ai/audio/${encodeURIComponent(text)}?voice=nova&format=mp3`;
                     dom.audioResult.style.display = 'block';
@@ -6238,7 +6237,6 @@
                     return;
                 }
 
-                // Request microphone permission
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({
                         audio: true
@@ -6353,7 +6351,6 @@
                 dom.embedBtn.disabled = true;
                 dom.embedBtn.innerHTML = '<span class="refresh-spinner"></span>';
                 try {
-                    // Use new embeddings endpoint
                     const url = 'https://gen.pollinations.ai/v1/embeddings';
                     const resp = await fetch(url, {
                         method: 'POST',
@@ -6405,211 +6402,730 @@
 
             // ================================================================
             //  🎵 MUSIC PLAYER — Enhanced with full audio format support
-            //  & MediaCapabilities API integration
+            //  & MediaCapabilities API integration + Web Media API (Media Session)
             // ================================================================
 
             // ── Comprehensive Audio Format Library ──
             const audioFormats = {
 
                 // AAC Family
-                'AAC': { mime: 'audio/aac', codec: 'aac', ext: 'aac', desc: 'Advanced Audio Coding' },
-                'AAC_MP2': { mime: 'audio/mpeg', codec: 'mp4a.40.2', ext: 'aac', desc: 'AAC, MPEG-2' },
-                'AAC_ADIF': { mime: 'audio/aac', codec: 'aac', ext: 'aac', desc: 'AAC, ADIF' },
-                'AAC_MP4': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'AAC, MPEG-4' },
-                'AAC_MP4_LC': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'AAC LC' },
-                'MP4_FF_2_AAC': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'MP4 FF V.2 AAC' },
-                'QTA_AAC': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'QuickTime AAC' },
+                'AAC': {
+                    mime: 'audio/aac',
+                    codec: 'aac',
+                    ext: 'aac',
+                    desc: 'Advanced Audio Coding'
+                },
+                'AAC_MP2': {
+                    mime: 'audio/mpeg',
+                    codec: 'mp4a.40.2',
+                    ext: 'aac',
+                    desc: 'AAC, MPEG-2'
+                },
+                'AAC_ADIF': {
+                    mime: 'audio/aac',
+                    codec: 'aac',
+                    ext: 'aac',
+                    desc: 'AAC, ADIF'
+                },
+                'AAC_MP4': {
+                    mime: 'audio/mp4',
+                    codec: 'mp4a.40.2',
+                    ext: 'm4a',
+                    desc: 'AAC, MPEG-4'
+                },
+                'AAC_MP4_LC': {
+                    mime: 'audio/mp4',
+                    codec: 'mp4a.40.2',
+                    ext: 'm4a',
+                    desc: 'AAC LC'
+                },
+                'MP4_FF_2_AAC': {
+                    mime: 'audio/mp4',
+                    codec: 'mp4a.40.2',
+                    ext: 'm4a',
+                    desc: 'MP4 FF V.2 AAC'
+                },
+                'QTA_AAC': {
+                    mime: 'audio/mp4',
+                    codec: 'mp4a.40.2',
+                    ext: 'm4a',
+                    desc: 'QuickTime AAC'
+                },
 
                 // AC-3
-                'AC-3': { mime: 'audio/ac3', codec: 'ac-3', ext: 'ac3', desc: 'Dolby Digital AC-3' },
-                'AC-3_A': { mime: 'audio/ac3', codec: 'ac-3', ext: 'ac3', desc: 'AC-3 Rev A' },
+                'AC-3': {
+                    mime: 'audio/ac3',
+                    codec: 'ac-3',
+                    ext: 'ac3',
+                    desc: 'Dolby Digital AC-3'
+                },
+                'AC-3_A': {
+                    mime: 'audio/ac3',
+                    codec: 'ac-3',
+                    ext: 'ac3',
+                    desc: 'AC-3 Rev A'
+                },
 
                 // ADM
-                'ADM': { mime: 'audio/adm', codec: 'adm', ext: 'adm', desc: 'Audio Definition Model' },
+                'ADM': {
+                    mime: 'audio/adm',
+                    codec: 'adm',
+                    ext: 'adm',
+                    desc: 'Audio Definition Model'
+                },
 
                 // AES3
-                'AES3': { mime: 'audio/aes3', codec: 'aes3', ext: 'aes3', desc: 'AES3 Digital Audio' },
-                'AES3_SMPTE': { mime: 'audio/aes3', codec: 'aes3', ext: 'aes3', desc: 'AES3 SMPTE' },
+                'AES3': {
+                    mime: 'audio/aes3',
+                    codec: 'aes3',
+                    ext: 'aes3',
+                    desc: 'AES3 Digital Audio'
+                },
+                'AES3_SMPTE': {
+                    mime: 'audio/aes3',
+                    codec: 'aes3',
+                    ext: 'aes3',
+                    desc: 'AES3 SMPTE'
+                },
 
                 // AIFF
-                'AIFF': { mime: 'audio/x-aiff', codec: 'aiff', ext: 'aiff', desc: 'Audio Interchange File Format' },
-                'AIFF_LPCM': { mime: 'audio/x-aiff', codec: 'lpcm', ext: 'aiff', desc: 'AIFF with LPCM' },
+                'AIFF': {
+                    mime: 'audio/x-aiff',
+                    codec: 'aiff',
+                    ext: 'aiff',
+                    desc: 'Audio Interchange File Format'
+                },
+                'AIFF_LPCM': {
+                    mime: 'audio/x-aiff',
+                    codec: 'lpcm',
+                    ext: 'aiff',
+                    desc: 'AIFF with LPCM'
+                },
 
                 // A-Law
-                'A-Law': { mime: 'audio/x-alaw', codec: 'alaw', ext: 'alaw', desc: 'A-Law Compressed' },
+                'A-Law': {
+                    mime: 'audio/x-alaw',
+                    codec: 'alaw',
+                    ext: 'alaw',
+                    desc: 'A-Law Compressed'
+                },
 
                 // AMR
-                'AMR': { mime: 'audio/amr', codec: 'amr', ext: 'amr', desc: 'Adaptive Multi-Rate' },
-                'AMR-WB': { mime: 'audio/amr-wb', codec: 'amr-wb', ext: 'amr', desc: 'AMR Wideband' },
-                'AMR-WB+': { mime: 'audio/amr-wb', codec: 'amr-wb+', ext: 'amr', desc: 'AMR-WB+ Extended' },
+                'AMR': {
+                    mime: 'audio/amr',
+                    codec: 'amr',
+                    ext: 'amr',
+                    desc: 'Adaptive Multi-Rate'
+                },
+                'AMR-WB': {
+                    mime: 'audio/amr-wb',
+                    codec: 'amr-wb',
+                    ext: 'amr',
+                    desc: 'AMR Wideband'
+                },
+                'AMR-WB+': {
+                    mime: 'audio/amr-wb',
+                    codec: 'amr-wb+',
+                    ext: 'amr',
+                    desc: 'AMR-WB+ Extended'
+                },
 
                 // ASF
-                'ASF': { mime: 'audio/x-ms-wma', codec: 'asf', ext: 'asf', desc: 'Advanced Systems Format' },
+                'ASF': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'asf',
+                    ext: 'asf',
+                    desc: 'Advanced Systems Format'
+                },
 
                 // AudCom
-                'AudCom': { mime: 'audio/audible', codec: 'audcom', ext: 'aa', desc: 'Audible.Com' },
-                'AudCom_MP3': { mime: 'audio/audible', codec: 'mp3', ext: 'aa', desc: 'Audible MP3' },
+                'AudCom': {
+                    mime: 'audio/audible',
+                    codec: 'audcom',
+                    ext: 'aa',
+                    desc: 'Audible.Com'
+                },
+                'AudCom_MP3': {
+                    mime: 'audio/audible',
+                    codec: 'mp3',
+                    ext: 'aa',
+                    desc: 'Audible MP3'
+                },
 
                 // BWF (Broadcast WAVE)
-                'WAVE_BWF_1': { mime: 'audio/x-wav', codec: 'pcm', ext: 'wav', desc: 'BWF Version 1' },
-                'WAVE_BWF_2': { mime: 'audio/x-wav', codec: 'pcm', ext: 'wav', desc: 'BWF Version 2' },
-                'WAVE_BWF_LPCM_1': { mime: 'audio/x-wav', codec: 'lpcm', ext: 'wav', desc: 'BWF V1 LPCM' },
-                'WAVE_BWF_LPCM_2': { mime: 'audio/x-wav', codec: 'lpcm', ext: 'wav', desc: 'BWF V2 LPCM' },
+                'WAVE_BWF_1': {
+                    mime: 'audio/x-wav',
+                    codec: 'pcm',
+                    ext: 'wav',
+                    desc: 'BWF Version 1'
+                },
+                'WAVE_BWF_2': {
+                    mime: 'audio/x-wav',
+                    codec: 'pcm',
+                    ext: 'wav',
+                    desc: 'BWF Version 2'
+                },
+                'WAVE_BWF_LPCM_1': {
+                    mime: 'audio/x-wav',
+                    codec: 'lpcm',
+                    ext: 'wav',
+                    desc: 'BWF V1 LPCM'
+                },
+                'WAVE_BWF_LPCM_2': {
+                    mime: 'audio/x-wav',
+                    codec: 'lpcm',
+                    ext: 'wav',
+                    desc: 'BWF V2 LPCM'
+                },
 
                 // CAF
-                'CAF': { mime: 'audio/x-caf', codec: 'caf', ext: 'caf', desc: 'Apple Core Audio Format' },
+                'CAF': {
+                    mime: 'audio/x-caf',
+                    codec: 'caf',
+                    ext: 'caf',
+                    desc: 'Apple Core Audio Format'
+                },
 
                 // DAMF
-                'DAMF': { mime: 'audio/damf', codec: 'damf', ext: 'damf', desc: 'Dolby Atmos Master File' },
+                'DAMF': {
+                    mime: 'audio/damf',
+                    codec: 'damf',
+                    ext: 'damf',
+                    desc: 'Dolby Atmos Master File'
+                },
 
                 // DDP
-                'DDP': { mime: 'audio/ddp', codec: 'ddp', ext: 'ddp', desc: 'Disc Description Protocol' },
+                'DDP': {
+                    mime: 'audio/ddp',
+                    codec: 'ddp',
+                    ext: 'ddp',
+                    desc: 'Disc Description Protocol'
+                },
 
                 // DLS
-                'DLS_1_1b': { mime: 'audio/dls', codec: 'dls', ext: 'dls', desc: 'Downloadable Sounds v1.1b' },
+                'DLS_1_1b': {
+                    mime: 'audio/dls',
+                    codec: 'dls',
+                    ext: 'dls',
+                    desc: 'Downloadable Sounds v1.1b'
+                },
 
                 // DSD
-                'DSD': { mime: 'audio/dsd', codec: 'dsd', ext: 'dsd', desc: 'Direct Stream Digital' },
-                'DSDIFF': { mime: 'audio/dsd', codec: 'dsd', ext: 'dsf', desc: 'DSD Interchange File' },
+                'DSD': {
+                    mime: 'audio/dsd',
+                    codec: 'dsd',
+                    ext: 'dsd',
+                    desc: 'Direct Stream Digital'
+                },
+                'DSDIFF': {
+                    mime: 'audio/dsd',
+                    codec: 'dsd',
+                    ext: 'dsf',
+                    desc: 'DSD Interchange File'
+                },
 
                 // DTB (Digital Talking Book)
-                'DTB_2002': { mime: 'audio/dtb', codec: 'dtb', ext: 'dtb', desc: 'Digital Talking Book 2002' },
-                'DTB_2002_NLS': { mime: 'audio/dtb', codec: 'dtb', ext: 'dtb', desc: 'DTB NLS AMR-WB+' },
-                'DTB_2005': { mime: 'audio/dtb', codec: 'dtb', ext: 'dtb', desc: 'Digital Talking Book 2005' },
+                'DTB_2002': {
+                    mime: 'audio/dtb',
+                    codec: 'dtb',
+                    ext: 'dtb',
+                    desc: 'Digital Talking Book 2002'
+                },
+                'DTB_2002_NLS': {
+                    mime: 'audio/dtb',
+                    codec: 'dtb',
+                    ext: 'dtb',
+                    desc: 'DTB NLS AMR-WB+'
+                },
+                'DTB_2005': {
+                    mime: 'audio/dtb',
+                    codec: 'dtb',
+                    ext: 'dtb',
+                    desc: 'Digital Talking Book 2005'
+                },
 
                 // DTS
-                'DTS': { mime: 'audio/vnd.dts', codec: 'dts', ext: 'dts', desc: 'DTS Audio' },
+                'DTS': {
+                    mime: 'audio/vnd.dts',
+                    codec: 'dts',
+                    ext: 'dts',
+                    desc: 'DTS Audio'
+                },
 
                 // FLAC
-                'FLAC_Family': { mime: 'audio/flac', codec: 'flac', ext: 'flac', desc: 'FLAC Family' },
-                'FLAC_1_1_2': { mime: 'audio/flac', codec: 'flac', ext: 'flac', desc: 'FLAC 1.1.2' },
+                'FLAC_Family': {
+                    mime: 'audio/flac',
+                    codec: 'flac',
+                    ext: 'flac',
+                    desc: 'FLAC Family'
+                },
+                'FLAC_1_1_2': {
+                    mime: 'audio/flac',
+                    codec: 'flac',
+                    ext: 'flac',
+                    desc: 'FLAC 1.1.2'
+                },
 
                 // ID3
-                'ID3': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'ID3 Metadata for MP3' },
-                'ID3v1': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'ID3v1' },
-                'ID3v2': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'ID3v2' },
+                'ID3': {
+                    mime: 'audio/mpeg',
+                    codec: 'mp3',
+                    ext: 'mp3',
+                    desc: 'ID3 Metadata for MP3'
+                },
+                'ID3v1': {
+                    mime: 'audio/mpeg',
+                    codec: 'mp3',
+                    ext: 'mp3',
+                    desc: 'ID3v1'
+                },
+                'ID3v2': {
+                    mime: 'audio/mpeg',
+                    codec: 'mp3',
+                    ext: 'mp3',
+                    desc: 'ID3v2'
+                },
 
                 // IFF
-                'IFF': { mime: 'audio/x-iff', codec: 'iff', ext: 'iff', desc: 'EA IFF 1985' },
+                'IFF': {
+                    mime: 'audio/x-iff',
+                    codec: 'iff',
+                    ext: 'iff',
+                    desc: 'EA IFF 1985'
+                },
 
                 // LPCM
-                'LPCM': { mime: 'audio/lpcm', codec: 'lpcm', ext: 'wav', desc: 'Linear PCM' },
+                'LPCM': {
+                    mime: 'audio/lpcm',
+                    codec: 'lpcm',
+                    ext: 'wav',
+                    desc: 'Linear PCM'
+                },
 
                 // LOGICX
-                'LOGICX': { mime: 'audio/logicx', codec: 'logicx', ext: 'logicx', desc: 'Logic Pro Project' },
+                'LOGICX': {
+                    mime: 'audio/logicx',
+                    codec: 'logicx',
+                    ext: 'logicx',
+                    desc: 'Logic Pro Project'
+                },
 
                 // Matroska
-                'Matroska': { mime: 'audio/x-matroska', codec: 'matroska', ext: 'mka', desc: 'Matroska Container' },
-                'Matroska_AAC': { mime: 'audio/x-matroska', codec: 'mp4a.40.2', ext: 'mka', desc: 'Matroska AAC' },
-                'Matroska_LPCM': { mime: 'audio/x-matroska', codec: 'lpcm', ext: 'mka', desc: 'Matroska LPCM' },
-                'Matroska_MP3': { mime: 'audio/x-matroska', codec: 'mp3', ext: 'mka', desc: 'Matroska MP3' },
+                'Matroska': {
+                    mime: 'audio/x-matroska',
+                    codec: 'matroska',
+                    ext: 'mka',
+                    desc: 'Matroska Container'
+                },
+                'Matroska_AAC': {
+                    mime: 'audio/x-matroska',
+                    codec: 'mp4a.40.2',
+                    ext: 'mka',
+                    desc: 'Matroska AAC'
+                },
+                'Matroska_LPCM': {
+                    mime: 'audio/x-matroska',
+                    codec: 'lpcm',
+                    ext: 'mka',
+                    desc: 'Matroska LPCM'
+                },
+                'Matroska_MP3': {
+                    mime: 'audio/x-matroska',
+                    codec: 'mp3',
+                    ext: 'mka',
+                    desc: 'Matroska MP3'
+                },
 
                 // MIDI
-                'MIDI_SD': { mime: 'audio/midi', codec: 'midi', ext: 'mid', desc: 'MIDI Sequence Data' },
+                'MIDI_SD': {
+                    mime: 'audio/midi',
+                    codec: 'midi',
+                    ext: 'mid',
+                    desc: 'MIDI Sequence Data'
+                },
 
                 // MODS
-                'MODS': { mime: 'audio/mod', codec: 'mod', ext: 'mod', desc: 'Module Music Format' },
+                'MODS': {
+                    mime: 'audio/mod',
+                    codec: 'mod',
+                    ext: 'mod',
+                    desc: 'Module Music Format'
+                },
 
                 // MP2
-                'MPEG_layer_2_audio': { mime: 'audio/mpeg', codec: 'mp2', ext: 'mp2', desc: 'MPEG-1/2 Layer II' },
+                'MPEG_layer_2_audio': {
+                    mime: 'audio/mpeg',
+                    codec: 'mp2',
+                    ext: 'mp2',
+                    desc: 'MPEG-1/2 Layer II'
+                },
 
                 // MP3
-                'MP3_ENC': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'MP3 Encoding' },
-                'MP3_FF': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'MP3 File Format' },
+                'MP3_ENC': {
+                    mime: 'audio/mpeg',
+                    codec: 'mp3',
+                    ext: 'mp3',
+                    desc: 'MP3 Encoding'
+                },
+                'MP3_FF': {
+                    mime: 'audio/mpeg',
+                    codec: 'mp3',
+                    ext: 'mp3',
+                    desc: 'MP3 File Format'
+                },
 
                 // µ-Law
-                'µ-Law': { mime: 'audio/x-mulaw', codec: 'mulaw', ext: 'ulaw', desc: 'µ-Law Compressed' },
+                'µ-Law': {
+                    mime: 'audio/x-mulaw',
+                    codec: 'mulaw',
+                    ext: 'ulaw',
+                    desc: 'µ-Law Compressed'
+                },
 
                 // Ogg
-                'Ogg': { mime: 'audio/ogg', codec: 'vorbis', ext: 'ogg', desc: 'Ogg Container' },
-                'Ogg_Vorbis': { mime: 'audio/ogg', codec: 'vorbis', ext: 'ogg', desc: 'Ogg Vorbis' },
-                'Ogg_FLAC_1_0': { mime: 'audio/ogg', codec: 'flac', ext: 'ogg', desc: 'Ogg FLAC 1.0' },
-                'Ogg_SPX': { mime: 'audio/ogg', codec: 'speex', ext: 'ogg', desc: 'Ogg Speex' },
+                'Ogg': {
+                    mime: 'audio/ogg',
+                    codec: 'vorbis',
+                    ext: 'ogg',
+                    desc: 'Ogg Container'
+                },
+                'Ogg_Vorbis': {
+                    mime: 'audio/ogg',
+                    codec: 'vorbis',
+                    ext: 'ogg',
+                    desc: 'Ogg Vorbis'
+                },
+                'Ogg_FLAC_1_0': {
+                    mime: 'audio/ogg',
+                    codec: 'flac',
+                    ext: 'ogg',
+                    desc: 'Ogg FLAC 1.0'
+                },
+                'Ogg_SPX': {
+                    mime: 'audio/ogg',
+                    codec: 'speex',
+                    ext: 'ogg',
+                    desc: 'Ogg Speex'
+                },
 
                 // PCM
-                'PCM': { mime: 'audio/pcm', codec: 'pcm', ext: 'pcm', desc: 'Pulse Code Modulated' },
+                'PCM': {
+                    mime: 'audio/pcm',
+                    codec: 'pcm',
+                    ext: 'pcm',
+                    desc: 'Pulse Code Modulated'
+                },
 
                 // Pro Tools
-                'PTX_PTF_PTS': { mime: 'audio/protools', codec: 'ptx', ext: 'ptx', desc: 'Pro Tools Session' },
+                'PTX_PTF_PTS': {
+                    mime: 'audio/protools',
+                    codec: 'ptx',
+                    ext: 'ptx',
+                    desc: 'Pro Tools Session'
+                },
 
                 // QuickTime
-                'Quicktime': { mime: 'audio/quicktime', codec: 'qt', ext: 'mov', desc: 'QuickTime Audio' },
-                'QTA_MP3': { mime: 'audio/quicktime', codec: 'mp3', ext: 'mov', desc: 'QuickTime MP3' },
-                'QTA_AAC': { mime: 'audio/quicktime', codec: 'mp4a.40.2', ext: 'mov', desc: 'QuickTime AAC' },
+                'Quicktime': {
+                    mime: 'audio/quicktime',
+                    codec: 'qt',
+                    ext: 'mov',
+                    desc: 'QuickTime Audio'
+                },
+                'QTA_MP3': {
+                    mime: 'audio/quicktime',
+                    codec: 'mp3',
+                    ext: 'mov',
+                    desc: 'QuickTime MP3'
+                },
+                'QTA_AAC': {
+                    mime: 'audio/quicktime',
+                    codec: 'mp4a.40.2',
+                    ext: 'mov',
+                    desc: 'QuickTime AAC'
+                },
 
                 // RealMedia
-                'RealAudio_10': { mime: 'audio/x-pn-realaudio', codec: 'ra10', ext: 'ra', desc: 'RealAudio 10' },
-                'RealAudio_AAC': { mime: 'audio/x-pn-realaudio', codec: 'aac', ext: 'ra', desc: 'RealAudio AAC' },
-                'RealAudio_LL': { mime: 'audio/x-pn-realaudio', codec: 'ra-ll', ext: 'ra', desc: 'RealAudio Lossless' },
-                'RealAudio_MC': { mime: 'audio/x-pn-realaudio', codec: 'ra-mc', ext: 'ra', desc: 'RealAudio Multichannel' },
-                'RealAudio_RA': { mime: 'audio/x-pn-realaudio', codec: 'ra', ext: 'ra', desc: 'RealAudio Codec' },
+                'RealAudio_10': {
+                    mime: 'audio/x-pn-realaudio',
+                    codec: 'ra10',
+                    ext: 'ra',
+                    desc: 'RealAudio 10'
+                },
+                'RealAudio_AAC': {
+                    mime: 'audio/x-pn-realaudio',
+                    codec: 'aac',
+                    ext: 'ra',
+                    desc: 'RealAudio AAC'
+                },
+                'RealAudio_LL': {
+                    mime: 'audio/x-pn-realaudio',
+                    codec: 'ra-ll',
+                    ext: 'ra',
+                    desc: 'RealAudio Lossless'
+                },
+                'RealAudio_MC': {
+                    mime: 'audio/x-pn-realaudio',
+                    codec: 'ra-mc',
+                    ext: 'ra',
+                    desc: 'RealAudio Multichannel'
+                },
+                'RealAudio_RA': {
+                    mime: 'audio/x-pn-realaudio',
+                    codec: 'ra',
+                    ext: 'ra',
+                    desc: 'RealAudio Codec'
+                },
 
                 // RMID
-                'RMID': { mime: 'audio/rmi', codec: 'rmi', ext: 'rmi', desc: 'RIFF MIDI' },
+                'RMID': {
+                    mime: 'audio/rmi',
+                    codec: 'rmi',
+                    ext: 'rmi',
+                    desc: 'RIFF MIDI'
+                },
 
                 // SHN
-                'SHN': { mime: 'audio/shn', codec: 'shn', ext: 'shn', desc: 'Shorten Lossless' },
+                'SHN': {
+                    mime: 'audio/shn',
+                    codec: 'shn',
+                    ext: 'shn',
+                    desc: 'Shorten Lossless'
+                },
 
                 // SIB
-                'SIB': { mime: 'audio/sib', codec: 'sib', ext: 'sib', desc: 'Sibelius Notation' },
+                'SIB': {
+                    mime: 'audio/sib',
+                    codec: 'sib',
+                    ext: 'sib',
+                    desc: 'Sibelius Notation'
+                },
 
                 // SMF
-                'SMF': { mime: 'audio/midi', codec: 'smf', ext: 'mid', desc: 'Standard MIDI File' },
+                'SMF': {
+                    mime: 'audio/midi',
+                    codec: 'smf',
+                    ext: 'mid',
+                    desc: 'Standard MIDI File'
+                },
 
                 // SPX
-                'SPX_1_2': { mime: 'audio/ogg', codec: 'speex', ext: 'spx', desc: 'Speex 1.2' },
+                'SPX_1_2': {
+                    mime: 'audio/ogg',
+                    codec: 'speex',
+                    ext: 'spx',
+                    desc: 'Speex 1.2'
+                },
 
                 // USAC
-                'USAC': { mime: 'audio/usac', codec: 'usac', ext: 'usac', desc: 'Unified Speech & Audio Coding' },
+                'USAC': {
+                    mime: 'audio/usac',
+                    codec: 'usac',
+                    ext: 'usac',
+                    desc: 'Unified Speech & Audio Coding'
+                },
 
                 // Vorbis
-                'Vorbis': { mime: 'audio/ogg', codec: 'vorbis', ext: 'ogg', desc: 'Vorbis Codec' },
+                'Vorbis': {
+                    mime: 'audio/ogg',
+                    codec: 'vorbis',
+                    ext: 'ogg',
+                    desc: 'Vorbis Codec'
+                },
 
                 // WAVE
-                'WAVE': { mime: 'audio/wav', codec: 'pcm', ext: 'wav', desc: 'WAVE Audio' },
-                'WAVE_LPCM': { mime: 'audio/wav', codec: 'lpcm', ext: 'wav', desc: 'WAVE LPCM' },
+                'WAVE': {
+                    mime: 'audio/wav',
+                    codec: 'pcm',
+                    ext: 'wav',
+                    desc: 'WAVE Audio'
+                },
+                'WAVE_LPCM': {
+                    mime: 'audio/wav',
+                    codec: 'lpcm',
+                    ext: 'wav',
+                    desc: 'WAVE LPCM'
+                },
 
                 // WebM
-                'WebM': { mime: 'audio/webm', codec: 'opus', ext: 'webm', desc: 'WebM Audio' },
+                'WebM': {
+                    mime: 'audio/webm',
+                    codec: 'opus',
+                    ext: 'webm',
+                    desc: 'WebM Audio'
+                },
 
                 // Windows Media
-                'WMA': { mime: 'audio/x-ms-wma', codec: 'wma', ext: 'wma', desc: 'Windows Media Audio' },
-                'WMA_WMA9': { mime: 'audio/x-ms-wma', codec: 'wma9', ext: 'wma', desc: 'WMA9' },
-                'WMA_WMA9_LL': { mime: 'audio/x-ms-wma', codec: 'wma9-ll', ext: 'wma', desc: 'WMA9 Lossless' },
-                'WMA_WMA9_PRO': { mime: 'audio/x-ms-wma', codec: 'wma9-pro', ext: 'wma', desc: 'WMA9 Professional' },
-                'WMA9': { mime: 'audio/x-ms-wma', codec: 'wma9', ext: 'wma', desc: 'Windows Media 9' },
-                'WMA9_LL': { mime: 'audio/x-ms-wma', codec: 'wma9-ll', ext: 'wma', desc: 'WMA9 Lossless' },
-                'WMA9_PRO': { mime: 'audio/x-ms-wma', codec: 'wma9-pro', ext: 'wma', desc: 'WMA9 Professional' },
+                'WMA': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'wma',
+                    ext: 'wma',
+                    desc: 'Windows Media Audio'
+                },
+                'WMA_WMA9': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'wma9',
+                    ext: 'wma',
+                    desc: 'WMA9'
+                },
+                'WMA_WMA9_LL': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'wma9-ll',
+                    ext: 'wma',
+                    desc: 'WMA9 Lossless'
+                },
+                'WMA_WMA9_PRO': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'wma9-pro',
+                    ext: 'wma',
+                    desc: 'WMA9 Professional'
+                },
+                'WMA9': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'wma9',
+                    ext: 'wma',
+                    desc: 'Windows Media 9'
+                },
+                'WMA9_LL': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'wma9-ll',
+                    ext: 'wma',
+                    desc: 'WMA9 Lossless'
+                },
+                'WMA9_PRO': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'wma9-pro',
+                    ext: 'wma',
+                    desc: 'WMA9 Professional'
+                },
 
                 // XMF
-                'XMF_1_0': { mime: 'audio/xmf', codec: 'xmf', ext: 'xmf', desc: 'eXtensible Music Format 1.0' },
+                'XMF_1_0': {
+                    mime: 'audio/xmf',
+                    codec: 'xmf',
+                    ext: 'xmf',
+                    desc: 'eXtensible Music Format 1.0'
+                },
 
                 // Additional aliases for common formats
-                'audio/mpeg': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'MPEG Audio' },
-                'audio/mp4': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'MP4 Audio' },
-                'audio/ogg': { mime: 'audio/ogg', codec: 'vorbis', ext: 'ogg', desc: 'Ogg Vorbis' },
-                'audio/wav': { mime: 'audio/wav', codec: 'pcm', ext: 'wav', desc: 'WAVE PCM' },
-                'audio/flac': { mime: 'audio/flac', codec: 'flac', ext: 'flac', desc: 'FLAC' },
-                'audio/webm': { mime: 'audio/webm', codec: 'opus', ext: 'webm', desc: 'WebM Opus' },
-                'audio/aac': { mime: 'audio/aac', codec: 'aac', ext: 'aac', desc: 'AAC' },
-                'audio/x-wav': { mime: 'audio/x-wav', codec: 'pcm', ext: 'wav', desc: 'WAVE (x-wav)' },
-                'audio/x-aiff': { mime: 'audio/x-aiff', codec: 'aiff', ext: 'aiff', desc: 'AIFF' },
-                'audio/x-matroska': { mime: 'audio/x-matroska', codec: 'matroska', ext: 'mka', desc: 'Matroska Audio' },
-                'audio/x-ms-wma': { mime: 'audio/x-ms-wma', codec: 'wma', ext: 'wma', desc: 'Windows Media Audio' },
-                'audio/x-ms-wmv': { mime: 'audio/x-ms-wmv', codec: 'wmv', ext: 'wmv', desc: 'Windows Media Video' },
-                'audio/amr': { mime: 'audio/amr', codec: 'amr', ext: 'amr', desc: 'AMR' },
-                'audio/amr-wb': { mime: 'audio/amr-wb', codec: 'amr-wb', ext: 'amr', desc: 'AMR-WB' },
-                'audio/ac3': { mime: 'audio/ac3', codec: 'ac-3', ext: 'ac3', desc: 'AC-3 Dolby Digital' },
-                'audio/vnd.dts': { mime: 'audio/vnd.dts', codec: 'dts', ext: 'dts', desc: 'DTS' },
-                'audio/midi': { mime: 'audio/midi', codec: 'midi', ext: 'mid', desc: 'MIDI' },
-                'audio/x-midi': { mime: 'audio/x-midi', codec: 'midi', ext: 'mid', desc: 'MIDI (x-midi)' },
+                'audio/mpeg': {
+                    mime: 'audio/mpeg',
+                    codec: 'mp3',
+                    ext: 'mp3',
+                    desc: 'MPEG Audio'
+                },
+                'audio/mp4': {
+                    mime: 'audio/mp4',
+                    codec: 'mp4a.40.2',
+                    ext: 'm4a',
+                    desc: 'MP4 Audio'
+                },
+                'audio/ogg': {
+                    mime: 'audio/ogg',
+                    codec: 'vorbis',
+                    ext: 'ogg',
+                    desc: 'Ogg Vorbis'
+                },
+                'audio/wav': {
+                    mime: 'audio/wav',
+                    codec: 'pcm',
+                    ext: 'wav',
+                    desc: 'WAVE PCM'
+                },
+                'audio/flac': {
+                    mime: 'audio/flac',
+                    codec: 'flac',
+                    ext: 'flac',
+                    desc: 'FLAC'
+                },
+                'audio/webm': {
+                    mime: 'audio/webm',
+                    codec: 'opus',
+                    ext: 'webm',
+                    desc: 'WebM Opus'
+                },
+                'audio/aac': {
+                    mime: 'audio/aac',
+                    codec: 'aac',
+                    ext: 'aac',
+                    desc: 'AAC'
+                },
+                'audio/x-wav': {
+                    mime: 'audio/x-wav',
+                    codec: 'pcm',
+                    ext: 'wav',
+                    desc: 'WAVE (x-wav)'
+                },
+                'audio/x-aiff': {
+                    mime: 'audio/x-aiff',
+                    codec: 'aiff',
+                    ext: 'aiff',
+                    desc: 'AIFF'
+                },
+                'audio/x-matroska': {
+                    mime: 'audio/x-matroska',
+                    codec: 'matroska',
+                    ext: 'mka',
+                    desc: 'Matroska Audio'
+                },
+                'audio/x-ms-wma': {
+                    mime: 'audio/x-ms-wma',
+                    codec: 'wma',
+                    ext: 'wma',
+                    desc: 'Windows Media Audio'
+                },
+                'audio/x-ms-wmv': {
+                    mime: 'audio/x-ms-wmv',
+                    codec: 'wmv',
+                    ext: 'wmv',
+                    desc: 'Windows Media Video'
+                },
+                'audio/amr': {
+                    mime: 'audio/amr',
+                    codec: 'amr',
+                    ext: 'amr',
+                    desc: 'AMR'
+                },
+                'audio/amr-wb': {
+                    mime: 'audio/amr-wb',
+                    codec: 'amr-wb',
+                    ext: 'amr',
+                    desc: 'AMR-WB'
+                },
+                'audio/ac3': {
+                    mime: 'audio/ac3',
+                    codec: 'ac-3',
+                    ext: 'ac3',
+                    desc: 'AC-3 Dolby Digital'
+                },
+                'audio/vnd.dts': {
+                    mime: 'audio/vnd.dts',
+                    codec: 'dts',
+                    ext: 'dts',
+                    desc: 'DTS'
+                },
+                'audio/midi': {
+                    mime: 'audio/midi',
+                    codec: 'midi',
+                    ext: 'mid',
+                    desc: 'MIDI'
+                },
+                'audio/x-midi': {
+                    mime: 'audio/x-midi',
+                    codec: 'midi',
+                    ext: 'mid',
+                    desc: 'MIDI (x-midi)'
+                },
             };
 
             // ── MediaCapabilities API Integration ──
             async function checkAudioDecoding(mimeType, channels = 2, bitrate = 128000, samplerate = 44100) {
                 if (!navigator.mediaCapabilities) {
                     console.warn('MediaCapabilities API not supported in this browser');
-                    return { supported: false, smooth: false, powerEfficient: false };
+                    return {
+                        supported: false,
+                        smooth: false,
+                        powerEfficient: false
+                    };
                 }
                 const configuration = {
                     type: 'media-source',
@@ -6626,7 +7142,11 @@
                     return result;
                 } catch (error) {
                     console.error('MediaCapabilities evaluation failed:', error);
-                    return { supported: false, smooth: false, powerEfficient: false };
+                    return {
+                        supported: false,
+                        smooth: false,
+                        powerEfficient: false
+                    };
                 }
             }
 
@@ -6635,26 +7155,27 @@
                 const fileName = file.name.toLowerCase();
                 const mimeType = file.type;
 
-                // Try exact MIME match first
                 if (audioFormats[mimeType]) {
                     return audioFormats[mimeType];
                 }
 
-                // Try by extension
                 for (const [key, fmt] of Object.entries(audioFormats)) {
                     if (fmt.ext && fileName.endsWith('.' + fmt.ext)) {
                         return fmt;
                     }
                 }
 
-                // Fallback: detect by MIME type prefix
                 if (mimeType.startsWith('audio/')) {
                     const base = mimeType.split(';')[0].trim();
                     if (audioFormats[base]) return audioFormats[base];
                 }
 
-                // Default fallback
-                return { mime: mimeType || 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'Unknown audio' };
+                return {
+                    mime: mimeType || 'audio/mpeg',
+                    codec: 'mp3',
+                    ext: 'mp3',
+                    desc: 'Unknown audio'
+                };
             }
 
             // ── Music Player State ──
@@ -6669,7 +7190,7 @@
             let musicProgressInterval = null;
 
             // Repeat mode: 0 = off, 1 = repeat all, 2 = repeat one
-            let repeatMode = 0; 
+            let repeatMode = 0;
 
             const musicCanvas = dom.visualizerCanvas;
             const musicCtx = musicCanvas.getContext('2d');
@@ -6695,9 +7216,15 @@
                                 keyPath: 'id',
                                 autoIncrement: true
                             });
-                            store.createIndex('name', 'name', { unique: false });
-                            store.createIndex('dateAdded', 'dateAdded', { unique: false });
-                            store.createIndex('format', 'format', { unique: false });
+                            store.createIndex('name', 'name', {
+                                unique: false
+                            });
+                            store.createIndex('dateAdded', 'dateAdded', {
+                                unique: false
+                            });
+                            store.createIndex('format', 'format', {
+                                unique: false
+                            });
                         }
                     };
                 });
@@ -6723,7 +7250,10 @@
                             const req = store.add(track);
                             req.onsuccess = () => {
                                 const id = req.result;
-                                resolve({ id, ...track });
+                                resolve({
+                                    id,
+                                    ...track
+                                });
                             };
                             req.onerror = () => reject(req.error);
                             tx.oncomplete = () => db.close();
@@ -6874,6 +7404,145 @@
                 return `${m}:${s.toString().padStart(2,'0')}`;
             }
 
+            // ── Media Session API Integration ──
+            function setupMediaSession(track) {
+                if (!navigator.mediaSession) {
+                    console.warn('Media Session API not supported in this browser');
+                    return;
+                }
+
+                const title = track.name || 'Unknown Track';
+                const artist = track.formatDesc || 'HEX AI Music';
+
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: title,
+                    artist: artist,
+                    album: 'HEX AI Music Player',
+                    artwork: [{
+                            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="58" text-anchor="middle" font-size="40" fill="white">🎵</text></svg>',
+                            sizes: '96x96',
+                            type: 'image/svg+xml'
+                        },
+                        {
+                            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="58" text-anchor="middle" font-size="60" fill="white">🎵</text></svg>',
+                            sizes: '128x128',
+                            type: 'image/svg+xml'
+                        },
+                        {
+                            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="58" text-anchor="middle" font-size="80" fill="white">🎵</text></svg>',
+                            sizes: '256x256',
+                            type: 'image/svg+xml'
+                        }
+                    ]
+                });
+
+                // Set action handlers
+                navigator.mediaSession.setActionHandler('play', () => {
+                    if (howlerInstance && !isMusicPlaying) {
+                        howlerInstance.play();
+                        isMusicPlaying = true;
+                        dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                        drawMusicVisualizer();
+                        musicProgressInterval = setInterval(updateProgress, 200);
+                    }
+                });
+
+                navigator.mediaSession.setActionHandler('pause', () => {
+                    if (howlerInstance && isMusicPlaying) {
+                        howlerInstance.pause();
+                        isMusicPlaying = false;
+                        dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                        if (musicAnimId) cancelAnimationFrame(musicAnimId);
+                        musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+                        if (musicProgressInterval) {
+                            clearInterval(musicProgressInterval);
+                            musicProgressInterval = null;
+                        }
+                    }
+                });
+
+                navigator.mediaSession.setActionHandler('previoustrack', () => {
+                    if (musicTracks.length === 0) return;
+                    const idx = currentTrackIdx > 0 ? currentTrackIdx - 1 : musicTracks.length - 1;
+                    playMusicTrack(idx);
+                });
+
+                navigator.mediaSession.setActionHandler('nexttrack', () => {
+                    if (musicTracks.length === 0) return;
+                    const idx = currentTrackIdx < musicTracks.length - 1 ? currentTrackIdx + 1 : 0;
+                    playMusicTrack(idx);
+                });
+
+                navigator.mediaSession.setActionHandler('seekto', (details) => {
+                    if (!howlerInstance || !howlerInstance.duration()) return;
+                    const seekTime = details.seekTime || 0;
+                    const dur = howlerInstance.duration();
+                    if (dur > 0 && seekTime >= 0 && seekTime <= dur) {
+                        howlerInstance.seek(seekTime);
+                    }
+                });
+
+                // Update playback state
+                navigator.mediaSession.playbackState = isMusicPlaying ? 'playing' : 'paused';
+
+                // Update position state
+                if (navigator.mediaSession.setPositionState) {
+                    const dur = howlerInstance ? howlerInstance.duration() || 0 : 0;
+                    const pos = howlerInstance ? howlerInstance.seek() || 0 : 0;
+                    navigator.mediaSession.setPositionState({
+                        duration: dur,
+                        playbackRate: 1.0,
+                        position: pos
+                    });
+                }
+
+                console.log('Media Session API activated for:', title);
+            }
+
+            // ── Show Music Note Notification ──
+            function showMusicNotification(track) {
+                try {
+                    if (!('Notification' in window)) {
+                        console.warn('Notifications API not supported');
+                        return;
+                    }
+
+                    if (Notification.permission === 'denied') {
+                        console.warn('Notification permission denied');
+                        return;
+                    }
+
+                    if (Notification.permission === 'granted') {
+                        const title = track.name || 'Now Playing';
+                        const options = {
+                            body: `🎵 ${track.formatDesc || 'Audio'} · ${track.format ? track.format.toUpperCase() : ''}`,
+                            icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="60" text-anchor="middle" font-size="50" fill="white">🎵</text></svg>',
+                            badge: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="60" text-anchor="middle" font-size="50" fill="white">🎵</text></svg>',
+                            tag: 'hex-music-playing',
+                            renotify: true,
+                            silent: false,
+                            vibrate: [200, 100, 200],
+                            requireInteraction: false,
+                            data: {
+                                trackId: track.id,
+                                trackName: track.name
+                            }
+                        };
+                        const notification = new Notification(title, options);
+                        setTimeout(() => notification.close(), 4000);
+                    } else if (Notification.permission === 'default') {
+                        // Request permission
+                        Notification.requestPermission().then(perm => {
+                            if (perm === 'granted') {
+                                showMusicNotification(track);
+                            }
+                        });
+                    }
+                } catch (e) {
+                    console.warn('Notification error:', e);
+                }
+            }
+
             // ── Enhanced playback with fallback to Web Audio decode ──
             function playMusicTrack(index) {
                 if (index < 0 || index >= musicTracks.length) return;
@@ -6906,7 +7575,15 @@
                 isMusicPlaying = true;
                 dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 updatePlaylistUI();
-                showToast(`Playing: ${track.name}`, 'fa-music', 1500);
+
+                // ── Media Session API ──
+                setupMediaSession(track);
+
+                // ── Music Note Notification ──
+                showMusicNotification(track);
+
+                // Update toast with music note
+                showToast(`Now Playing: ${track.name}`, 'fa-music', 2500);
             }
 
             // ── Setup audio with Howler and fallback ──
@@ -6933,11 +7610,12 @@
                     audioCtx = null;
                 }
 
-                // Determine format for Howler
-                const formatInfo = track.format ? { ext: track.format } : detectAudioFormat(new File([], 'dummy.' + (track.format || 'mp3')));
+                const formatInfo = track.format ? {
+                    ext: track.format
+                } : detectAudioFormat(new File([], 'dummy.' + (track
+                    .format || 'mp3')));
                 const ext = formatInfo.ext || 'mp3';
 
-                // Create audio context for potential fallback
                 try {
                     audioCtx = new(window.AudioContext || window.webkitAudioContext)();
                     musicAnalyser = audioCtx.createAnalyser();
@@ -6950,13 +7628,12 @@
                     musicAnalyser = null;
                 }
 
-                // Try Howler with Web Audio (html5: false) for better codec support
                 const useHowler = true;
                 if (useHowler) {
                     howlerInstance = new Howl({
                         src: [url],
-                        html5: false, // Use Web Audio for better codec support
-                        format: [ext], // Help Howler detect format
+                        html5: false,
+                        format: [ext],
                         volume: parseFloat(dom.volumeSlider.value) / 100,
                         onplay: () => {
                             isMusicPlaying = true;
@@ -6972,9 +7649,6 @@
                                         musicGain.connect(audioCtx.destination);
                                         drawMusicVisualizer();
                                     } else {
-                                        // For Web Audio, Howler uses buffer source; we can still visualise via analyser.
-                                        // Howler doesn't expose the buffer source easily, so we fallback to analyser from context.
-                                        // For now, use fallback visualizer.
                                         useFallbackVisualizer();
                                     }
                                 } else {
@@ -6985,6 +7659,20 @@
                                 useFallbackVisualizer();
                             }
                             musicProgressInterval = setInterval(updateProgress, 200);
+
+                            // Update Media Session
+                            if (navigator.mediaSession) {
+                                navigator.mediaSession.playbackState = 'playing';
+                                if (navigator.mediaSession.setPositionState) {
+                                    const dur = howlerInstance.duration() || 0;
+                                    const pos = howlerInstance.seek() || 0;
+                                    navigator.mediaSession.setPositionState({
+                                        duration: dur,
+                                        playbackRate: 1.0,
+                                        position: pos
+                                    });
+                                }
+                            }
                         },
                         onpause: () => {
                             isMusicPlaying = false;
@@ -6994,6 +7682,9 @@
                             if (musicProgressInterval) {
                                 clearInterval(musicProgressInterval);
                                 musicProgressInterval = null;
+                            }
+                            if (navigator.mediaSession) {
+                                navigator.mediaSession.playbackState = 'paused';
                             }
                         },
                         onstop: () => {
@@ -7005,6 +7696,9 @@
                                 clearInterval(musicProgressInterval);
                                 musicProgressInterval = null;
                             }
+                            if (navigator.mediaSession) {
+                                navigator.mediaSession.playbackState = 'paused';
+                            }
                         },
                         onend: () => {
                             isMusicPlaying = false;
@@ -7015,19 +7709,18 @@
                                 clearInterval(musicProgressInterval);
                                 musicProgressInterval = null;
                             }
-                            // Repeat logic
+                            if (navigator.mediaSession) {
+                                navigator.mediaSession.playbackState = 'paused';
+                            }
                             if (repeatMode === 2) {
-                                // Repeat one: play the same track again
                                 playMusicTrack(currentTrackIdx);
                             } else if (repeatMode === 1) {
-                                // Repeat all: go to next or start from beginning
                                 if (currentTrackIdx < musicTracks.length - 1) {
                                     playMusicTrack(currentTrackIdx + 1);
                                 } else {
                                     playMusicTrack(0);
                                 }
                             } else {
-                                // Off: stop
                                 dom.trackTitle.textContent = 'No track loaded';
                                 dom.trackArtist.textContent = '—';
                                 dom.currentTime.textContent = '0:00';
@@ -7037,8 +7730,6 @@
                         },
                         onloaderror: (id, msg) => {
                             console.error('Howler load error:', msg);
-                            // Fallback to Web Audio decode
-                            console.log('Attempting fallback using AudioContext.decodeAudioData');
                             try {
                                 if (!audioCtx) {
                                     audioCtx = new(window.AudioContext || window.webkitAudioContext)();
@@ -7047,7 +7738,6 @@
                                     .then(resp => resp.arrayBuffer())
                                     .then(buffer => audioCtx.decodeAudioData(buffer))
                                     .then(decoded => {
-                                        // Create a buffer source
                                         const source = audioCtx.createBufferSource();
                                         source.buffer = decoded;
                                         const gain = audioCtx.createGain();
@@ -7063,7 +7753,6 @@
                                         musicAnalyser = analyser;
                                         drawMusicVisualizer();
                                         musicProgressInterval = setInterval(updateProgress, 200);
-                                        // Store references for control
                                         howlerInstance = {
                                             _source: source,
                                             _gain: gain,
@@ -7074,20 +7763,26 @@
                                                     this._source.stop();
                                                 } catch (e) {}
                                                 isMusicPlaying = false;
-                                                dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                                                dom.playBtn.innerHTML =
+                                                    '<i class="fas fa-play"></i>';
                                                 if (musicAnimId) cancelAnimationFrame(musicAnimId);
-                                                musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+                                                musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas
+                                                    .height);
                                                 if (musicProgressInterval) {
                                                     clearInterval(musicProgressInterval);
                                                     musicProgressInterval = null;
                                                 }
+                                                if (navigator.mediaSession) {
+                                                    navigator.mediaSession.playbackState =
+                                                        'paused';
+                                                }
                                             },
                                             play: function() {
-                                                // Recreate source
                                                 const newSource = audioCtx.createBufferSource();
                                                 newSource.buffer = this._decoded;
                                                 const gain = audioCtx.createGain();
-                                                gain.gain.value = parseFloat(dom.volumeSlider.value) / 100;
+                                                gain.gain.value = parseFloat(dom.volumeSlider
+                                                    .value) / 100;
                                                 const analyser = audioCtx.createAnalyser();
                                                 analyser.fftSize = 128;
                                                 newSource.connect(analyser);
@@ -7097,25 +7792,36 @@
                                                 this._source = newSource;
                                                 musicAnalyser = analyser;
                                                 isMusicPlaying = true;
-                                                dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                                                dom.playBtn.innerHTML =
+                                                    '<i class="fas fa-pause"></i>';
                                                 drawMusicVisualizer();
-                                                musicProgressInterval = setInterval(updateProgress, 200);
+                                                musicProgressInterval = setInterval(updateProgress,
+                                                    200);
+                                                if (navigator.mediaSession) {
+                                                    navigator.mediaSession.playbackState =
+                                                        'playing';
+                                                }
                                             },
                                             stop: function() {
                                                 try {
                                                     this._source.stop();
                                                 } catch (e) {}
                                                 isMusicPlaying = false;
-                                                dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                                                dom.playBtn.innerHTML =
+                                                    '<i class="fas fa-play"></i>';
                                                 if (musicAnimId) cancelAnimationFrame(musicAnimId);
-                                                musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+                                                musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas
+                                                    .height);
                                                 if (musicProgressInterval) {
                                                     clearInterval(musicProgressInterval);
                                                     musicProgressInterval = null;
                                                 }
+                                                if (navigator.mediaSession) {
+                                                    navigator.mediaSession.playbackState =
+                                                        'paused';
+                                                }
                                             },
                                             seek: function(val) {
-                                                // Not supported in this fallback
                                                 console.warn('Seek not supported in fallback mode');
                                             },
                                             duration: function() {
@@ -7131,10 +7837,12 @@
                                             }
                                         };
                                         showToast('Fallback playback started', 'fa-music', 1500);
+                                        // Show notification for fallback
+                                        showMusicNotification(track);
                                     })
                                     .catch(err => {
-                                        showToast('Error loading audio: ' + err.message, 'fa-exclamation-circle',
-                                        2000);
+                                        showToast('Error loading audio: ' + err.message,
+                                            'fa-exclamation-circle', 2000);
                                         isMusicPlaying = false;
                                         dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                                     });
@@ -7242,7 +7950,8 @@
                             updatePlaylistUI();
                             showToast('Track removed', 'fa-trash', 1000);
                         } catch (e) {
-                            showToast('Error removing track: ' + e.message, 'fa-exclamation-circle', 2000);
+                            showToast('Error removing track: ' + e.message, 'fa-exclamation-circle',
+                                2000);
                         }
                     });
                     container.appendChild(div);
@@ -7291,9 +8000,9 @@
                         musicTracks.push(track);
                         addedCount++;
 
-                        // Test MediaCapabilities for this format
                         try {
-                            const mcResult = await checkAudioDecoding(formatInfo.mime || 'audio/mpeg', 2, 128000, 44100);
+                            const mcResult = await checkAudioDecoding(formatInfo.mime || 'audio/mpeg', 2, 128000,
+                                44100);
                             console.log(`📊 ${formatInfo.desc} (${formatInfo.codec}) → ${mcResult.supported ? '✅' : '❌'} supported`);
                         } catch (mcErr) {
                             console.warn('MediaCapabilities test failed:', mcErr);
@@ -7332,12 +8041,27 @@
                         clearInterval(musicProgressInterval);
                         musicProgressInterval = null;
                     }
+                    if (navigator.mediaSession) {
+                        navigator.mediaSession.playbackState = 'paused';
+                    }
                 } else {
                     howlerInstance.play();
                     isMusicPlaying = true;
                     dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                     drawMusicVisualizer();
                     musicProgressInterval = setInterval(updateProgress, 200);
+                    if (navigator.mediaSession) {
+                        navigator.mediaSession.playbackState = 'playing';
+                        if (navigator.mediaSession.setPositionState) {
+                            const dur = howlerInstance.duration() || 0;
+                            const pos = howlerInstance.seek() || 0;
+                            navigator.mediaSession.setPositionState({
+                                duration: dur,
+                                playbackRate: 1.0,
+                                position: pos
+                            });
+                        }
+                    }
                 }
             });
 
@@ -7369,6 +8093,13 @@
                 const dur = howlerInstance.duration();
                 if (dur > 0) {
                     howlerInstance.seek((val / 100) * dur);
+                    if (navigator.mediaSession && navigator.mediaSession.setPositionState) {
+                        navigator.mediaSession.setPositionState({
+                            duration: dur,
+                            playbackRate: 1.0,
+                            position: (val / 100) * dur
+                        });
+                    }
                 }
             });
 
@@ -7426,7 +8157,8 @@
                     dom.repeatBtn.classList.add('active');
                     showToast('Repeat ALL', 'fa-repeat', 1000);
                 } else if (repeatMode === 2) {
-                    dom.repeatBtn.innerHTML = '<i class="fas fa-repeat"></i><i class="fas fa-1" style="font-size:0.7em;margin-left:-0.3em;"></i>';
+                    dom.repeatBtn.innerHTML =
+                        '<i class="fas fa-repeat"></i><i class="fas fa-1" style="font-size:0.7em;margin-left:-0.3em;"></i>';
                     dom.repeatBtn.classList.add('active');
                     showToast('Repeat ONE', 'fa-repeat', 1000);
                 }
@@ -7454,6 +8186,16 @@
                     console.warn('MediaCapabilities test skipped:', e.message);
                 }
             })();
+
+            // ── Request Notification Permission on startup ──
+            if ('Notification' in window && Notification.permission === 'default') {
+                // Delay request to avoid interrupting initial load
+                setTimeout(() => {
+                    Notification.requestPermission().then(perm => {
+                        console.log('Notification permission:', perm);
+                    });
+                }, 5000);
+            }
 
             // -------- THEME MODAL --------
             function openThemeModal() {
@@ -7531,12 +8273,6 @@
                 showToast('Pollinations key saved! 🔐', 'fa-check-circle', 1500);
             });
 
-            dom.savePollinationsModel.addEventListener('click', () => {
-                const val = dom.pollinationsModelSelect.value;
-                localStorage.setItem('pollinationsModel', val);
-                showToast('Pollinations model saved! ✓', 'fa-check-circle', 1500);
-            });
-
             dom.refreshModelsBtn.addEventListener('click', fetchOpenRouterModels);
 
             dom.refreshPollinationsModels.addEventListener('click', () => {
@@ -7580,4 +8316,5 @@
     </script>
 
 </body>
+
 </html>
