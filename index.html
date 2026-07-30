@@ -6668,6 +6668,9 @@
             let musicGain = null;
             let musicProgressInterval = null;
 
+            // Repeat mode: 0 = off, 1 = repeat all, 2 = repeat one
+            let repeatMode = 0; 
+
             const musicCanvas = dom.visualizerCanvas;
             const musicCtx = musicCanvas.getContext('2d');
 
@@ -6871,6 +6874,7 @@
                 return `${m}:${s.toString().padStart(2,'0')}`;
             }
 
+            // ── Enhanced playback with fallback to Web Audio decode ──
             function playMusicTrack(index) {
                 if (index < 0 || index >= musicTracks.length) return;
                 if (musicProgressInterval) {
@@ -6897,7 +6901,7 @@
                     return;
                 }
 
-                setupMusicAudio(url, track.id);
+                setupMusicAudio(url, track);
                 howlerInstance.play();
                 isMusicPlaying = true;
                 dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -6905,7 +6909,8 @@
                 showToast(`Playing: ${track.name}`, 'fa-music', 1500);
             }
 
-            function setupMusicAudio(url, trackId) {
+            // ── Setup audio with Howler and fallback ──
+            function setupMusicAudio(url, track) {
                 if (howlerInstance) {
                     howlerInstance.stop();
                     howlerInstance.unload();
@@ -6928,7 +6933,11 @@
                     audioCtx = null;
                 }
 
-                // Create audio context
+                // Determine format for Howler
+                const formatInfo = track.format ? { ext: track.format } : detectAudioFormat(new File([], 'dummy.' + (track.format || 'mp3')));
+                const ext = formatInfo.ext || 'mp3';
+
+                // Create audio context for potential fallback
                 try {
                     audioCtx = new(window.AudioContext || window.webkitAudioContext)();
                     musicAnalyser = audioCtx.createAnalyser();
@@ -6941,89 +6950,208 @@
                     musicAnalyser = null;
                 }
 
-                howlerInstance = new Howl({
-                    src: [url],
-                    html5: true,
-                    volume: parseFloat(dom.volumeSlider.value) / 100,
-                    onplay: () => {
-                        isMusicPlaying = true;
-                        dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                        try {
-                            const sound = howlerInstance._sounds && howlerInstance._sounds[0];
-                            if (sound && sound._node && audioCtx && musicAnalyser) {
-                                const audioEl = sound._node;
-                                if (audioEl instanceof HTMLAudioElement) {
-                                    const srcNode = audioCtx.createMediaElementSource(audioEl);
-                                    srcNode.connect(musicAnalyser);
-                                    musicAnalyser.connect(musicGain);
-                                    musicGain.connect(audioCtx.destination);
-                                    drawMusicVisualizer();
+                // Try Howler with Web Audio (html5: false) for better codec support
+                const useHowler = true;
+                if (useHowler) {
+                    howlerInstance = new Howl({
+                        src: [url],
+                        html5: false, // Use Web Audio for better codec support
+                        format: [ext], // Help Howler detect format
+                        volume: parseFloat(dom.volumeSlider.value) / 100,
+                        onplay: () => {
+                            isMusicPlaying = true;
+                            dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                            try {
+                                const sound = howlerInstance._sounds && howlerInstance._sounds[0];
+                                if (sound && sound._node && audioCtx && musicAnalyser) {
+                                    const audioEl = sound._node;
+                                    if (audioEl instanceof HTMLAudioElement) {
+                                        const srcNode = audioCtx.createMediaElementSource(audioEl);
+                                        srcNode.connect(musicAnalyser);
+                                        musicAnalyser.connect(musicGain);
+                                        musicGain.connect(audioCtx.destination);
+                                        drawMusicVisualizer();
+                                    } else {
+                                        // For Web Audio, Howler uses buffer source; we can still visualise via analyser.
+                                        // Howler doesn't expose the buffer source easily, so we fallback to analyser from context.
+                                        // For now, use fallback visualizer.
+                                        useFallbackVisualizer();
+                                    }
                                 } else {
                                     useFallbackVisualizer();
                                 }
-                            } else {
+                            } catch (e) {
+                                console.warn('Visualizer setup error:', e);
                                 useFallbackVisualizer();
                             }
-                        } catch (e) {
-                            console.warn('Visualizer setup error:', e);
-                            useFallbackVisualizer();
+                            musicProgressInterval = setInterval(updateProgress, 200);
+                        },
+                        onpause: () => {
+                            isMusicPlaying = false;
+                            dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            if (musicAnimId) cancelAnimationFrame(musicAnimId);
+                            musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+                            if (musicProgressInterval) {
+                                clearInterval(musicProgressInterval);
+                                musicProgressInterval = null;
+                            }
+                        },
+                        onstop: () => {
+                            isMusicPlaying = false;
+                            dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            if (musicAnimId) cancelAnimationFrame(musicAnimId);
+                            musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+                            if (musicProgressInterval) {
+                                clearInterval(musicProgressInterval);
+                                musicProgressInterval = null;
+                            }
+                        },
+                        onend: () => {
+                            isMusicPlaying = false;
+                            dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            if (musicAnimId) cancelAnimationFrame(musicAnimId);
+                            musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+                            if (musicProgressInterval) {
+                                clearInterval(musicProgressInterval);
+                                musicProgressInterval = null;
+                            }
+                            // Repeat logic
+                            if (repeatMode === 2) {
+                                // Repeat one: play the same track again
+                                playMusicTrack(currentTrackIdx);
+                            } else if (repeatMode === 1) {
+                                // Repeat all: go to next or start from beginning
+                                if (currentTrackIdx < musicTracks.length - 1) {
+                                    playMusicTrack(currentTrackIdx + 1);
+                                } else {
+                                    playMusicTrack(0);
+                                }
+                            } else {
+                                // Off: stop
+                                dom.trackTitle.textContent = 'No track loaded';
+                                dom.trackArtist.textContent = '—';
+                                dom.currentTime.textContent = '0:00';
+                                dom.totalTime.textContent = '0:00';
+                                dom.progressBar.value = 0;
+                            }
+                        },
+                        onloaderror: (id, msg) => {
+                            console.error('Howler load error:', msg);
+                            // Fallback to Web Audio decode
+                            console.log('Attempting fallback using AudioContext.decodeAudioData');
+                            try {
+                                if (!audioCtx) {
+                                    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                                }
+                                fetch(url)
+                                    .then(resp => resp.arrayBuffer())
+                                    .then(buffer => audioCtx.decodeAudioData(buffer))
+                                    .then(decoded => {
+                                        // Create a buffer source
+                                        const source = audioCtx.createBufferSource();
+                                        source.buffer = decoded;
+                                        const gain = audioCtx.createGain();
+                                        gain.gain.value = parseFloat(dom.volumeSlider.value) / 100;
+                                        const analyser = audioCtx.createAnalyser();
+                                        analyser.fftSize = 128;
+                                        source.connect(analyser);
+                                        analyser.connect(gain);
+                                        gain.connect(audioCtx.destination);
+                                        source.start(0);
+                                        isMusicPlaying = true;
+                                        dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                                        musicAnalyser = analyser;
+                                        drawMusicVisualizer();
+                                        musicProgressInterval = setInterval(updateProgress, 200);
+                                        // Store references for control
+                                        howlerInstance = {
+                                            _source: source,
+                                            _gain: gain,
+                                            _ctx: audioCtx,
+                                            _decoded: decoded,
+                                            pause: function() {
+                                                try {
+                                                    this._source.stop();
+                                                } catch (e) {}
+                                                isMusicPlaying = false;
+                                                dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                                                if (musicAnimId) cancelAnimationFrame(musicAnimId);
+                                                musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+                                                if (musicProgressInterval) {
+                                                    clearInterval(musicProgressInterval);
+                                                    musicProgressInterval = null;
+                                                }
+                                            },
+                                            play: function() {
+                                                // Recreate source
+                                                const newSource = audioCtx.createBufferSource();
+                                                newSource.buffer = this._decoded;
+                                                const gain = audioCtx.createGain();
+                                                gain.gain.value = parseFloat(dom.volumeSlider.value) / 100;
+                                                const analyser = audioCtx.createAnalyser();
+                                                analyser.fftSize = 128;
+                                                newSource.connect(analyser);
+                                                analyser.connect(gain);
+                                                gain.connect(audioCtx.destination);
+                                                newSource.start(0);
+                                                this._source = newSource;
+                                                musicAnalyser = analyser;
+                                                isMusicPlaying = true;
+                                                dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                                                drawMusicVisualizer();
+                                                musicProgressInterval = setInterval(updateProgress, 200);
+                                            },
+                                            stop: function() {
+                                                try {
+                                                    this._source.stop();
+                                                } catch (e) {}
+                                                isMusicPlaying = false;
+                                                dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                                                if (musicAnimId) cancelAnimationFrame(musicAnimId);
+                                                musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+                                                if (musicProgressInterval) {
+                                                    clearInterval(musicProgressInterval);
+                                                    musicProgressInterval = null;
+                                                }
+                                            },
+                                            seek: function(val) {
+                                                // Not supported in this fallback
+                                                console.warn('Seek not supported in fallback mode');
+                                            },
+                                            duration: function() {
+                                                return this._decoded ? this._decoded.duration : 0;
+                                            },
+                                            volume: function(val) {
+                                                if (this._gain) this._gain.gain.value = val;
+                                            },
+                                            unload: function() {
+                                                try {
+                                                    this._source.stop();
+                                                } catch (e) {}
+                                            }
+                                        };
+                                        showToast('Fallback playback started', 'fa-music', 1500);
+                                    })
+                                    .catch(err => {
+                                        showToast('Error loading audio: ' + err.message, 'fa-exclamation-circle',
+                                        2000);
+                                        isMusicPlaying = false;
+                                        dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                                    });
+                            } catch (fallbackErr) {
+                                showToast('Error loading audio: ' + msg, 'fa-exclamation-circle', 2000);
+                                isMusicPlaying = false;
+                                dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            }
+                        },
+                        onplayerror: (id, msg) => {
+                            console.error('Howler play error:', msg);
+                            showToast('Playback error: ' + msg, 'fa-exclamation-circle', 2000);
+                            isMusicPlaying = false;
+                            dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                         }
-                        musicProgressInterval = setInterval(updateProgress, 200);
-                    },
-                    onpause: () => {
-                        isMusicPlaying = false;
-                        dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                        if (musicAnimId) cancelAnimationFrame(musicAnimId);
-                        musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                        if (musicProgressInterval) {
-                            clearInterval(musicProgressInterval);
-                            musicProgressInterval = null;
-                        }
-                    },
-                    onstop: () => {
-                        isMusicPlaying = false;
-                        dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                        if (musicAnimId) cancelAnimationFrame(musicAnimId);
-                        musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                        if (musicProgressInterval) {
-                            clearInterval(musicProgressInterval);
-                            musicProgressInterval = null;
-                        }
-                    },
-                    onend: () => {
-                        isMusicPlaying = false;
-                        dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                        if (musicAnimId) cancelAnimationFrame(musicAnimId);
-                        musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                        if (musicProgressInterval) {
-                            clearInterval(musicProgressInterval);
-                            musicProgressInterval = null;
-                        }
-                        if (currentTrackIdx < musicTracks.length - 1) {
-                            playMusicTrack(currentTrackIdx + 1);
-                        } else if (dom.repeatBtn.classList.contains('active') && musicTracks.length > 0) {
-                            playMusicTrack(0);
-                        }
-                    },
-                    onloaderror: (id, msg) => {
-                        console.error('Howler load error:', msg);
-                        showToast('Error loading audio: ' + msg, 'fa-exclamation-circle', 2000);
-                        isMusicPlaying = false;
-                        dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                        if (musicAnimId) cancelAnimationFrame(musicAnimId);
-                        musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                        if (musicProgressInterval) {
-                            clearInterval(musicProgressInterval);
-                            musicProgressInterval = null;
-                        }
-                    },
-                    onplayerror: (id, msg) => {
-                        console.error('Howler play error:', msg);
-                        showToast('Playback error: ' + msg, 'fa-exclamation-circle', 2000);
-                        isMusicPlaying = false;
-                        dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    }
-                });
+                    });
+                }
             }
 
             function updatePlaylistUI() {
@@ -7286,10 +7414,22 @@
                 showToast('Shuffled!', 'fa-shuffle', 1000);
             });
 
+            // ── Repeat mode: cycle 0->1->2->0 ──
             dom.repeatBtn.addEventListener('click', () => {
-                dom.repeatBtn.classList.toggle('active');
-                showToast(dom.repeatBtn.classList.contains('active') ? 'Repeat ON' : 'Repeat OFF', 'fa-repeat',
-                    1000);
+                repeatMode = (repeatMode + 1) % 3;
+                if (repeatMode === 0) {
+                    dom.repeatBtn.innerHTML = '<i class="fas fa-repeat"></i>';
+                    dom.repeatBtn.classList.remove('active');
+                    showToast('Repeat OFF', 'fa-repeat', 1000);
+                } else if (repeatMode === 1) {
+                    dom.repeatBtn.innerHTML = '<i class="fas fa-repeat"></i>';
+                    dom.repeatBtn.classList.add('active');
+                    showToast('Repeat ALL', 'fa-repeat', 1000);
+                } else if (repeatMode === 2) {
+                    dom.repeatBtn.innerHTML = '<i class="fas fa-repeat"></i><i class="fas fa-1" style="font-size:0.7em;margin-left:-0.3em;"></i>';
+                    dom.repeatBtn.classList.add('active');
+                    showToast('Repeat ONE', 'fa-repeat', 1000);
+                }
             });
 
             // ── Demo: run MediaCapabilities check on startup ──
@@ -7440,5 +7580,4 @@
     </script>
 
 </body>
-
 </html>
