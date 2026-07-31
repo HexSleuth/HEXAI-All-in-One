@@ -7584,6 +7584,9 @@
 
                 // Update toast with music note
                 showToast(`Now Playing: ${track.name}`, 'fa-music', 2500);
+
+                // ── Update document title ──
+                updateTabTitle();
             }
 
             // ── Setup audio with Howler and fallback ──
@@ -7673,6 +7676,9 @@
                                     });
                                 }
                             }
+
+                            // ── Update document title ──
+                            updateTabTitle();
                         },
                         onpause: () => {
                             isMusicPlaying = false;
@@ -7686,6 +7692,8 @@
                             if (navigator.mediaSession) {
                                 navigator.mediaSession.playbackState = 'paused';
                             }
+                            // ── Update document title ──
+                            updateTabTitle();
                         },
                         onstop: () => {
                             isMusicPlaying = false;
@@ -7699,6 +7707,8 @@
                             if (navigator.mediaSession) {
                                 navigator.mediaSession.playbackState = 'paused';
                             }
+                            // ── Update document title ──
+                            updateTabTitle();
                         },
                         onend: () => {
                             isMusicPlaying = false;
@@ -7727,6 +7737,8 @@
                                 dom.totalTime.textContent = '0:00';
                                 dom.progressBar.value = 0;
                             }
+                            // ── Update document title ──
+                            updateTabTitle();
                         },
                         onloaderror: (id, msg) => {
                             console.error('Howler load error:', msg);
@@ -7776,6 +7788,7 @@
                                                     navigator.mediaSession.playbackState =
                                                         'paused';
                                                 }
+                                                updateTabTitle();
                                             },
                                             play: function() {
                                                 const newSource = audioCtx.createBufferSource();
@@ -7801,6 +7814,7 @@
                                                     navigator.mediaSession.playbackState =
                                                         'playing';
                                                 }
+                                                updateTabTitle();
                                             },
                                             stop: function() {
                                                 try {
@@ -7820,6 +7834,7 @@
                                                     navigator.mediaSession.playbackState =
                                                         'paused';
                                                 }
+                                                updateTabTitle();
                                             },
                                             seek: function(val) {
                                                 console.warn('Seek not supported in fallback mode');
@@ -7839,17 +7854,20 @@
                                         showToast('Fallback playback started', 'fa-music', 1500);
                                         // Show notification for fallback
                                         showMusicNotification(track);
+                                        updateTabTitle();
                                     })
                                     .catch(err => {
                                         showToast('Error loading audio: ' + err.message,
                                             'fa-exclamation-circle', 2000);
                                         isMusicPlaying = false;
                                         dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                                        updateTabTitle();
                                     });
                             } catch (fallbackErr) {
                                 showToast('Error loading audio: ' + msg, 'fa-exclamation-circle', 2000);
                                 isMusicPlaying = false;
                                 dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                                updateTabTitle();
                             }
                         },
                         onplayerror: (id, msg) => {
@@ -7857,8 +7875,20 @@
                             showToast('Playback error: ' + msg, 'fa-exclamation-circle', 2000);
                             isMusicPlaying = false;
                             dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            updateTabTitle();
                         }
                     });
+                }
+            }
+
+            // ── Update Tab Title ── (added per user request)
+            function updateTabTitle() {
+                if (currentTrackIdx !== -1 && musicTracks[currentTrackIdx]) {
+                    const song = musicTracks[currentTrackIdx];
+                    const playingStatus = isMusicPlaying ? '▶️' : '⏸️';
+                    document.title = `${playingStatus} ${song.name} - Music Player`;
+                } else {
+                    document.title = '🎵 Music Player';
                 }
             }
 
@@ -7913,6 +7943,7 @@
                                 dom.currentTime.textContent = '0:00';
                                 dom.totalTime.textContent = '0:00';
                                 dom.progressBar.value = 0;
+                                updateTabTitle(); // update title
                             } else if (idx < currentTrackIdx) {
                                 currentTrackIdx--;
                             }
@@ -7944,6 +7975,7 @@
                                 dom.currentTime.textContent = '0:00';
                                 dom.totalTime.textContent = '0:00';
                                 dom.progressBar.value = 0;
+                                updateTabTitle(); // update title
                             } else if (idx < currentTrackIdx) {
                                 currentTrackIdx--;
                             }
@@ -8044,6 +8076,7 @@
                     if (navigator.mediaSession) {
                         navigator.mediaSession.playbackState = 'paused';
                     }
+                    updateTabTitle(); // update title
                 } else {
                     howlerInstance.play();
                     isMusicPlaying = true;
@@ -8062,6 +8095,7 @@
                             });
                         }
                     }
+                    updateTabTitle(); // update title
                 }
             });
 
@@ -8129,6 +8163,7 @@
                     dom.totalTime.textContent = '0:00';
                     dom.progressBar.value = 0;
                     updatePlaylistUI();
+                    updateTabTitle(); // update title
                     showToast('All tracks cleared from storage', 'fa-trash', 1500);
                 } catch (e) {
                     showToast('Error clearing tracks: ' + e.message, 'fa-exclamation-circle', 2000);
