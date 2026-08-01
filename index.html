@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
     <title>HEX AI — All-in-One</title>
 
-    <!-- PWA Manifest (embedded as data URI) -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkhFWCBBIE1haW4iLAogICJzaG9ydF9uYW1lIjogIkhFWCBBSSIsCiAgInN0YXJ0X3VybCI6ICIvIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZmZmZmZmIiwKICAidGhlbWVfY29sb3IiOiAiIzRiNmJmYiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPSc1MCUnIHkyPScxMDAlJz48c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjNjRjOGZmJy8+PHN0b3Agb2Zmc2V0PSc1MCUnIHN0b3AtY29sb3I9JyNhNzhiZmEnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyNmNDcyYjYnLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cG9seWdvbiBwb2ludHM9JzI1NiwzMiA0NjQsMTQ0IDQ2NCwzNjggMjU2LDQ4MCA0OCwzNjggNDgsMTQ0JyBmaWxsPSd1cmwoI2cpJy8+PHRleHQgeD0nMjU2JyB5PScyODAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nMTIwJyBmb250LWZhbWlseT0nT3JiaXRyb24sIHNhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc5MDAnIGZpbGw9J3doaXRlJz5IRVg8L3RleHQ+PHRleHQgeD0nMjU2JyB5PSczNjAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nNTInIGZvbnQtZmFtaWx5PSdPcmJpdHJvbiwgc2Fucy1zZXJpZicgZm9udC13ZWlnaHQ9JzUwMCcgZmlsbD0ncmdiYSgyNTUsMjU1LDI1NSwwLjYpJz5BSTwvdGV4dD48L3N2Zz4iLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9" />
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTK7ZL9PR8">
     </script>
     <script>
@@ -531,245 +528,6 @@
             --success: #16a34a;
             --warning: #d97706;
             --error: #dc2626;
-        }
-
-        /* ─── Title Bar Hex Logo ─── */
-        .title-bar-hex-wrap {
-            position: relative;
-            width: 44px;
-            height: 44px;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .title-bar-hex-wrap:hover {
-            transform: scale(1.06);
-        }
-        .title-bar-hex-wrap .hex-logo-svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .title-bar-hex-wrap .hex-logo-svg.spin {
-            transform: rotate(360deg);
-        }
-        .title-bar-hex-wrap .hex-logo-bg {
-            fill: rgba(255, 255, 255, 0.02);
-            stroke: url(#titleHexGrad);
-            stroke-width: 2.5;
-            filter: drop-shadow(0 0 14px rgba(100, 200, 255, 0.20));
-            transition: stroke 0.5s, filter 0.5s;
-        }
-        .title-bar-hex-wrap .hex-logo-glow {
-            fill: none;
-            stroke: url(#titleHexGrad);
-            stroke-width: 8;
-            opacity: 0.12;
-            filter: blur(8px);
-            transition: opacity 0.6s;
-        }
-        .title-bar-hex-wrap .hex-logo-glow.active {
-            opacity: 0.50;
-        }
-        .title-bar-hex-wrap .hex-logo-text {
-            font-size: 9px;
-            font-weight: 800;
-            fill: #f0f4ff;
-            letter-spacing: 0.04em;
-            text-anchor: middle;
-            dominant-baseline: central;
-            filter: drop-shadow(0 0 6px rgba(100, 200, 255, 0.2));
-        }
-        .title-bar-hex-wrap .hex-logo-sub {
-            font-size: 4.5px;
-            font-weight: 400;
-            fill: rgba(255, 255, 255, 0.30);
-            letter-spacing: 0.12em;
-            text-anchor: middle;
-            dominant-baseline: central;
-        }
-
-        /* ─── Chat Message Hex Avatars ─── */
-        .chat-msg .avatar-hex {
-            width: 36px;
-            height: 36px;
-            flex-shrink: 0;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #fff;
-            background: transparent;
-            position: relative;
-            transition: transform 0.3s;
-            border: none;
-            box-shadow: none;
-        }
-        .chat-msg .avatar-hex.bot {
-            background: transparent;
-            animation: avatarBotPulse 3s ease-in-out infinite;
-        }
-        .chat-msg .avatar-hex.bot::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, #64c8ff, #a78bfa, #f472b6);
-            z-index: -1;
-            animation: avatarBorderSpin 4s linear infinite;
-        }
-        .chat-msg .avatar-hex.bot::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, #64c8ff, #a78bfa, #f472b6);
-            z-index: -2;
-            opacity: 0.20;
-            filter: blur(8px);
-            animation: avatarBorderSpin 4s linear infinite reverse;
-        }
-        .chat-msg .avatar-hex.user {
-            background: transparent;
-            animation: avatarUserPulse 3s ease-in-out infinite;
-        }
-        .chat-msg .avatar-hex.user::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, #f472b6, #a78bfa, #64c8ff);
-            z-index: -1;
-            animation: avatarBorderSpin 4s linear infinite reverse;
-        }
-        .chat-msg .avatar-hex.user::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, #f472b6, #a78bfa, #64c8ff);
-            z-index: -2;
-            opacity: 0.18;
-            filter: blur(8px);
-            animation: avatarBorderSpin 4s linear infinite;
-        }
-        @keyframes avatarBorderSpin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes avatarBotPulse {
-            0%,
-            100% {
-                filter: drop-shadow(0 0 8px rgba(100, 200, 255, 0.15));
-            }
-            50% {
-                filter: drop-shadow(0 0 24px rgba(100, 200, 255, 0.35));
-            }
-        }
-        @keyframes avatarUserPulse {
-            0%,
-            100% {
-                filter: drop-shadow(0 0 8px rgba(244, 114, 182, 0.15));
-            }
-            50% {
-                filter: drop-shadow(0 0 24px rgba(244, 114, 182, 0.35));
-            }
-        }
-        .chat-msg .avatar-hex .avatar-inner {
-            position: relative;
-            z-index: 1;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-            color: rgba(255, 255, 255, 0.85);
-            background: transparent;
-            line-height: 1;
-        }
-
-        /* ─── Char-by-char animation ─── */
-        .chat-msg .bubble .char-by-char {
-            display: inline;
-        }
-        .chat-msg .bubble .char-by-char .char {
-            display: inline;
-            opacity: 0;
-            animation: charAppear 0.04s ease forwards;
-        }
-        @keyframes charAppear {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* ─── Hex typing indicator ─── */
-        .chat-msg .bubble .typing-indicator-hex {
-            display: flex;
-            align-items: center;
-            padding: 0.2rem 0;
-        }
-        .typing-hex {
-            width: 22px;
-            height: 22px;
-            display: block;
-            animation: hexSpin 1.2s linear infinite;
-        }
-        .typing-hex polygon {
-            stroke-width: 2.5;
-            animation: hexPulse 1.2s ease-in-out infinite alternate;
-        }
-        @keyframes hexSpin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes hexPulse {
-            0% {
-                filter: drop-shadow(0 0 2px rgba(100, 200, 255, 0.3));
-                opacity: 0.5;
-            }
-            100% {
-                filter: drop-shadow(0 0 14px rgba(100, 200, 255, 0.8));
-                opacity: 1;
-            }
-        }
-
-        /* ─── Quick replies ─── */
-        .quick-replies {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.9rem;
-            flex-wrap: wrap;
-        }
-        .quick-replies button {
-            padding: 0.35rem 1rem;
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(255, 255, 255, 0.03);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.25s;
-            font-family: inherit;
-            letter-spacing: 0.01em;
-        }
-        .quick-replies button:hover {
-            background: rgba(255, 255, 255, 0.07);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.12);
         }
 
         /* =========================================
@@ -2587,21 +2345,17 @@
             gap: 14px;
         }
         .app-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
             font-size: 22px;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
-            text-decoration: none;
         }
         .app-logo i {
             -webkit-text-fill-color: initial;
             color: var(--primary);
-            margin-right: 0px;
+            margin-right: 6px;
         }
         .status-badge {
             display: flex;
@@ -2810,81 +2564,25 @@
                 transform: translateY(0) scale(1);
             }
         }
-        .chat-msg .avatar-hex {
+        .chat-msg .avatar {
             width: 36px;
             height: 36px;
-            flex-shrink: 0;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #fff;
-            background: transparent;
-            position: relative;
-            transition: transform 0.3s;
-            border: none;
-            box-shadow: none;
+            font-size: 16px;
+            flex-shrink: 0;
+            background: var(--base-200);
+            color: var(--base-content);
         }
-        .chat-msg .avatar-hex.bot {
-            background: transparent;
-            animation: avatarBotPulse 3s ease-in-out infinite;
+        .chat-msg.user .avatar {
+            background: var(--primary);
+            color: var(--base-100);
         }
-        .chat-msg .avatar-hex.bot::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, #64c8ff, #a78bfa, #f472b6);
-            z-index: -1;
-            animation: avatarBorderSpin 4s linear infinite;
-        }
-        .chat-msg .avatar-hex.bot::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, #64c8ff, #a78bfa, #f472b6);
-            z-index: -2;
-            opacity: 0.20;
-            filter: blur(8px);
-            animation: avatarBorderSpin 4s linear infinite reverse;
-        }
-        .chat-msg .avatar-hex.user {
-            background: transparent;
-            animation: avatarUserPulse 3s ease-in-out infinite;
-        }
-        .chat-msg .avatar-hex.user::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, #f472b6, #a78bfa, #64c8ff);
-            z-index: -1;
-            animation: avatarBorderSpin 4s linear infinite reverse;
-        }
-        .chat-msg .avatar-hex.user::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: linear-gradient(135deg, #f472b6, #a78bfa, #64c8ff);
-            z-index: -2;
-            opacity: 0.18;
-            filter: blur(8px);
-            animation: avatarBorderSpin 4s linear infinite;
-        }
-        .chat-msg .avatar-hex .avatar-inner {
-            position: relative;
-            z-index: 1;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-            color: rgba(255, 255, 255, 0.85);
-            background: transparent;
-            line-height: 1;
+        .chat-msg.ai .avatar {
+            background: var(--base-300);
+            color: var(--primary);
         }
         .chat-msg .bubble {
             background: var(--base-100);
@@ -3933,25 +3631,10 @@
 </head>
 <body>
 
-    <!-- ===== HEADER with Hex Logo ===== -->
+    <!-- ===== HEADER ===== -->
     <header class="app-header">
         <div class="header-left">
-            <div class="title-bar-hex-wrap" id="logoWrap">
-                <svg class="hex-logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="titleHexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%"   stop-color="#64c8ff" />
-                            <stop offset="50%"  stop-color="#a78bfa" />
-                            <stop offset="100%" stop-color="#f472b6" />
-                        </linearGradient>
-                    </defs>
-                    <polygon class="hex-logo-glow" points="32,4 58,18 58,46 32,60 6,46 6,18" />
-                    <polygon class="hex-logo-bg" points="32,4 58,18 58,46 32,60 6,46 6,18" />
-                    <text class="hex-logo-text" x="32" y="30">HEX</text>
-                    <text class="hex-logo-sub" x="32" y="42">AI</text>
-                </svg>
-            </div>
-            <span class="app-logo">HEX AI</span>
+            <span class="app-logo"><i class="fas fa-hexagon"></i>HEX AI</span>
             <span class="status-badge"><span class="dot"></span> Models Online</span>
         </div>
         <div class="header-right">
@@ -3970,9 +3653,9 @@
                 <div class="chat-container">
                     <div class="chat-messages" id="chatMessages">
                         <div class="chat-msg ai">
-                            <div class="avatar-hex bot"><span class="avatar-inner">⬣</span></div>
+                            <div class="avatar"><i class="fas fa-robot"></i></div>
                             <div class="bubble">
-                                <div class="bubble-content">👋 Welcome to HEX AI! I respond with animated typing and a spinning hex logo. Try asking me something! ✨</div>
+                                <div class="bubble-content">👋 Hello! I'm HEX AI. Ask me anything — I support multiple models &amp; media generation. You can also use voice input, copy/delete messages, and attach images for Gemini analysis. 🚀</div>
                                 <div class="bubble-actions">
                                     <button class="action-btn success copy-msg-btn" title="Copy"><i class="fas fa-copy"></i></button>
                                     <button class="action-btn danger delete-msg-btn" title="Delete"><i class="fas fa-trash"></i></button>
@@ -3998,12 +3681,6 @@
                             </div>
                         </div>
                         <button class="send-btn" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
-                    </div>
-                    <div class="quick-replies">
-                        <button data-msg="Tell me a fun fact">✨ Fun fact</button>
-                        <button data-msg="What can you do?">🤖 Capabilities</button>
-                        <button data-msg="Show me a hexagon trick">⬣ Hex magic</button>
-                        <button data-msg="Goodbye">👋 Bye</button>
                     </div>
                 </div>
             </div>
@@ -4719,27 +4396,13 @@
             }
 
             function applyDarkMode(isDark) {
-                // Toggle between light and dark theme based on system preference.
-                // If dark, apply 'night' theme; if light, apply 'corporate' (or keep current if overridden).
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const shouldBeDark = (isDark !== undefined) ? isDark : prefersDark;
-                // If the user manually toggles, we save the preference and stop auto-detection.
-                if (isDark !== undefined) {
-                    localStorage.setItem('darkModePreference', isDark ? 'dark' : 'light');
-                    localStorage.setItem('autoTheme', 'false');
-                }
-                // Apply theme based on preference.
-                if (shouldBeDark) {
-                    applySystemTheme('night');
-                } else {
-                    applySystemTheme('corporate');
-                }
+                document.body.classList.toggle('dark', isDark);
                 const check = document.getElementById('darkModeToggle');
-                if (check) check.checked = shouldBeDark;
+                if (check) check.checked = isDark;
+                try { localStorage.setItem('dark', String(isDark)); } catch (_) {}
             }
 
             function loadSavedTheme() {
-                // If user has a saved theme preference, use it.
                 try {
                     const saved = localStorage.getItem('neon-theme');
                     if (saved && THEMES.includes(saved)) {
@@ -4747,39 +4410,22 @@
                         return;
                     }
                 } catch (_) {}
-                // If no theme saved, check system preference.
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (prefersDark) {
-                    applySystemTheme('night');
-                } else {
-                    applySystemTheme('corporate');
-                }
-                // Listen for system preference changes.
-                const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-                const handleChange = (e) => {
-                    // If no manual override, follow system.
-                    if (localStorage.getItem('autoTheme') !== 'false') {
-                        if (e.matches) {
-                            applySystemTheme('night');
-                        } else {
-                            applySystemTheme('corporate');
-                        }
+                try {
+                    const custom = localStorage.getItem('neon-custom-colors');
+                    if (custom) {
+                        const colors = JSON.parse(custom);
+                        applyCustomColors(colors);
+                        return;
                     }
-                };
-                mediaQuery.addEventListener('change', handleChange);
-                // Store the listener to clean up if needed.
-                window._themeMediaQueryListener = handleChange;
+                } catch (_) {}
+                applySystemTheme('corporate');
             }
 
             function loadSettings() {
-                // Load dark mode preference from localStorage.
-                const darkPref = localStorage.getItem('darkModePreference');
-                if (darkPref === 'dark') {
-                    applyDarkMode(true);
-                } else if (darkPref === 'light') {
-                    applyDarkMode(false);
+                const storedDark = localStorage.getItem('dark');
+                if (storedDark !== null) {
+                    applyDarkMode(storedDark === 'true');
                 } else {
-                    // No preference, use system.
                     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                     applyDarkMode(prefersDark);
                 }
@@ -4944,40 +4590,7 @@
                 panels: $$('.panel'),
                 toastContainer: $('#toastContainer'),
                 fileInputHidden: $('#fileInput'),
-                logoWrap: $('#logoWrap'),
-                logoSvg: document.querySelector('.hex-logo-svg'),
-                logoGlow: document.querySelector('.hex-logo-glow'),
-                quickBtns: $$('.quick-replies button'),
             };
-
-            // ── Hex Logo Animation ──
-            function setLogoState(state) {
-                dom.logoSvg.classList.remove('spin');
-                dom.logoGlow.classList.remove('active');
-                switch (state) {
-                    case 'thinking':
-                    case 'responding':
-                        dom.logoSvg.classList.add('spin');
-                        dom.logoGlow.classList.add('active');
-                        break;
-                    case 'idle':
-                    case 'ready':
-                    default:
-                        dom.logoGlow.classList.add('active');
-                        break;
-                }
-            }
-
-            dom.logoWrap.addEventListener('click', () => {
-                dom.logoSvg.classList.add('spin');
-                setTimeout(() => {
-                    dom.logoSvg.classList.remove('spin');
-                }, 800);
-                dom.logoGlow.classList.add('active');
-                setTimeout(() => {
-                    dom.logoGlow.classList.remove('active');
-                }, 1200);
-            });
 
             function showToast(msg, icon = 'fa-info-circle', duration = 2500) {
                 const el = document.createElement('div');
@@ -5122,99 +4735,37 @@
                 return result;
             }
 
-            // ── HEX CHAT: char-by-char animation ──
-            function addHexMessage(text, sender = 'bot', animate = false, typing = false, imageUrl = null) {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = `chat-msg ${sender}`;
-
-                const avatar = document.createElement('div');
-                avatar.className = `avatar-hex ${sender}`;
-                const inner = document.createElement('span');
-                inner.className = 'avatar-inner';
-                inner.textContent = sender === 'bot' ? '⬣' : '✦';
-                avatar.appendChild(inner);
-                msgDiv.appendChild(avatar);
-
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-
+            function addMessage(text, sender = 'user', extra = '', imageUrl = null) {
+                const div = document.createElement('div');
+                div.className = `chat-msg ${sender}`;
+                const avatar = sender === 'user' ? '<i class="fas fa-user"></i>' : '<i class="fas fa-robot"></i>';
                 const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-                if (typing) {
-                    const indicator = document.createElement('div');
-                    indicator.className = 'typing-indicator-hex';
-                    const svgNS = "http://www.w3.org/2000/svg";
-                    const svg = document.createElementNS(svgNS, "svg");
-                    svg.setAttribute('class', 'typing-hex');
-                    svg.setAttribute('viewBox', '0 0 24 24');
-                    const defs = document.createElementNS(svgNS, "defs");
-                    const grad = document.createElementNS(svgNS, "linearGradient");
-                    grad.setAttribute('id', 'typingHexGrad');
-                    grad.setAttribute('x1', '0%');
-                    grad.setAttribute('y1', '0%');
-                    grad.setAttribute('x2', '100%');
-                    grad.setAttribute('y2', '100%');
-                    const stop1 = document.createElementNS(svgNS, "stop");
-                    stop1.setAttribute('offset', '0%');
-                    stop1.setAttribute('stop-color', '#64c8ff');
-                    const stop2 = document.createElementNS(svgNS, "stop");
-                    stop2.setAttribute('offset', '100%');
-                    stop2.setAttribute('stop-color', '#f472b6');
-                    grad.appendChild(stop1);
-                    grad.appendChild(stop2);
-                    defs.appendChild(grad);
-                    const poly = document.createElementNS(svgNS, "polygon");
-                    poly.setAttribute('points', '12,4 20,8 20,16 12,20 4,16 4,8');
-                    poly.setAttribute('fill', 'none');
-                    poly.setAttribute('stroke', 'url(#typingHexGrad)');
-                    poly.setAttribute('stroke-width', '2.5');
-                    svg.appendChild(defs);
-                    svg.appendChild(poly);
-                    indicator.appendChild(svg);
-                    bubble.appendChild(indicator);
-                    msgDiv.appendChild(bubble);
-                    dom.chatMessages.appendChild(msgDiv);
-                    dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
-                    return { msgDiv, bubble };
-                }
 
                 let contentHtml = '';
                 if (imageUrl) {
                     contentHtml =
                         `<img src="${imageUrl}" class="chat-image-preview" alt="Attached image" onclick="window.open('${imageUrl}', '_blank')" />`;
                 }
+                const processedText = processMessageText(text);
+                contentHtml += `<div class="bubble-content">${processedText}</div>`;
 
-                if (animate) {
-                    const span = document.createElement('span');
-                    span.className = 'char-by-char';
-                    for (let i = 0; i < text.length; i++) {
-                        const charSpan = document.createElement('span');
-                        charSpan.className = 'char';
-                        charSpan.textContent = text[i];
-                        charSpan.style.animationDelay = (i * 28) + 'ms';
-                        span.appendChild(charSpan);
-                    }
-                    contentHtml += `<div class="bubble-content">${span.outerHTML}</div>`;
-                } else {
-                    const processedText = processMessageText(text);
-                    contentHtml += `<div class="bubble-content">${processedText}</div>`;
-                }
-
-                contentHtml += `
-                    <div class="bubble-actions">
-                        <button class="action-btn success copy-msg-btn" title="Copy"><i class="fas fa-copy"></i></button>
-                        <button class="action-btn danger delete-msg-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                div.innerHTML = `
+                    <div class="avatar">${avatar}</div>
+                    <div class="bubble">
+                        ${contentHtml}
+                        <div class="bubble-actions">
+                            <button class="action-btn success copy-msg-btn" title="Copy"><i class="fas fa-copy"></i></button>
+                            <button class="action-btn danger delete-msg-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <span class="msg-time">${time} ${extra}</span>
                     </div>
-                    <span class="msg-time">${time}</span>
                 `;
-                bubble.innerHTML = contentHtml;
-                msgDiv.appendChild(bubble);
-                dom.chatMessages.appendChild(msgDiv);
+                dom.chatMessages.appendChild(div);
                 dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
 
-                const copyBtn = msgDiv.querySelector('.copy-msg-btn');
-                const deleteBtn = msgDiv.querySelector('.delete-msg-btn');
-                const bubbleContent = msgDiv.querySelector('.bubble-content');
+                const copyBtn = div.querySelector('.copy-msg-btn');
+                const deleteBtn = div.querySelector('.delete-msg-btn');
+                const bubbleContent = div.querySelector('.bubble-content');
 
                 copyBtn.addEventListener('click', () => {
                     const textToCopy = bubbleContent ? bubbleContent.textContent : text;
@@ -5233,36 +4784,34 @@
 
                 deleteBtn.addEventListener('click', () => {
                     if (confirm('Delete this message?')) {
-                        msgDiv.remove();
+                        div.remove();
                         showToast('Message deleted', 'fa-trash', 1500);
                     }
                 });
 
-                return { msgDiv, bubble };
+                return div;
             }
 
-            // ── Bot reply with typing effect ──
-            function botReply(text, delay = 600) {
-                return new Promise((resolve) => {
-                    const typingMsg = addHexMessage('', 'bot', false, true);
+            function addTypingIndicator() {
+                const div = document.createElement('div');
+                div.className = 'chat-msg ai';
+                div.id = 'typingIndicator';
+                div.innerHTML = `
+                    <div class="avatar"><i class="fas fa-robot"></i></div>
+                    <div class="bubble">
+                        <div class="typing-indicator">
+                            <span>HEX is thinking</span>
+                            <span class="dots"><span></span><span></span><span></span></span>
+                        </div>
+                    </div>
+                `;
+                dom.chatMessages.appendChild(div);
+                dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+            }
 
-                    setLogoState('thinking');
-                    dom.sendBtn.disabled = true;
-
-                    setTimeout(() => {
-                        if (typingMsg && typingMsg.msgDiv) {
-                            typingMsg.msgDiv.remove();
-                        }
-
-                        addHexMessage(text, 'bot', true, false);
-
-                        setLogoState('ready');
-                        dom.sendBtn.disabled = false;
-                        dom.chatInput.focus();
-
-                        resolve();
-                    }, delay + 400);
-                });
+            function removeTypingIndicator() {
+                const el = document.getElementById('typingIndicator');
+                if (el) el.remove();
             }
 
             // ── AI CHAT ──
@@ -5398,22 +4947,10 @@
                 }
             }
 
-            // ── Hex bot responses ──
-            const hexResponses = [
-                "Hey there! 👋 I'm HEX AI. Ask me anything about hexagons, AI, or just chat!",
-                "That's a great question! Let me think… 🤔",
-                "Here's a fun fact: hexagons appear in nature everywhere—from honeycombs to snowflakes! ❄️",
-                "I can chat with you, animate this hexagon, and even type out responses character by character. Pretty cool, right? 😄",
-                "The hexagon is the most efficient shape for tiling a plane. That's why bees love it! 🐝",
-                "I'm running on a glowing hex core ⬣ with gradient magic ✨",
-                "Thanks for chatting! The hexagon will spin for you anytime. 🔄",
-                "Did you know? The hexagon has 6 sides, 6 vertices, and 6 angles — all 120° each! 📐",
-                "You're awesome! Keep asking questions and watch the hex glow. 💜",
-                "That's a wrap! I hope you enjoyed the hex vibes. 🌈"
-            ];
+            async function sendMessage() {
+                const text = dom.chatInput.value.trim();
+                if (!text && dom.attachmentPreview.children.length === 0) return;
 
-            async function handleUserMessage(text) {
-                if (!text.trim()) return;
                 const imageAtt = dom.attachmentPreview.querySelector('.att-item');
                 let imageUrl = null;
                 let imageBase64 = null;
@@ -5433,80 +4970,42 @@
                     }
                 }
 
-                addHexMessage(text, 'user', false, false, imageUrl);
+                const userText = text;
+                addMessage(userText, 'user', '', imageUrl);
                 dom.chatInput.value = '';
                 dom.chatInput.style.height = 'auto';
 
-                let fullPrompt = text || 'Describe this image';
+                let fullPrompt = userText || 'Describe this image';
                 let attachments = [];
                 if (imageBase64) {
                     attachments.push({ data: imageBase64 });
                 }
 
-                const lower = text.toLowerCase();
-                let reply = '';
-
-                if (lower.includes('fun fact')) {
-                    reply =
-                        "Did you know? A regular hexagon has 6 equal sides and 6 equal angles. It's the only polygon that can tile a plane without gaps — just like honeycombs! 🐝✨";
-                } else if (lower.includes('capability') || lower.includes('can you do')) {
-                    reply =
-                        "I can chat, type letter-by-letter, spin a glowing hexagon, and even show you a typing indicator. I'm a full animated chatbot demo! ⬣💬";
-                } else if (lower.includes('hexagon') || lower.includes('hex magic') || lower.includes('trick')) {
-                    reply =
-                        "Here's a hexagon trick: the sum of the interior angles is 720°. And if you connect the center to each vertex, you get 6 equilateral triangles! 📐⬣";
-                } else if (lower.includes('bye') || lower.includes('goodbye')) {
-                    reply = "Goodbye! 👋 The hexagon will keep glowing for you. Come back anytime! 🌈⬣";
-                } else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
-                    reply = "Hey there! 👋 I'm HEX AI. Ask me anything — I love fun facts, hexagons, and chats!";
-                } else if (lower.includes('thanks') || lower.includes('thank you')) {
-                    reply = "You're welcome! 😊 The hexagon glows brighter because of you. Keep chatting! ⬣✨";
-                } else {
-                    const idx = Math.floor(Math.random() * hexResponses.length);
-                    reply = hexResponses[idx];
-                }
-
+                addTypingIndicator();
                 try {
-                    // Use AI for non-trivial queries, fallback to hex responses for simple ones
-                    if (text.length > 20 || !reply || reply.includes('❌')) {
-                        const aiResp = await aiChat(fullPrompt, attachments);
-                        if (!aiResp.includes('❌')) {
-                            reply = aiResp;
-                        }
-                    }
+                    const resp = await aiChat(fullPrompt, attachments);
+                    removeTypingIndicator();
+                    const emojis = ['🫵', '😎', '🔥', '✨', '🚀', '💡', '🌟', '🎯', '🤖', '🧠'];
+                    const randEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                    const finalText = randEmoji + ' ' + resp;
+                    addMessage(finalText, 'ai', `<span class="provider-tag">${dom.providerSelect.value}</span>`);
                 } catch (e) {
-                    console.warn('AI chat error, using hex response:', e);
+                    removeTypingIndicator();
+                    addMessage('❌ Error: ' + e.message, 'ai');
                 }
-
-                await botReply(reply, 500 + Math.random() * 400);
                 dom.attachmentPreview.innerHTML = '';
-                dom.chatInput.focus();
             }
 
-            // ── Send handler ──
-            dom.sendBtn.addEventListener('click', () => {
-                handleUserMessage(dom.chatInput.value);
-            });
+            dom.sendBtn.addEventListener('click', sendMessage);
             dom.chatInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
-                    handleUserMessage(dom.chatInput.value);
+                    sendMessage();
                 }
             });
             dom.chatInput.addEventListener('input', () => {
                 dom.chatInput.style.height = 'auto';
                 dom.chatInput.style.height = Math.min(dom.chatInput.scrollHeight, 120) + 'px';
-            });
-
-            // ── Quick replies ──
-            dom.quickBtns.forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    const text = btn.getAttribute('data-msg');
-                    if (text) {
-                        dom.chatInput.value = text;
-                        handleUserMessage(text);
-                    }
-                });
             });
 
             // ── ATTACHMENTS ──
@@ -6183,8 +5682,99 @@
                 dom.pdfFileInput.value = '';
             });
 
-            // ── MUSIC PLAYER ──
+            // ================================================================
+            //  🎵 MUSIC PLAYER — Enhanced with full audio format support
+            //  & MediaCapabilities API + Web Media API (Media Session)
+            //  Now using native HTML5 Audio for maximum cross-browser compatibility
+            // ================================================================
+
+            // ── Comprehensive Audio Format Library ──
             const audioFormats = {
+                'AAC': { mime: 'audio/aac', codec: 'aac', ext: 'aac', desc: 'Advanced Audio Coding' },
+                'AAC_MP2': { mime: 'audio/mpeg', codec: 'mp4a.40.2', ext: 'aac', desc: 'AAC, MPEG-2' },
+                'AAC_ADIF': { mime: 'audio/aac', codec: 'aac', ext: 'aac', desc: 'AAC, ADIF' },
+                'AAC_MP4': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'AAC, MPEG-4' },
+                'AAC_MP4_LC': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'AAC LC' },
+                'MP4_FF_2_AAC': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'MP4 FF V.2 AAC' },
+                'QTA_AAC': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'QuickTime AAC' },
+                'AC-3': { mime: 'audio/ac3', codec: 'ac-3', ext: 'ac3', desc: 'Dolby Digital AC-3' },
+                'AC-3_A': { mime: 'audio/ac3', codec: 'ac-3', ext: 'ac3', desc: 'AC-3 Rev A' },
+                'ADM': { mime: 'audio/adm', codec: 'adm', ext: 'adm', desc: 'Audio Definition Model' },
+                'AES3': { mime: 'audio/aes3', codec: 'aes3', ext: 'aes3', desc: 'AES3 Digital Audio' },
+                'AES3_SMPTE': { mime: 'audio/aes3', codec: 'aes3', ext: 'aes3', desc: 'AES3 SMPTE' },
+                'AIFF': { mime: 'audio/x-aiff', codec: 'aiff', ext: 'aiff', desc: 'Audio Interchange File Format' },
+                'AIFF_LPCM': { mime: 'audio/x-aiff', codec: 'lpcm', ext: 'aiff', desc: 'AIFF with LPCM' },
+                'A-Law': { mime: 'audio/x-alaw', codec: 'alaw', ext: 'alaw', desc: 'A-Law Compressed' },
+                'AMR': { mime: 'audio/amr', codec: 'amr', ext: 'amr', desc: 'Adaptive Multi-Rate' },
+                'AMR-WB': { mime: 'audio/amr-wb', codec: 'amr-wb', ext: 'amr', desc: 'AMR Wideband' },
+                'AMR-WB+': { mime: 'audio/amr-wb', codec: 'amr-wb+', ext: 'amr', desc: 'AMR-WB+ Extended' },
+                'ASF': { mime: 'audio/x-ms-wma', codec: 'asf', ext: 'asf', desc: 'Advanced Systems Format' },
+                'AudCom': { mime: 'audio/audible', codec: 'audcom', ext: 'aa', desc: 'Audible.Com' },
+                'AudCom_MP3': { mime: 'audio/audible', codec: 'mp3', ext: 'aa', desc: 'Audible MP3' },
+                'WAVE_BWF_1': { mime: 'audio/x-wav', codec: 'pcm', ext: 'wav', desc: 'BWF Version 1' },
+                'WAVE_BWF_2': { mime: 'audio/x-wav', codec: 'pcm', ext: 'wav', desc: 'BWF Version 2' },
+                'WAVE_BWF_LPCM_1': { mime: 'audio/x-wav', codec: 'lpcm', ext: 'wav', desc: 'BWF V1 LPCM' },
+                'WAVE_BWF_LPCM_2': { mime: 'audio/x-wav', codec: 'lpcm', ext: 'wav', desc: 'BWF V2 LPCM' },
+                'CAF': { mime: 'audio/x-caf', codec: 'caf', ext: 'caf', desc: 'Apple Core Audio Format' },
+                'DAMF': { mime: 'audio/damf', codec: 'damf', ext: 'damf', desc: 'Dolby Atmos Master File' },
+                'DDP': { mime: 'audio/ddp', codec: 'ddp', ext: 'ddp', desc: 'Disc Description Protocol' },
+                'DLS_1_1b': { mime: 'audio/dls', codec: 'dls', ext: 'dls', desc: 'Downloadable Sounds v1.1b' },
+                'DSD': { mime: 'audio/dsd', codec: 'dsd', ext: 'dsd', desc: 'Direct Stream Digital' },
+                'DSDIFF': { mime: 'audio/dsd', codec: 'dsd', ext: 'dsf', desc: 'DSD Interchange File' },
+                'DTB_2002': { mime: 'audio/dtb', codec: 'dtb', ext: 'dtb', desc: 'Digital Talking Book 2002' },
+                'DTB_2002_NLS': { mime: 'audio/dtb', codec: 'dtb', ext: 'dtb', desc: 'DTB NLS AMR-WB+' },
+                'DTB_2005': { mime: 'audio/dtb', codec: 'dtb', ext: 'dtb', desc: 'Digital Talking Book 2005' },
+                'DTS': { mime: 'audio/vnd.dts', codec: 'dts', ext: 'dts', desc: 'DTS Audio' },
+                'FLAC_Family': { mime: 'audio/flac', codec: 'flac', ext: 'flac', desc: 'FLAC Family' },
+                'FLAC_1_1_2': { mime: 'audio/flac', codec: 'flac', ext: 'flac', desc: 'FLAC 1.1.2' },
+                'ID3': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'ID3 Metadata for MP3' },
+                'ID3v1': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'ID3v1' },
+                'ID3v2': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'ID3v2' },
+                'IFF': { mime: 'audio/x-iff', codec: 'iff', ext: 'iff', desc: 'EA IFF 1985' },
+                'LPCM': { mime: 'audio/lpcm', codec: 'lpcm', ext: 'wav', desc: 'Linear PCM' },
+                'LOGICX': { mime: 'audio/logicx', codec: 'logicx', ext: 'logicx', desc: 'Logic Pro Project' },
+                'Matroska': { mime: 'audio/x-matroska', codec: 'matroska', ext: 'mka', desc: 'Matroska Container' },
+                'Matroska_AAC': { mime: 'audio/x-matroska', codec: 'mp4a.40.2', ext: 'mka', desc: 'Matroska AAC' },
+                'Matroska_LPCM': { mime: 'audio/x-matroska', codec: 'lpcm', ext: 'mka', desc: 'Matroska LPCM' },
+                'Matroska_MP3': { mime: 'audio/x-matroska', codec: 'mp3', ext: 'mka', desc: 'Matroska MP3' },
+                'MIDI_SD': { mime: 'audio/midi', codec: 'midi', ext: 'mid', desc: 'MIDI Sequence Data' },
+                'MODS': { mime: 'audio/mod', codec: 'mod', ext: 'mod', desc: 'Module Music Format' },
+                'MPEG_layer_2_audio': { mime: 'audio/mpeg', codec: 'mp2', ext: 'mp2', desc: 'MPEG-1/2 Layer II' },
+                'MP3_ENC': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'MP3 Encoding' },
+                'MP3_FF': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'MP3 File Format' },
+                'µ-Law': { mime: 'audio/x-mulaw', codec: 'mulaw', ext: 'ulaw', desc: 'µ-Law Compressed' },
+                'Ogg': { mime: 'audio/ogg', codec: 'vorbis', ext: 'ogg', desc: 'Ogg Container' },
+                'Ogg_Vorbis': { mime: 'audio/ogg', codec: 'vorbis', ext: 'ogg', desc: 'Ogg Vorbis' },
+                'Ogg_FLAC_1_0': { mime: 'audio/ogg', codec: 'flac', ext: 'ogg', desc: 'Ogg FLAC 1.0' },
+                'Ogg_SPX': { mime: 'audio/ogg', codec: 'speex', ext: 'ogg', desc: 'Ogg Speex' },
+                'PCM': { mime: 'audio/pcm', codec: 'pcm', ext: 'pcm', desc: 'Pulse Code Modulated' },
+                'PTX_PTF_PTS': { mime: 'audio/protools', codec: 'ptx', ext: 'ptx', desc: 'Pro Tools Session' },
+                'Quicktime': { mime: 'audio/quicktime', codec: 'qt', ext: 'mov', desc: 'QuickTime Audio' },
+                'QTA_MP3': { mime: 'audio/quicktime', codec: 'mp3', ext: 'mov', desc: 'QuickTime MP3' },
+                'QTA_AAC': { mime: 'audio/quicktime', codec: 'mp4a.40.2', ext: 'mov', desc: 'QuickTime AAC' },
+                'RealAudio_10': { mime: 'audio/x-pn-realaudio', codec: 'ra10', ext: 'ra', desc: 'RealAudio 10' },
+                'RealAudio_AAC': { mime: 'audio/x-pn-realaudio', codec: 'aac', ext: 'ra', desc: 'RealAudio AAC' },
+                'RealAudio_LL': { mime: 'audio/x-pn-realaudio', codec: 'ra-ll', ext: 'ra', desc: 'RealAudio Lossless' },
+                'RealAudio_MC': { mime: 'audio/x-pn-realaudio', codec: 'ra-mc', ext: 'ra', desc: 'RealAudio Multichannel' },
+                'RealAudio_RA': { mime: 'audio/x-pn-realaudio', codec: 'ra', ext: 'ra', desc: 'RealAudio Codec' },
+                'RMID': { mime: 'audio/rmi', codec: 'rmi', ext: 'rmi', desc: 'RIFF MIDI' },
+                'SHN': { mime: 'audio/shn', codec: 'shn', ext: 'shn', desc: 'Shorten Lossless' },
+                'SIB': { mime: 'audio/sib', codec: 'sib', ext: 'sib', desc: 'Sibelius Notation' },
+                'SMF': { mime: 'audio/midi', codec: 'smf', ext: 'mid', desc: 'Standard MIDI File' },
+                'SPX_1_2': { mime: 'audio/ogg', codec: 'speex', ext: 'spx', desc: 'Speex 1.2' },
+                'USAC': { mime: 'audio/usac', codec: 'usac', ext: 'usac', desc: 'Unified Speech & Audio Coding' },
+                'Vorbis': { mime: 'audio/ogg', codec: 'vorbis', ext: 'ogg', desc: 'Vorbis Codec' },
+                'WAVE': { mime: 'audio/wav', codec: 'pcm', ext: 'wav', desc: 'WAVE Audio' },
+                'WAVE_LPCM': { mime: 'audio/wav', codec: 'lpcm', ext: 'wav', desc: 'WAVE LPCM' },
+                'WebM': { mime: 'audio/webm', codec: 'opus', ext: 'webm', desc: 'WebM Audio' },
+                'WMA': { mime: 'audio/x-ms-wma', codec: 'wma', ext: 'wma', desc: 'Windows Media Audio' },
+                'WMA_WMA9': { mime: 'audio/x-ms-wma', codec: 'wma9', ext: 'wma', desc: 'WMA9' },
+                'WMA_WMA9_LL': { mime: 'audio/x-ms-wma', codec: 'wma9-ll', ext: 'wma', desc: 'WMA9 Lossless' },
+                'WMA_WMA9_PRO': { mime: 'audio/x-ms-wma', codec: 'wma9-pro', ext: 'wma', desc: 'WMA9 Professional' },
+                'WMA9': { mime: 'audio/x-ms-wma', codec: 'wma9', ext: 'wma', desc: 'Windows Media 9' },
+                'WMA9_LL': { mime: 'audio/x-ms-wma', codec: 'wma9-ll', ext: 'wma', desc: 'WMA9 Lossless' },
+                'WMA9_PRO': { mime: 'audio/x-ms-wma', codec: 'wma9-pro', ext: 'wma', desc: 'WMA9 Professional' },
+                'XMF_1_0': { mime: 'audio/xmf', codec: 'xmf', ext: 'xmf', desc: 'eXtensible Music Format 1.0' },
                 'audio/mpeg': { mime: 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'MPEG Audio' },
                 'audio/mp4': { mime: 'audio/mp4', codec: 'mp4a.40.2', ext: 'm4a', desc: 'MP4 Audio' },
                 'audio/ogg': { mime: 'audio/ogg', codec: 'vorbis', ext: 'ogg', desc: 'Ogg Vorbis' },
@@ -6196,13 +5786,58 @@
                 'audio/x-aiff': { mime: 'audio/x-aiff', codec: 'aiff', ext: 'aiff', desc: 'AIFF' },
                 'audio/x-matroska': { mime: 'audio/x-matroska', codec: 'matroska', ext: 'mka', desc: 'Matroska Audio' },
                 'audio/x-ms-wma': { mime: 'audio/x-ms-wma', codec: 'wma', ext: 'wma', desc: 'Windows Media Audio' },
+                'audio/x-ms-wmv': { mime: 'audio/x-ms-wmv', codec: 'wmv', ext: 'wmv', desc: 'Windows Media Video' },
                 'audio/amr': { mime: 'audio/amr', codec: 'amr', ext: 'amr', desc: 'AMR' },
                 'audio/amr-wb': { mime: 'audio/amr-wb', codec: 'amr-wb', ext: 'amr', desc: 'AMR-WB' },
                 'audio/ac3': { mime: 'audio/ac3', codec: 'ac-3', ext: 'ac3', desc: 'AC-3 Dolby Digital' },
                 'audio/vnd.dts': { mime: 'audio/vnd.dts', codec: 'dts', ext: 'dts', desc: 'DTS' },
                 'audio/midi': { mime: 'audio/midi', codec: 'midi', ext: 'mid', desc: 'MIDI' },
+                'audio/x-midi': { mime: 'audio/x-midi', codec: 'midi', ext: 'mid', desc: 'MIDI (x-midi)' },
             };
 
+            // ── MediaCapabilities API Integration ──
+            async function checkAudioDecoding(mimeType, channels = 2, bitrate = 128000, samplerate = 44100) {
+                if (!navigator.mediaCapabilities) {
+                    console.warn('MediaCapabilities API not supported in this browser');
+                    return { supported: false, smooth: false, powerEfficient: false };
+                }
+                const configuration = {
+                    type: 'media-source',
+                    audio: {
+                        contentType: mimeType,
+                        channels: channels,
+                        bitrate: bitrate,
+                        samplerate: samplerate
+                    }
+                };
+                try {
+                    const result = await navigator.mediaCapabilities.decodingInfo(configuration);
+                    console.log(
+                        `MediaCapabilities: ${mimeType} → Supported: ${result.supported}, Smooth: ${result.smooth}, Efficient: ${result.powerEfficient}`
+                        );
+                    return result;
+                } catch (error) {
+                    console.error('MediaCapabilities evaluation failed:', error);
+                    return { supported: false, smooth: false, powerEfficient: false };
+                }
+            }
+
+            // ── Detect audio format from file ──
+            function detectAudioFormat(file) {
+                const fileName = file.name.toLowerCase();
+                const mimeType = file.type;
+                if (audioFormats[mimeType]) return audioFormats[mimeType];
+                for (const [key, fmt] of Object.entries(audioFormats)) {
+                    if (fmt.ext && fileName.endsWith('.' + fmt.ext)) return fmt;
+                }
+                if (mimeType.startsWith('audio/')) {
+                    const base = mimeType.split(';')[0].trim();
+                    if (audioFormats[base]) return audioFormats[base];
+                }
+                return { mime: mimeType || 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'Unknown audio' };
+            }
+
+            // ── Music Player State ──
             let musicTracks = [];
             let currentTrackIdx = -1;
             let isMusicPlaying = false;
@@ -6211,12 +5846,15 @@
             let musicGain = null;
             let musicProgressInterval = null;
             let musicAnimId = null;
-            let audioElement = null;
+            let audioElement = null; // Native HTML5 Audio element
+
+            // Repeat mode: 0 = off, 1 = repeat all, 2 = repeat one
             let repeatMode = 0;
 
             const musicCanvas = dom.visualizerCanvas;
             const musicCtx = musicCanvas.getContext('2d');
 
+            // ── IndexedDB Setup ──
             const DB_NAME = 'HexMusicDB';
             const DB_VERSION = 1;
             const STORE_NAME = 'tracks';
@@ -6316,6 +5954,7 @@
                 });
             }
 
+            // ── Music Player Functions ──
             function resizeMusicCanvas() {
                 const rect = musicCanvas.parentElement.getBoundingClientRect();
                 musicCanvas.width = musicCanvas.parentElement.clientWidth || 400;
@@ -6394,71 +6033,168 @@
                 return `${m}:${s.toString().padStart(2,'0')}`;
             }
 
+            // ── Media Session API Integration ──
             function setupMediaSession(track) {
-                if (!navigator.mediaSession) return;
+                if (!navigator.mediaSession) {
+                    console.warn('Media Session API not supported in this browser');
+                    return;
+                }
                 const title = track.name || 'Unknown Track';
                 const artist = track.formatDesc || 'HEX AI Music';
+
                 navigator.mediaSession.metadata = new MediaMetadata({
                     title: title,
                     artist: artist,
                     album: 'HEX AI Music Player',
                     artwork: [{
-                        src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="58" text-anchor="middle" font-size="40" fill="white">🎵</text></svg>',
-                        sizes: '96x96',
-                        type: 'image/svg+xml'
-                    }]
+                            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="58" text-anchor="middle" font-size="40" fill="white">🎵</text></svg>',
+                            sizes: '96x96',
+                            type: 'image/svg+xml'
+                        },
+                        {
+                            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="58" text-anchor="middle" font-size="60" fill="white">🎵</text></svg>',
+                            sizes: '128x128',
+                            type: 'image/svg+xml'
+                        },
+                        {
+                            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="58" text-anchor="middle" font-size="80" fill="white">🎵</text></svg>',
+                            sizes: '256x256',
+                            type: 'image/svg+xml'
+                        }
+                    ]
                 });
+
                 navigator.mediaSession.setActionHandler('play', () => {
-                    if (audioElement && !isMusicPlaying) { audioElement.play();
+                    if (audioElement && !isMusicPlaying) {
+                        audioElement.play();
                         isMusicPlaying = true;
                         dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                         setupVisualizer();
-                        musicProgressInterval = setInterval(updateProgress, 200); }
+                        musicProgressInterval = setInterval(updateProgress, 200);
+                    }
                 });
+
                 navigator.mediaSession.setActionHandler('pause', () => {
-                    if (audioElement && isMusicPlaying) { audioElement.pause();
+                    if (audioElement && isMusicPlaying) {
+                        audioElement.pause();
                         isMusicPlaying = false;
                         dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                         if (musicAnimId) cancelAnimationFrame(musicAnimId);
                         musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                        if (musicProgressInterval) { clearInterval(musicProgressInterval);
-                            musicProgressInterval = null; } }
+                        if (musicProgressInterval) {
+                            clearInterval(musicProgressInterval);
+                            musicProgressInterval = null;
+                        }
+                    }
                 });
+
                 navigator.mediaSession.setActionHandler('previoustrack', () => {
                     if (musicTracks.length === 0) return;
                     const idx = currentTrackIdx > 0 ? currentTrackIdx - 1 : musicTracks.length - 1;
                     playMusicTrack(idx);
                 });
+
                 navigator.mediaSession.setActionHandler('nexttrack', () => {
                     if (musicTracks.length === 0) return;
                     const idx = currentTrackIdx < musicTracks.length - 1 ? currentTrackIdx + 1 : 0;
                     playMusicTrack(idx);
                 });
+
+                navigator.mediaSession.setActionHandler('seekto', (details) => {
+                    if (!audioElement || !audioElement.duration) return;
+                    const seekTime = details.seekTime || 0;
+                    const dur = audioElement.duration;
+                    if (dur > 0 && seekTime >= 0 && seekTime <= dur) {
+                        audioElement.currentTime = seekTime;
+                    }
+                });
+
                 navigator.mediaSession.playbackState = isMusicPlaying ? 'playing' : 'paused';
+
+                if (navigator.mediaSession.setPositionState) {
+                    const dur = audioElement ? audioElement.duration || 0 : 0;
+                    const pos = audioElement ? audioElement.currentTime || 0 : 0;
+                    navigator.mediaSession.setPositionState({
+                        duration: dur,
+                        playbackRate: 1.0,
+                        position: pos
+                    });
+                }
+
+                console.log('Media Session API activated for:', title);
             }
 
+            // ── Show Music Note Notification ──
+            function showMusicNotification(track) {
+                try {
+                    if (!('Notification' in window)) {
+                        console.warn('Notifications API not supported');
+                        return;
+                    }
+                    if (Notification.permission === 'denied') {
+                        console.warn('Notification permission denied');
+                        return;
+                    }
+                    if (Notification.permission === 'granted') {
+                        const title = track.name || 'Now Playing';
+                        const options = {
+                            body: `🎵 ${track.formatDesc || 'Audio'} · ${track.format ? track.format.toUpperCase() : ''}`,
+                            icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="60" text-anchor="middle" font-size="50" fill="white">🎵</text></svg>',
+                            badge: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%234b6bfb"/><text x="50" y="60" text-anchor="middle" font-size="50" fill="white">🎵</text></svg>',
+                            tag: 'hex-music-playing',
+                            renotify: true,
+                            silent: false,
+                            vibrate: [200, 100, 200],
+                            requireInteraction: false,
+                            data: { trackId: track.id, trackName: track.name }
+                        };
+                        const notification = new Notification(title, options);
+                        setTimeout(() => notification.close(), 4000);
+                    } else if (Notification.permission === 'default') {
+                        Notification.requestPermission().then(perm => {
+                            if (perm === 'granted') {
+                                showMusicNotification(track);
+                            }
+                        });
+                    }
+                } catch (e) { console.warn('Notification error:', e); }
+            }
+
+            // ── Setup Visualizer using Web Audio API ──
             function setupVisualizer() {
                 try {
                     if (!audioElement) return;
-                    if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-                    if (audioCtx.state === 'suspended') audioCtx.resume();
+                    if (!audioCtx) {
+                        audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                    }
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                    // Create a source from the audio element
                     const source = audioCtx.createMediaElementSource(audioElement);
                     musicAnalyser = audioCtx.createAnalyser();
                     musicAnalyser.fftSize = 128;
                     musicGain = audioCtx.createGain();
                     musicGain.gain.value = parseFloat(dom.volumeSlider.value) / 100;
+
                     source.connect(musicAnalyser);
                     musicAnalyser.connect(musicGain);
                     musicGain.connect(audioCtx.destination);
+
                     drawMusicVisualizer();
-                } catch (e) { console.warn('Visualizer setup error:', e);
-                    useFallbackVisualizer(); }
+                } catch (e) {
+                    console.warn('Visualizer setup error:', e);
+                    useFallbackVisualizer();
+                }
             }
 
+            // ── Play a track ──
             function playMusicTrack(index) {
                 if (index < 0 || index >= musicTracks.length) return;
-                if (musicProgressInterval) { clearInterval(musicProgressInterval);
-                    musicProgressInterval = null; }
+                if (musicProgressInterval) {
+                    clearInterval(musicProgressInterval);
+                    musicProgressInterval = null;
+                }
                 currentTrackIdx = index;
                 const track = musicTracks[index];
                 dom.trackTitle.textContent = track.name;
@@ -6470,49 +6206,84 @@
                 if (track.fileData) {
                     const blob = new Blob([track.fileData], { type: track.fileType || 'audio/mpeg' });
                     url = URL.createObjectURL(blob);
-                } else if (track.url) { url = track.url; } else {
+                } else if (track.url) {
+                    url = track.url;
+                } else {
                     showToast('Track data not available', 'fa-exclamation-circle', 1500);
                     return;
                 }
 
-                if (audioElement) { audioElement.pause();
+                if (audioElement) {
+                    audioElement.pause();
                     audioElement.src = '';
-                    audioElement.load(); } else audioElement = new Audio();
+                    audioElement.load();
+                } else {
+                    audioElement = new Audio();
+                }
 
                 audioElement.src = url;
                 audioElement.volume = parseFloat(dom.volumeSlider.value) / 100;
 
-                audioElement.addEventListener('loadedmetadata', () => { dom.totalTime.textContent = formatTime(audioElement
-                        .duration); });
+                audioElement.addEventListener('loadedmetadata', () => {
+                    dom.totalTime.textContent = formatTime(audioElement.duration);
+                });
+
                 audioElement.addEventListener('play', () => {
                     isMusicPlaying = true;
                     dom.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+                    if (audioCtx && audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
                     setupVisualizer();
                     musicProgressInterval = setInterval(updateProgress, 200);
-                    if (navigator.mediaSession) navigator.mediaSession.playbackState = 'playing';
+                    if (navigator.mediaSession) {
+                        navigator.mediaSession.playbackState = 'playing';
+                        if (navigator.mediaSession.setPositionState) {
+                            const dur = audioElement.duration || 0;
+                            const pos = audioElement.currentTime || 0;
+                            navigator.mediaSession.setPositionState({
+                                duration: dur,
+                                playbackRate: 1.0,
+                                position: pos
+                            });
+                        }
+                    }
                 });
+
                 audioElement.addEventListener('pause', () => {
                     isMusicPlaying = false;
                     dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                     if (musicAnimId) cancelAnimationFrame(musicAnimId);
                     musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                    if (musicProgressInterval) { clearInterval(musicProgressInterval);
-                        musicProgressInterval = null; }
-                    if (navigator.mediaSession) navigator.mediaSession.playbackState = 'paused';
+                    if (musicProgressInterval) {
+                        clearInterval(musicProgressInterval);
+                        musicProgressInterval = null;
+                    }
+                    if (navigator.mediaSession) {
+                        navigator.mediaSession.playbackState = 'paused';
+                    }
                 });
+
                 audioElement.addEventListener('ended', () => {
                     isMusicPlaying = false;
                     dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                     if (musicAnimId) cancelAnimationFrame(musicAnimId);
                     musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                    if (musicProgressInterval) { clearInterval(musicProgressInterval);
-                        musicProgressInterval = null; }
-                    if (navigator.mediaSession) navigator.mediaSession.playbackState = 'paused';
-                    if (repeatMode === 2) playMusicTrack(currentTrackIdx);
-                    else if (repeatMode === 1) {
-                        if (currentTrackIdx < musicTracks.length - 1) playMusicTrack(currentTrackIdx + 1);
-                        else playMusicTrack(0);
+                    if (musicProgressInterval) {
+                        clearInterval(musicProgressInterval);
+                        musicProgressInterval = null;
+                    }
+                    if (navigator.mediaSession) {
+                        navigator.mediaSession.playbackState = 'paused';
+                    }
+                    if (repeatMode === 2) {
+                        playMusicTrack(currentTrackIdx);
+                    } else if (repeatMode === 1) {
+                        if (currentTrackIdx < musicTracks.length - 1) {
+                            playMusicTrack(currentTrackIdx + 1);
+                        } else {
+                            playMusicTrack(0);
+                        }
                     } else {
                         dom.trackTitle.textContent = 'No track loaded';
                         dom.trackArtist.textContent = '—';
@@ -6521,20 +6292,25 @@
                         dom.progressBar.value = 0;
                     }
                 });
+
                 audioElement.addEventListener('error', (e) => {
                     console.error('Audio error:', e);
-                    showToast('Error loading audio: ' + (e.message || 'unknown error'), 'fa-exclamation-circle', 2000);
+                    showToast('Error loading audio: ' + (e.message || 'unknown error'), 'fa-exclamation-circle',
+                    2000);
                     isMusicPlaying = false;
                     dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 });
+
                 audioElement.play().catch(err => {
                     console.warn('Play error:', err);
                     showToast('Playback error: ' + err.message, 'fa-exclamation-circle', 2000);
                     isMusicPlaying = false;
                     dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 });
+
                 updatePlaylistUI();
                 setupMediaSession(track);
+                showMusicNotification(track);
                 showToast(`Now Playing: ${track.name}`, 'fa-music', 2500);
             }
 
@@ -6575,15 +6351,19 @@
                                 dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                                 if (musicAnimId) cancelAnimationFrame(musicAnimId);
                                 musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                                if (musicProgressInterval) { clearInterval(musicProgressInterval);
-                                    musicProgressInterval = null; }
+                                if (musicProgressInterval) {
+                                    clearInterval(musicProgressInterval);
+                                    musicProgressInterval = null;
+                                }
                                 currentTrackIdx = -1;
                                 dom.trackTitle.textContent = 'No track loaded';
                                 dom.trackArtist.textContent = '—';
                                 dom.currentTime.textContent = '0:00';
                                 dom.totalTime.textContent = '0:00';
                                 dom.progressBar.value = 0;
-                            } else if (idx < currentTrackIdx) currentTrackIdx--;
+                            } else if (idx < currentTrackIdx) {
+                                currentTrackIdx--;
+                            }
                             updatePlaylistUI();
                             showToast('Track removed', 'fa-trash', 1000);
                             return;
@@ -6598,19 +6378,24 @@
                                 dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                                 if (musicAnimId) cancelAnimationFrame(musicAnimId);
                                 musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                                if (musicProgressInterval) { clearInterval(musicProgressInterval);
-                                    musicProgressInterval = null; }
+                                if (musicProgressInterval) {
+                                    clearInterval(musicProgressInterval);
+                                    musicProgressInterval = null;
+                                }
                                 currentTrackIdx = -1;
                                 dom.trackTitle.textContent = 'No track loaded';
                                 dom.trackArtist.textContent = '—';
                                 dom.currentTime.textContent = '0:00';
                                 dom.totalTime.textContent = '0:00';
                                 dom.progressBar.value = 0;
-                            } else if (idx < currentTrackIdx) currentTrackIdx--;
+                            } else if (idx < currentTrackIdx) {
+                                currentTrackIdx--;
+                            }
                             updatePlaylistUI();
                             showToast('Track removed', 'fa-trash', 1000);
                         } catch (e) {
-                            showToast('Error removing track: ' + e.message, 'fa-exclamation-circle', 2000);
+                            showToast('Error removing track: ' + e.message, 'fa-exclamation-circle',
+                            2000);
                         }
                     });
                     container.appendChild(div);
@@ -6622,20 +6407,24 @@
                     const tracks = await loadTracksFromDB();
                     musicTracks = tracks.map(t => ({ ...t, url: null, duration: t.duration || '--:--' }));
                     updatePlaylistUI();
-                    if (musicTracks.length > 0) showToast(`Loaded ${musicTracks.length} tracks from storage`, 'fa-music',
-                        2000);
-                } catch (e) { console.warn('Error loading playlist from DB:', e); }
+                    if (musicTracks.length > 0) {
+                        showToast(`Loaded ${musicTracks.length} tracks from storage`, 'fa-music', 2000);
+                    }
+                } catch (e) {
+                    console.warn('Error loading playlist from DB:', e);
+                }
             }
 
+            // ── Upload with format detection ──
             dom.uploadArea.addEventListener('click', () => dom.audioInput.click());
             dom.audioInput.addEventListener('change', async (e) => {
                 const files = Array.from(e.target.files);
                 if (files.length === 0) return;
+
                 let addedCount = 0;
                 for (const file of files) {
                     try {
-                        const formatInfo = audioFormats[file.type] || { mime: file.type || 'audio/mpeg',
-                            codec: 'mp3', ext: 'mp3', desc: 'Audio' };
+                        const formatInfo = detectAudioFormat(file);
                         const name = file.name.replace(/\.[^.]+$/, '');
                         const result = await saveTrackToDB(file, name, formatInfo);
                         const track = {
@@ -6650,6 +6439,15 @@
                         };
                         musicTracks.push(track);
                         addedCount++;
+
+                        try {
+                            const mcResult = await checkAudioDecoding(formatInfo.mime || 'audio/mpeg', 2, 128000,
+                                44100);
+                            console.log(
+                                `📊 ${formatInfo.desc} (${formatInfo.codec}) → ${mcResult.supported ? '✅' : '❌'} supported`
+                                );
+                        } catch (mcErr) { console.warn('MediaCapabilities test failed:', mcErr); }
+
                     } catch (err) {
                         console.error('Error saving track:', err);
                         showToast('Error saving track: ' + file.name, 'fa-exclamation-circle', 1500);
@@ -6658,12 +6456,18 @@
                 updatePlaylistUI();
                 dom.audioInput.value = '';
                 showToast(`${addedCount} track(s) saved to storage`, 'fa-music', 1500);
-                if (currentTrackIdx === -1 && musicTracks.length > 0) playMusicTrack(0);
+                if (currentTrackIdx === -1 && musicTracks.length > 0) {
+                    playMusicTrack(0);
+                }
             });
 
+            // ── Player Controls ──
             dom.playBtn.addEventListener('click', () => {
                 if (!audioElement) {
-                    if (musicTracks.length === 0) { showToast('No tracks loaded', 'fa-exclamation-circle', 1500); return; }
+                    if (musicTracks.length === 0) {
+                        showToast('No tracks loaded', 'fa-exclamation-circle', 1500);
+                        return;
+                    }
                     playMusicTrack(0);
                     return;
                 }
@@ -6673,9 +6477,13 @@
                     dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                     if (musicAnimId) cancelAnimationFrame(musicAnimId);
                     musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                    if (musicProgressInterval) { clearInterval(musicProgressInterval);
-                        musicProgressInterval = null; }
-                    if (navigator.mediaSession) navigator.mediaSession.playbackState = 'paused';
+                    if (musicProgressInterval) {
+                        clearInterval(musicProgressInterval);
+                        musicProgressInterval = null;
+                    }
+                    if (navigator.mediaSession) {
+                        navigator.mediaSession.playbackState = 'paused';
+                    }
                 } else {
                     audioElement.play().catch(err => {
                         console.warn('Play error:', err);
@@ -6691,11 +6499,13 @@
                 const idx = currentTrackIdx > 0 ? currentTrackIdx - 1 : musicTracks.length - 1;
                 playMusicTrack(idx);
             });
+
             dom.nextBtn.addEventListener('click', () => {
                 if (musicTracks.length === 0) return;
                 const idx = currentTrackIdx < musicTracks.length - 1 ? currentTrackIdx + 1 : 0;
                 playMusicTrack(idx);
             });
+
             dom.volumeSlider.addEventListener('input', (e) => {
                 const vol = parseFloat(e.target.value) / 100;
                 if (audioElement) audioElement.volume = vol;
@@ -6705,12 +6515,23 @@
                 else if (vol < 0.7) icon.className = 'fas fa-volume-down';
                 else icon.className = 'fas fa-volume-up';
             });
+
             dom.progressBar.addEventListener('input', (e) => {
                 if (!audioElement || !audioElement.duration) return;
                 const val = parseFloat(e.target.value);
                 const dur = audioElement.duration;
-                if (dur > 0) audioElement.currentTime = (val / 100) * dur;
+                if (dur > 0) {
+                    audioElement.currentTime = (val / 100) * dur;
+                    if (navigator.mediaSession && navigator.mediaSession.setPositionState) {
+                        navigator.mediaSession.setPositionState({
+                            duration: dur,
+                            playbackRate: 1.0,
+                            position: (val / 100) * dur
+                        });
+                    }
+                }
             });
+
             dom.clearPlaylistBtn.addEventListener('click', async () => {
                 if (musicTracks.length === 0) return;
                 if (!confirm('Clear all tracks from storage?')) return;
@@ -6720,8 +6541,10 @@
                 dom.playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 if (musicAnimId) cancelAnimationFrame(musicAnimId);
                 musicCtx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
-                if (musicProgressInterval) { clearInterval(musicProgressInterval);
-                    musicProgressInterval = null; }
+                if (musicProgressInterval) {
+                    clearInterval(musicProgressInterval);
+                    musicProgressInterval = null;
+                }
                 try {
                     await clearAllTracksFromDB();
                     musicTracks = [];
@@ -6733,8 +6556,11 @@
                     dom.progressBar.value = 0;
                     updatePlaylistUI();
                     showToast('All tracks cleared from storage', 'fa-trash', 1500);
-                } catch (e) { showToast('Error clearing tracks: ' + e.message, 'fa-exclamation-circle', 2000); }
+                } catch (e) {
+                    showToast('Error clearing tracks: ' + e.message, 'fa-exclamation-circle', 2000);
+                }
             });
+
             dom.shuffleBtn.addEventListener('click', () => {
                 if (musicTracks.length < 2) return;
                 for (let i = musicTracks.length - 1; i > 0; i--) {
@@ -6744,6 +6570,7 @@
                 updatePlaylistUI();
                 showToast('Shuffled!', 'fa-shuffle', 1000);
             });
+
             dom.repeatBtn.addEventListener('click', () => {
                 repeatMode = (repeatMode + 1) % 3;
                 if (repeatMode === 0) {
@@ -6762,14 +6589,49 @@
                 }
             });
 
+            // ── Demo: run MediaCapabilities check on startup ──
+            (async function testMediaCapabilities() {
+                try {
+                    const testFormats = [
+                        'audio/mpeg',
+                        'audio/mp4; codecs="mp4a.40.2"',
+                        'audio/ogg; codecs="vorbis"',
+                        'audio/flac',
+                        'audio/webm; codecs="opus"',
+                        'audio/aac',
+                        'audio/wav',
+                        'audio/x-ms-wma'
+                    ];
+                    console.log('📊 MediaCapabilities Audio Decoding Test:');
+                    for (const mime of testFormats) {
+                        const result = await checkAudioDecoding(mime, 2, 128000, 44100);
+                        console.log(
+                            `  ${mime} → ${result.supported ? '✅' : '❌'} (smooth: ${result.smooth}, efficient: ${result.powerEfficient})`
+                            );
+                    }
+                } catch (e) { console.warn('MediaCapabilities test skipped:', e.message); }
+            })();
+
+            if ('Notification' in window && Notification.permission === 'default') {
+                setTimeout(() => {
+                    Notification.requestPermission().then(perm => {
+                        console.log('Notification permission:', perm);
+                    });
+                }, 5000);
+            }
+
             // ── THEME MODAL ──
             function openThemeModal() { dom.themeModal.classList.add('open'); }
 
             function closeThemeModal() { dom.themeModal.classList.remove('open'); }
+
             dom.headerThemeBtn.addEventListener('click', openThemeModal);
             dom.modalClose.addEventListener('click', closeThemeModal);
             dom.closeModalBtn.addEventListener('click', closeThemeModal);
-            dom.themeModal.addEventListener('click', (e) => { if (e.target === dom.themeModal) closeThemeModal(); });
+            dom.themeModal.addEventListener('click', (e) => {
+                if (e.target === dom.themeModal) closeThemeModal();
+            });
+
             dom.applyCustomBtn.addEventListener('click', () => {
                 const colors = {
                     primary: dom.customPrimary.value,
@@ -6785,6 +6647,7 @@
                 document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
                 showToast('Custom theme applied!', 'fa-check-circle', 1500);
             });
+
             dom.resetThemeBtn.addEventListener('click', () => {
                 resetSystemTheme();
                 showToast('Theme reset to corporate', 'fa-undo', 1500);
@@ -6793,12 +6656,15 @@
             // ── SETTINGS MODAL ──
             dom.settingsToggle.addEventListener('click', () => dom.settingsModal.classList.add('open'));
             dom.settingsClose.addEventListener('click', () => dom.settingsModal.classList.remove('open'));
-            dom.settingsModal.addEventListener('click', (e) => { if (e.target === dom.settingsModal) dom.settingsModal
-                    .classList.remove('open'); });
+            dom.settingsModal.addEventListener('click', (e) => {
+                if (e.target === dom.settingsModal) dom.settingsModal.classList.remove('open');
+            });
+
             dom.providerSelect.addEventListener('change', () => {
                 localStorage.setItem('provider', dom.providerSelect.value);
                 showToast('Provider saved!', 'fa-check-circle', 1500);
             });
+
             dom.saveOpenRouterKey.addEventListener('click', () => {
                 const key = dom.openRouterKey.value.trim();
                 if (!key) { showToast('Please enter a valid key', 'fa-exclamation-circle', 2000); return; }
@@ -6806,83 +6672,42 @@
                 showToast('OpenRouter key saved! 🔐', 'fa-check-circle', 1500);
                 fetchOpenRouterModels();
             });
+
             dom.saveGeminiKey.addEventListener('click', () => {
                 const key = dom.geminiKey.value.trim();
                 if (!key) { showToast('Please enter a valid key', 'fa-exclamation-circle', 2000); return; }
                 localStorage.setItem('geminiKey', key);
                 showToast('Gemini key saved! 🔐', 'fa-check-circle', 1500);
             });
+
             dom.savePollinationsKey.addEventListener('click', () => {
                 const key = dom.pollinationsKey.value.trim();
                 localStorage.setItem('pollinationsKey', key);
                 showToast('Pollinations key saved! 🔐', 'fa-check-circle', 1500);
             });
+
             dom.refreshModelsBtn.addEventListener('click', fetchOpenRouterModels);
+
             dom.refreshPollinationsModels.addEventListener('click', () => {
                 const select = dom.pollinationsModelSelect;
                 const currentVal = select.value;
                 showToast('Models list refreshed', 'fa-sync', 1500);
                 if (currentVal) select.value = currentVal;
             });
+
             dom.openRouterModelSelect.addEventListener('change', () => {
                 const val = dom.openRouterModelSelect.value;
                 localStorage.setItem('selectedModel', val);
             });
+
             dom.geminiModelSelect.addEventListener('change', () => {
                 const val = dom.geminiModelSelect.value;
                 localStorage.setItem('selectedGeminiModel', val);
             });
-            dom.darkModeToggle.addEventListener('change', (e) => { applyDarkMode(e.target.checked); });
 
-            // ── SERVICE WORKER REGISTRATION ──
-            const swCode = `
-                const CACHE_NAME = 'pwa-cache-v1';
-                const ASSETS_TO_CACHE = ['/'];
-
-                self.addEventListener('install', event => {
-                    event.waitUntil(
-                        caches.open(CACHE_NAME)
-                            .then(cache => cache.addAll(ASSETS_TO_CACHE))
-                            .then(() => self.skipWaiting())
-                    );
-                });
-
-                self.addEventListener('activate', event => {
-                    event.waitUntil(
-                        caches.keys().then(cacheNames => {
-                            return Promise.all(
-                                cacheNames.map(cache => {
-                                    if (cache !== CACHE_NAME) {
-                                        console.log('Removing old cache:', cache);
-                                        return caches.delete(cache);
-                                    }
-                                })
-                            );
-                        }).then(() => self.clients.claim())
-                    );
-                });
-
-                self.addEventListener('fetch', event => {
-                    event.respondWith(
-                        caches.match(event.request)
-                            .then(cachedResponse => {
-                                return cachedResponse || fetch(event.request);
-                            })
-                    );
-                });
-            `;
-
-            if ('serviceWorker' in navigator) {
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                navigator.serviceWorker.register(swUrl, { scope: '/' })
-                    .then(registration => {
-                        console.log('✅ Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('❌ Service Worker registration failed:', error);
-                    });
-            }
+            dom.darkModeToggle.addEventListener('change', (e) => {
+                applyDarkMode(e.target.checked);
+            });
 
             // ── INIT ──
             async function init() {
@@ -6891,7 +6716,6 @@
                 buildThemeGallery();
                 init3DEmojiPicker();
                 try { await loadPlaylistFromDB(); } catch (e) { console.warn('Error loading playlist:', e); }
-                setLogoState('ready');
                 showToast('HEX AI is ready! 🚀', 'fa-rocket', 2000);
             }
 
