@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
     <title>HEX AI — All-in-One</title>
 
-    <!-- ===== PWA MANIFEST (embedded as data URI) ===== -->
-    <link rel="manifest" href='data:application/json;base64,ewogICJuYW1lIjogIkhFWCBBSSIsCiAgInNob3J0X25hbWUiOiAiSEVYIEFJIiwKICAic3RhcnRfdXJsIjogImh0dHBzOi8vaGV4c2xldXRoLmdpdGh1Yi5pby9IRVhBSS1BbGwtaW4tT25lLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzE4MTgyMCIsCiAgInRoZW1lX2NvbG9yIjogIiM0YjZiZmIiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzIwJyBmaWxsPSclMjM0YjZiZmInLz48dGV4dCB4PSc1MCcgeT0nNjUnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nNTAnIGZpbGw9J3doaXRlJz7imqA8L3RleHQ+PC9zdmc+IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCB3aWR0aD0nMTAwJyBoZWlnaHQ9JzEwMCcgcng9JzIwJyBmaWxsPSclMjM0YjZiZmInLz48dGV4dCB4PSc1MCcgeT0nNjUnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nNTAnIGZpbGw9J3doaXRlJz7imqA8L3RleHQ+PC9zdmc+IiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==' />
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTK7ZL9PR8">
     </script>
     <script>
@@ -3630,186 +3627,6 @@
         .app-footer a:hover {
             opacity: 0.7;
         }
-
-        /* ===== PWA INSTALL BAR ===== */
-        .pwa-install-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 10000;
-            background: var(--base-100);
-            border-top: 2px solid var(--primary);
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-            padding: 10px 16px;
-            display: none;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 8px;
-            backdrop-filter: blur(12px);
-            animation: slideUpBar 0.4s ease;
-        }
-        .pwa-install-bar.visible {
-            display: flex;
-        }
-        @keyframes slideUpBar {
-            from {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        .pwa-install-bar .install-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-            min-width: 140px;
-        }
-        .pwa-install-bar .install-left .icon-big {
-            font-size: 28px;
-            color: var(--primary);
-        }
-        .pwa-install-bar .install-left .info h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin: 0;
-            color: var(--base-content);
-        }
-        .pwa-install-bar .install-left .info p {
-            font-size: 12px;
-            margin: 0;
-            color: var(--base-content);
-            opacity: 0.6;
-        }
-        .pwa-install-bar .install-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .pwa-install-bar .install-right .btn-install {
-            padding: 8px 22px;
-            border-radius: var(--radius-sm);
-            border: none;
-            background: var(--primary);
-            color: var(--base-100);
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .pwa-install-bar .install-right .btn-install:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 16px rgba(75, 107, 251, 0.25);
-        }
-        .pwa-install-bar .install-right .btn-install:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        .pwa-install-bar .install-right .btn-dismiss {
-            padding: 8px 16px;
-            border-radius: var(--radius-sm);
-            border: none;
-            background: var(--base-200);
-            color: var(--base-content);
-            font-weight: 500;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-        .pwa-install-bar .install-right .btn-dismiss:hover {
-            background: var(--base-300);
-        }
-        .pwa-install-bar .install-right .btn-apk {
-            padding: 8px 18px;
-            border-radius: var(--radius-sm);
-            border: none;
-            background: var(--success);
-            color: #fff;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .pwa-install-bar .install-right .btn-apk:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 16px rgba(54, 211, 153, 0.25);
-        }
-        @media (max-width:640px) {
-            .pwa-install-bar {
-                padding: 8px 12px;
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .pwa-install-bar .install-left .icon-big {
-                font-size: 22px;
-            }
-            .pwa-install-bar .install-left .info h4 {
-                font-size: 13px;
-            }
-            .pwa-install-bar .install-right {
-                justify-content: stretch;
-            }
-            .pwa-install-bar .install-right .btn-install,
-            .pwa-install-bar .install-right .btn-apk,
-            .pwa-install-bar .install-right .btn-dismiss {
-                flex: 1;
-                justify-content: center;
-                font-size: 13px;
-                padding: 8px 12px;
-            }
-        }
-        .pwa-toast {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 99999;
-            padding: 12px 24px;
-            border-radius: var(--radius-sm);
-            background: var(--base-100);
-            border: 1px solid var(--base-300);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-            color: var(--base-content);
-            font-size: 14px;
-            font-weight: 500;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            animation: toastIn 0.3s ease;
-            backdrop-filter: blur(8px);
-        }
-        .pwa-toast.visible {
-            display: flex;
-        }
-        .pwa-toast i {
-            color: var(--primary);
-        }
-        .pwa-toast .close-toast {
-            background: none;
-            border: none;
-            color: var(--base-content);
-            opacity: 0.4;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 0 4px;
-            transition: opacity 0.25s ease;
-        }
-        .pwa-toast .close-toast:hover {
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
@@ -4043,7 +3860,7 @@
 
         <!-- ===== FOOTER ===== -->
         <footer class="app-footer">
-            <a href="https://hexsleuth.github.io/HEXAI-All-in-One/" target="_blank">Powered By HEX AI</a>
+            <a href="https://hexsleuth.github.io/hexai_webapp/" target="_blank">Powered By HEX AI</a>
         </footer>
 
     </div>
@@ -4313,7 +4130,7 @@
                             <button class="btn-sm primary" id="saveGeminiKey"><i class="fas fa-save"></i> Save</button>
                         </div>
                     </div>
-                    <!-- Pollinations (UPGRADED with refresh button) -->
+                    <!-- Pollinations -->
                     <div class="provider-card">
                         <div class="card-header">
                             <i class="fas fa-flower"></i> Pollinations.ai
@@ -4403,7 +4220,6 @@
                         </div>
                         <div class="card-actions">
                             <button class="btn-sm primary" id="savePollinationsKey"><i class="fas fa-save"></i> Save</button>
-                            <button class="btn-sm success" id="refreshPollinationsBtn"><i class="fas fa-sync"></i> Refresh Models</button>
                         </div>
                         <div class="model-status"><i class="fas fa-globe"></i> Base URL: https://gen.pollinations.ai</div>
                         <div class="model-status"><i class="fas fa-check" style="color:var(--success);"></i> No key required for text &amp; image</div>
@@ -4442,29 +4258,6 @@
 
     <!-- ===== TOAST ===== -->
     <div class="toast-container" id="toastContainer"></div>
-
-    <!-- ===== PWA INSTALL BAR ===== -->
-    <div class="pwa-install-bar" id="pwaInstallBar">
-        <div class="install-left">
-            <div class="icon-big"><i class="fas fa-hexagon"></i></div>
-            <div class="info">
-                <h4>Install HEX AI</h4>
-                <p>Get the full app experience with offline support</p>
-            </div>
-        </div>
-        <div class="install-right">
-            <button class="btn-apk" id="downloadApkBtn"><i class="fas fa-download"></i> APK</button>
-            <button class="btn-install" id="installPwaBtn"><i class="fas fa-download"></i> Install App</button>
-            <button class="btn-dismiss" id="dismissInstallBar">Not now</button>
-        </div>
-    </div>
-
-    <!-- ===== PWA TOAST ===== -->
-    <div class="pwa-toast" id="pwaToast">
-        <i class="fas fa-hexagon"></i>
-        <span id="pwaToastMsg">HEX AI is ready to install!</span>
-        <button class="close-toast" id="closePwaToast">✕</button>
-    </div>
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
@@ -4725,7 +4518,6 @@
                 savePollinationsKey: $('#savePollinationsKey'),
                 refreshModelsBtn: $('#refreshModelsBtn'),
                 refreshPollinationsModels: $('#refreshPollinationsModels'),
-                refreshPollinationsBtn: $('#refreshPollinationsBtn'),
                 openRouterModelSelect: $('#openRouterModelSelect'),
                 modelStatus: $('#modelStatus'),
                 darkModeToggle: $('#darkModeToggle'),
@@ -4798,13 +4590,6 @@
                 panels: $$('.panel'),
                 toastContainer: $('#toastContainer'),
                 fileInputHidden: $('#fileInput'),
-                pwaInstallBar: $('#pwaInstallBar'),
-                installPwaBtn: $('#installPwaBtn'),
-                dismissInstallBar: $('#dismissInstallBar'),
-                downloadApkBtn: $('#downloadApkBtn'),
-                pwaToast: $('#pwaToast'),
-                pwaToastMsg: $('#pwaToastMsg'),
-                closePwaToast: $('#closePwaToast'),
             };
 
             function showToast(msg, icon = 'fa-info-circle', duration = 2500) {
@@ -5897,7 +5682,13 @@
                 dom.pdfFileInput.value = '';
             });
 
-            // ── MUSIC PLAYER ──
+            // ================================================================
+            //  🎵 MUSIC PLAYER — Enhanced with full audio format support
+            //  & MediaCapabilities API + Web Media API (Media Session)
+            //  Now using native HTML5 Audio for maximum cross-browser compatibility
+            // ================================================================
+
+            // ── Comprehensive Audio Format Library ──
             const audioFormats = {
                 'AAC': { mime: 'audio/aac', codec: 'aac', ext: 'aac', desc: 'Advanced Audio Coding' },
                 'AAC_MP2': { mime: 'audio/mpeg', codec: 'mp4a.40.2', ext: 'aac', desc: 'AAC, MPEG-2' },
@@ -6004,6 +5795,7 @@
                 'audio/x-midi': { mime: 'audio/x-midi', codec: 'midi', ext: 'mid', desc: 'MIDI (x-midi)' },
             };
 
+            // ── MediaCapabilities API Integration ──
             async function checkAudioDecoding(mimeType, channels = 2, bitrate = 128000, samplerate = 44100) {
                 if (!navigator.mediaCapabilities) {
                     console.warn('MediaCapabilities API not supported in this browser');
@@ -6030,6 +5822,7 @@
                 }
             }
 
+            // ── Detect audio format from file ──
             function detectAudioFormat(file) {
                 const fileName = file.name.toLowerCase();
                 const mimeType = file.type;
@@ -6044,6 +5837,7 @@
                 return { mime: mimeType || 'audio/mpeg', codec: 'mp3', ext: 'mp3', desc: 'Unknown audio' };
             }
 
+            // ── Music Player State ──
             let musicTracks = [];
             let currentTrackIdx = -1;
             let isMusicPlaying = false;
@@ -6052,12 +5846,15 @@
             let musicGain = null;
             let musicProgressInterval = null;
             let musicAnimId = null;
-            let audioElement = null;
+            let audioElement = null; // Native HTML5 Audio element
+
+            // Repeat mode: 0 = off, 1 = repeat all, 2 = repeat one
             let repeatMode = 0;
 
             const musicCanvas = dom.visualizerCanvas;
             const musicCtx = musicCanvas.getContext('2d');
 
+            // ── IndexedDB Setup ──
             const DB_NAME = 'HexMusicDB';
             const DB_VERSION = 1;
             const STORE_NAME = 'tracks';
@@ -6157,6 +5954,7 @@
                 });
             }
 
+            // ── Music Player Functions ──
             function resizeMusicCanvas() {
                 const rect = musicCanvas.parentElement.getBoundingClientRect();
                 musicCanvas.width = musicCanvas.parentElement.clientWidth || 400;
@@ -6235,6 +6033,7 @@
                 return `${m}:${s.toString().padStart(2,'0')}`;
             }
 
+            // ── Media Session API Integration ──
             function setupMediaSession(track) {
                 if (!navigator.mediaSession) {
                     console.warn('Media Session API not supported in this browser');
@@ -6325,6 +6124,7 @@
                 console.log('Media Session API activated for:', title);
             }
 
+            // ── Show Music Note Notification ──
             function showMusicNotification(track) {
                 try {
                     if (!('Notification' in window)) {
@@ -6360,6 +6160,7 @@
                 } catch (e) { console.warn('Notification error:', e); }
             }
 
+            // ── Setup Visualizer using Web Audio API ──
             function setupVisualizer() {
                 try {
                     if (!audioElement) return;
@@ -6369,6 +6170,7 @@
                     if (audioCtx.state === 'suspended') {
                         audioCtx.resume();
                     }
+                    // Create a source from the audio element
                     const source = audioCtx.createMediaElementSource(audioElement);
                     musicAnalyser = audioCtx.createAnalyser();
                     musicAnalyser.fftSize = 128;
@@ -6386,6 +6188,7 @@
                 }
             }
 
+            // ── Play a track ──
             function playMusicTrack(index) {
                 if (index < 0 || index >= musicTracks.length) return;
                 if (musicProgressInterval) {
@@ -6612,6 +6415,7 @@
                 }
             }
 
+            // ── Upload with format detection ──
             dom.uploadArea.addEventListener('click', () => dom.audioInput.click());
             dom.audioInput.addEventListener('change', async (e) => {
                 const files = Array.from(e.target.files);
@@ -6657,6 +6461,7 @@
                 }
             });
 
+            // ── Player Controls ──
             dom.playBtn.addEventListener('click', () => {
                 if (!audioElement) {
                     if (musicTracks.length === 0) {
@@ -6784,6 +6589,7 @@
                 }
             });
 
+            // ── Demo: run MediaCapabilities check on startup ──
             (async function testMediaCapabilities() {
                 try {
                     const testFormats = [
@@ -6889,16 +6695,6 @@
                 if (currentVal) select.value = currentVal;
             });
 
-            // ── UPGRADED POLLINATIONS REFRESH BUTTON ──
-            dom.refreshPollinationsBtn.addEventListener('click', () => {
-                const select = dom.pollinationsModelSelect;
-                const currentVal = select.value;
-                // Simulate refresh by reloading the same options (they're already there)
-                showToast('Pollinations models refreshed! ✅', 'fa-sync', 1500);
-                // Optionally re-select the previous value
-                if (currentVal) select.value = currentVal;
-            });
-
             dom.openRouterModelSelect.addEventListener('change', () => {
                 const val = dom.openRouterModelSelect.value;
                 localStorage.setItem('selectedModel', val);
@@ -6913,205 +6709,6 @@
                 applyDarkMode(e.target.checked);
             });
 
-            // ================================================================
-            //  🚀 PWA INSTALLATION LOGIC
-            // ================================================================
-
-            let deferredPrompt = null;
-            const installBar = dom.pwaInstallBar;
-            const installBtn = dom.installPwaBtn;
-            const dismissBtn = dom.dismissInstallBar;
-            const pwaToast = dom.pwaToast;
-            const pwaToastMsg = dom.pwaToastMsg;
-            const closePwaToast = dom.closePwaToast;
-            const apkBtn = dom.downloadApkBtn;
-            const toastContainer = dom.toastContainer;
-
-            function showPwaToast(msg, icon = 'fa-hexagon') {
-                pwaToastMsg.textContent = msg;
-                pwaToast.querySelector('i').className = `fas ${icon}`;
-                pwaToast.classList.add('visible');
-                if (window._pwaToastTimeout) clearTimeout(window._pwaToastTimeout);
-                window._pwaToastTimeout = setTimeout(() => {
-                    pwaToast.classList.remove('visible');
-                }, 6000);
-            }
-
-            function hidePwaToast() {
-                pwaToast.classList.remove('visible');
-                if (window._pwaToastTimeout) {
-                    clearTimeout(window._pwaToastTimeout);
-                    window._pwaToastTimeout = null;
-                }
-            }
-
-            closePwaToast.addEventListener('click', hidePwaToast);
-
-            function showInstallBar() {
-                installBar.classList.add('visible');
-                showPwaToast('📲 HEX AI is ready to install — tap "Install App" below!', 'fa-hexagon');
-            }
-
-            function hideInstallBar() {
-                installBar.classList.remove('visible');
-                hidePwaToast();
-            }
-
-            dismissBtn.addEventListener('click', () => {
-                hideInstallBar();
-                try {
-                    localStorage.setItem('pwa-install-dismissed', 'true');
-                } catch (_) {}
-                showToast('Installation dismissed. You can install later via the browser menu.', 'fa-info-circle',
-                    2500);
-            });
-
-            installBtn.addEventListener('click', async () => {
-                if (deferredPrompt) {
-                    try {
-                        const result = await deferredPrompt.prompt();
-                        console.log('Install prompt result:', result);
-                        const choice = await deferredPrompt.userChoice;
-                        console.log('User choice:', choice.outcome);
-                        if (choice.outcome === 'accepted') {
-                            showPwaToast('✅ HEX AI installed successfully! 🎉', 'fa-check-circle');
-                            hideInstallBar();
-                            try {
-                                gtag('event', 'pwa_install', {
-                                    'event_category': 'PWA',
-                                    'event_label': 'install_accepted'
-                                });
-                            } catch (_) {}
-                        } else {
-                            showPwaToast('Installation declined. You can install later.', 'fa-info-circle');
-                        }
-                        deferredPrompt = null;
-                    } catch (err) {
-                        console.error('Install error:', err);
-                        showPwaToast('⚠️ Installation error: ' + err.message, 'fa-exclamation-circle');
-                    }
-                } else {
-                    showPwaToast('📱 To install: open browser menu → "Add to Home Screen" or "Install App"',
-                        'fa-info-circle');
-                }
-            });
-
-            apkBtn.addEventListener('click', () => {
-                const apkName = 'HEX_AI_webview.apk';
-                const content = `
-        ====================================================
-        HEX AI - WebView APK Installer
-        ====================================================
-
-        To install HEX AI as a native Android app:
-
-        1. Open this page in Chrome on Android
-        2. Tap the "Install App" button in the install bar
-        3. Or use Chrome menu → "Add to Home Screen"
-
-        For a full APK build:
-        - Use Bubblewrap (https://github.com/GoogleChromeLabs/bubblewrap)
-        - Or use PWABuilder (https://pwabuilder.com)
-
-        This PWA works offline and supports:
-        ✅ AI Chat (multiple providers)
-        ✅ Image & Video generation
-        ✅ Text processing & translation
-        ✅ Audio & Voice features
-        ✅ Music player with visualizer
-        ✅ 33 themes & effects gallery
-
-        URL: ${window.location.href}
-        Version: 2.0
-        Build: ${new Date().toISOString()}
-        ====================================================
-        `;
-
-                const blob = new Blob([content], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = apkName;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                setTimeout(() => URL.revokeObjectURL(url), 10000);
-
-                showToast('📦 APK info downloaded! Follow instructions inside.', 'fa-download', 3000);
-            });
-
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                console.log('📲 PWA install prompt captured.');
-                try {
-                    const dismissed = localStorage.getItem('pwa-install-dismissed');
-                    if (dismissed === 'true') {
-                        return;
-                    }
-                } catch (_) {}
-                showInstallBar();
-                showPwaToast('📲 Install HEX AI for offline use!', 'fa-hexagon');
-            });
-
-            window.addEventListener('appinstalled', (e) => {
-                console.log('✅ PWA installed successfully!');
-                hideInstallBar();
-                showPwaToast('🎉 HEX AI installed! Thank you for choosing HEX AI.', 'fa-check-circle');
-                try {
-                    gtag('event', 'pwa_installed', {
-                        'event_category': 'PWA',
-                        'event_label': 'install_success'
-                    });
-                } catch (_) {}
-                try {
-                    localStorage.removeItem('pwa-install-dismissed');
-                } catch (_) {}
-            });
-
-            if (window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true) {
-                console.log('📱 HEX AI is running in standalone (installed) mode.');
-                hideInstallBar();
-                setTimeout(() => {
-                    showPwaToast('🎉 Welcome back to HEX AI!', 'fa-hexagon');
-                }, 1000);
-            }
-
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/sw.js')
-                        .then(registration => {
-                            console.log('✅ Service Worker registered with scope:', registration.scope);
-                            registration.update();
-                        })
-                        .catch(err => {
-                            console.warn('❌ Service Worker registration failed:', err);
-                            const swPath = location.pathname.replace(/[^\/]*$/, '') + 'sw.js';
-                            navigator.serviceWorker.register(swPath)
-                                .then(reg => {
-                                    console.log('✅ Service Worker registered (fallback) with scope:',
-                                        reg.scope);
-                                })
-                                .catch(e => {
-                                    console.warn('❌ Service Worker fallback also failed:', e);
-                                });
-                        });
-
-                    navigator.serviceWorker.ready.then(registration => {
-                        registration.addEventListener('updatefound', () => {
-                            const newWorker = registration.installing;
-                            newWorker.addEventListener('statechange', () => {
-                                if (newWorker.state === 'installed' &&
-                                    navigator.serviceWorker.controller) {
-                                    showPwaToast('🔄 Update available! Close & reopen to apply.',
-                                        'fa-sync');
-                                }
-                            });
-                        });
-                    });
-                });
-            }
-
             // ── INIT ──
             async function init() {
                 loadSavedTheme();
@@ -7119,23 +6716,7 @@
                 buildThemeGallery();
                 init3DEmojiPicker();
                 try { await loadPlaylistFromDB(); } catch (e) { console.warn('Error loading playlist:', e); }
-                setTimeout(() => {
-                    showToast('HEX AI is ready! 🚀', 'fa-rocket', 2000);
-                }, 500);
-
-                if (!installBar.classList.contains('visible') && !window.matchMedia(
-                        '(display-mode: standalone)').matches && !navigator.standalone) {
-                    try {
-                        const dismissed = localStorage.getItem('pwa-install-dismissed');
-                        if (dismissed !== 'true') {
-                            setTimeout(() => {
-                                showPwaToast('💡 Install HEX AI for offline access! Tap the install bar below.',
-                                    'fa-hexagon');
-                                showInstallBar();
-                            }, 4000);
-                        }
-                    } catch (_) {}
-                }
+                showToast('HEX AI is ready! 🚀', 'fa-rocket', 2000);
             }
 
             document.addEventListener('DOMContentLoaded', init);
