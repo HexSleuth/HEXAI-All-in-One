@@ -6722,6 +6722,630 @@
 
         })();
     </script>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ==========================================================
+     CONFIGURATION
+     ========================================================== */
+  var ACP = {
+    /* --- interaction shields --- */
+    rightClick       : true,
+    selection        : true,
+    copyCutPaste     : true,
+    dragDrop         : true,
+    selectAll        : true,
+    findOnPage       : false,
+    savePage         : true,
+    printKeys        : true,
+    viewSource       : true,
+    devtoolsKeys     : true,
+
+    /* --- advanced client-side security --- */
+    frameBust        : true,
+    iframeBlock      : true,
+    watermark        : true,
+    watermarkText    : "",                 // "" = auto host + date
+    clipboardPoison  : true,
+    printScreenTrap  : true,
+    consoleTrap      : true,
+    devtoolsDetect   : true,
+    debuggerTrap     : false,
+    lockOnDevtools   : true,
+    blurOnBlur       : true,
+    contextPoison    : true,
+    mutationGuard    : true,
+    disableImgMenu   : true,
+    killDrop         : true,
+
+    /* --- UX / look --- */
+    keepFormsUsable  : true,
+    showToast        : true,
+    toastText        : "This content is protected.",
+
+    /* --- Font Awesome icon classes (fa-solid) --- */
+    iconToast        : "fa-shield-halved",
+    iconGuard        : "fa-lock",
+    iconWatermark    : "fa-shield-halved",
+    iconPill         : "fa-circle-exclamation",
+
+    /* --- Console banner --- */
+    consoleMessage : "%c⛔ STOP! This content is protected. Unauthorized copying is prohibited.",
+    consoleStyle   : "color:#ff4d6d; font-size:20px; font-weight:bold; text-shadow:0 0 8px rgba(255,77,109,.6);",
+
+    /* --- Asset loader --- */
+    fontAwesomeURL : "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  };
+  /* ========================================================== */
+
+
+  /* ---------------- helpers ---------------- */
+  var doc = document, win = window;
+  var toastEl, toastIcon, toastText, guardEl, wmEl;
+  var toastTimer, lastToast = 0;
+
+  function on(el, type, fn, cap){
+    if (!el) return;
+    if (el.addEventListener) el.addEventListener(type, fn, !!cap);
+    else if (el.attachEvent) el.attachEvent("on" + type, fn);
+  }
+
+  function isEditable(el){
+    if (!el || el.nodeType !== 1) return false;
+    if (el.isContentEditable) return true;
+    var t = el.tagName;
+    return t === "INPUT" || t === "TEXTAREA" || t === "SELECT";
+  }
+
+  function block(e){
+    if (!e) return false;
+    if (e.preventDefault) e.preventDefault();
+    if (e.stopPropagation) e.stopPropagation();
+    e.returnValue = false;
+    return false;
+  }
+
+  function fa(icon){
+    var i = doc.createElement("i");
+    i.className = "fa-solid " + icon;
+    i.setAttribute("aria-hidden", "true");
+    return i;
+  }
+
+  function toast(msg){
+    if (!ACP.showToast || !toastEl) return;
+    var now = Date.now();
+    if (now - lastToast < 650) return;
+    lastToast = now;
+    toastText.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){
+      toastEl.classList.remove("show");
+    }, 1800);
+  }
+
+
+  /* ==========================================================
+     0. ASSET + STYLE INJECTION
+     ========================================================== */
+  function injectCSS(css){
+    var s = doc.createElement("style");
+    s.setAttribute("type", "text/css");
+    s.setAttribute("data-acp", "styles");
+    if (s.styleSheet) s.styleSheet.cssText = css;
+    else s.appendChild(doc.createTextNode(css));
+    (doc.head || doc.documentElement).appendChild(s);
+  }
+
+  function loadFontAwesome(){
+    if (!ACP.fontAwesomeURL) return;
+    var l = doc.createElement("link");
+    l.rel = "stylesheet";
+    l.href = ACP.fontAwesomeURL;
+    l.crossOrigin = "anonymous";
+    l.referrerPolicy = "no-referrer";
+    (doc.head || doc.documentElement).appendChild(l);
+  }
+
+  function injectWidgetStyles(){
+    injectCSS([
+      '.acp-toast{',
+        'position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);',
+        'display:flex;align-items:center;gap:10px;max-width:min(92vw,470px);',
+        'padding:12px 18px;border-radius:999px;',
+        'background:rgba(17,19,26,.95);color:#fff;',
+        'font:600 14px/1.35 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;',
+        'border:1px solid rgba(255,77,109,.45);',
+        'box-shadow:0 14px 38px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.04) inset;',
+        'opacity:0;pointer-events:none;z-index:2147483000;',
+        'transition:opacity .25s ease,transform .25s ease;',
+        '-webkit-user-select:none;user-select:none;',
+      '}',
+      '.acp-toast.show{opacity:1;transform:translate(-50%,0)}',
+      '.acp-toast-icon{display:inline-flex;align-items:center;color:#ff4d6d;font-size:16px;line-height:1}',
+      '.acp-toast-text{display:inline-block}',
+
+      '.acp-guard{',
+        'position:fixed;top:0;left:0;right:0;bottom:0;',
+        'display:none;align-items:center;justify-content:center;padding:24px;',
+        'background:rgba(8,10,16,.86);text-align:center;',
+        '-webkit-backdrop-filter:blur(16px) saturate(120%);',
+        'backdrop-filter:blur(16px) saturate(120%);',
+        'z-index:2147483600;',
+      '}',
+      'body.acp-locked .acp-guard{display:flex}',
+      'body.acp-locked{overflow:hidden}',
+      '.acp-guard-box{',
+        'max-width:440px;padding:34px 30px 30px;border-radius:20px;',
+        'background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));',
+        'border:1px solid rgba(255,255,255,.12);',
+        'box-shadow:0 40px 90px rgba(0,0,0,.6);',
+        'font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#e7ebf3;',
+      '}',
+      '.acp-guard-icon{',
+        'width:64px;height:64px;margin:0 auto 18px;border-radius:50%;',
+        'display:flex;align-items:center;justify-content:center;font-size:26px;color:#ff4d6d;',
+        'background:rgba(255,77,109,.12);border:1px solid rgba(255,77,109,.35);',
+      '}',
+      '.acp-guard-title{margin:0 0 8px;font-size:20px;letter-spacing:-.01em}',
+      '.acp-guard-sub{margin:0 0 18px;color:#9aa3b2;font-size:14px;line-height:1.6}',
+      '.acp-guard-pill{',
+        'display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;',
+        'font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;',
+        'color:#ff4d6d;background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.3);',
+      '}',
+
+      '#acp-watermark{',
+        'position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147482000;',
+        'pointer-events:none;overflow:hidden;opacity:.10;',
+        'display:flex;flex-wrap:wrap;align-content:flex-start;',
+        'gap:44px 34px;padding:34px;',
+        'font:700 12.5px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;',
+        'color:#ffffff;mix-blend-mode:overlay;',
+        '-webkit-user-select:none;user-select:none;',
+      '}',
+      '#acp-watermark span{',
+        'display:inline-flex;align-items:center;gap:7px;white-space:nowrap;',
+        'transform:rotate(-24deg);',
+        '-webkit-user-drag:none;',
+      '}',
+      '#acp-watermark i{font-size:11px}',
+
+      'body.acp-blur > *:not(.acp-toast):not(.acp-guard):not(#acp-watermark){',
+        'filter:blur(9px);transition:filter .22s ease;',
+        '-webkit-user-select:none;user-select:none;',
+      '}',
+
+      '@media print{',
+        '.acp-toast,.acp-guard{display:none !important}',
+        '#acp-watermark{opacity:.2}',
+      '}',
+
+      '@media (prefers-reduced-motion: reduce){',
+        '.acp-toast{transition:none}',
+      '}'
+    ].join(""));
+  }
+
+
+  /* ==========================================================
+     1. ANTI-IFRAME / FRAME BUST
+     ========================================================== */
+  function antiFrame(){
+    try{
+      if (win.top !== win.self){
+        if (ACP.frameBust) win.top.location = win.self.location.href;
+        if (ACP.iframeBlock) doc.documentElement.style.display = "none";
+      }
+    }catch(e){
+      if (ACP.iframeBlock) doc.documentElement.style.display = "none";
+    }
+  }
+
+
+  /* ==========================================================
+     2. UI — TOAST + LOCK SCREEN
+     ========================================================== */
+  function buildUI(){
+    if (!doc.body) return;
+
+    toastEl = doc.createElement("div");
+    toastEl.className = "acp-toast";
+    toastEl.setAttribute("role", "status");
+    toastEl.setAttribute("aria-live", "polite");
+
+    toastIcon = doc.createElement("span");
+    toastIcon.className = "acp-toast-icon";
+    toastIcon.appendChild(fa(ACP.iconToast));
+
+    toastText = doc.createElement("span");
+    toastText.className = "acp-toast-text";
+    toastText.textContent = ACP.toastText;
+
+    toastEl.appendChild(toastIcon);
+    toastEl.appendChild(toastText);
+    doc.body.appendChild(toastEl);
+
+    if (ACP.devtoolsDetect && ACP.lockOnDevtools){
+      guardEl = doc.createElement("div");
+      guardEl.className = "acp-guard";
+      guardEl.setAttribute("role", "alertdialog");
+      guardEl.setAttribute("aria-modal", "true");
+
+      var box = doc.createElement("div");
+      box.className = "acp-guard-box";
+
+      var ic = doc.createElement("div");
+      ic.className = "acp-guard-icon";
+      ic.appendChild(fa(ACP.iconGuard));
+
+      var title = doc.createElement("h2");
+      title.className = "acp-guard-title";
+      title.textContent = "Developer Tools Detected";
+
+      var sub = doc.createElement("p");
+      sub.className = "acp-guard-sub";
+      sub.textContent = "Please close DevTools to continue reading this page.";
+
+      var pill = doc.createElement("div");
+      pill.className = "acp-guard-pill";
+      pill.appendChild(fa(ACP.iconPill));
+      var pillTxt = doc.createElement("span");
+      pillTxt.textContent = "Content Protected";
+      pill.appendChild(pillTxt);
+
+      box.appendChild(ic);
+      box.appendChild(title);
+      box.appendChild(sub);
+      box.appendChild(pill);
+      guardEl.appendChild(box);
+      doc.body.appendChild(guardEl);
+    }
+  }
+
+
+  /* ==========================================================
+     3. WATERMARK
+     ========================================================== */
+  function buildWatermark(){
+    if (!ACP.watermark || !doc.body || wmEl) return;
+
+    var text = ACP.watermarkText;
+    if (!text){
+      var d = new Date();
+      var stamp = d.getFullYear() + "-" +
+                  ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+                  ("0" + d.getDate()).slice(-2);
+      text = (win.location.hostname || "protected") + " • " + stamp;
+    }
+
+    wmEl = doc.createElement("div");
+    wmEl.id = "acp-watermark";
+    wmEl.setAttribute("aria-hidden", "true");
+
+    var frag = doc.createDocumentFragment();
+    for (var i = 0; i < 60; i++){
+      var s = doc.createElement("span");
+      s.appendChild(fa(ACP.iconWatermark));
+      s.appendChild(doc.createTextNode(text));
+      frag.appendChild(s);
+    }
+    wmEl.appendChild(frag);
+    doc.body.appendChild(wmEl);
+  }
+
+
+  /* ==========================================================
+     4. DRAG / DROP + MUTATION GUARD
+     ========================================================== */
+  function hardenImages(root){
+    if (!ACP.dragDrop) return;
+    var imgs = (root || doc).getElementsByTagName("img");
+    for (var i = 0; i < imgs.length; i++){
+      imgs[i].setAttribute("draggable", "false");
+      imgs[i].setAttribute("oncontextmenu", "return false;");
+    }
+  }
+
+  function mutationGuard(){
+    if (!ACP.mutationGuard || !win.MutationObserver || !doc.body) return;
+    new MutationObserver(function(muts){
+      for (var m = 0; m < muts.length; m++){
+        var nodes = muts[m].addedNodes;
+        for (var n = 0; n < nodes.length; n++){
+          var node = nodes[n];
+          if (node.nodeType !== 1) continue;
+          if (node.tagName === "IMG") node.setAttribute("draggable", "false");
+          if (node.getElementsByTagName) hardenImages(node);
+        }
+      }
+    }).observe(doc.body, { childList: true, subtree: true });
+  }
+
+
+  /* ==========================================================
+     5. CONSOLE TRAP
+     ========================================================== */
+  function consoleTrap(){
+    if (!ACP.consoleTrap || !win.console) return;
+    try{
+      win.console.log(ACP.consoleMessage, ACP.consoleStyle);
+      win.console.log(
+        "%cUnauthorized copying, scraping, or redistribution is strictly prohibited.",
+        "color:#9aa3b2;font-size:12px;"
+      );
+    }catch(e){}
+
+    var noop = function(){};
+    var methods = ["log","info","warn","error","debug","trace","dir","table","clear"];
+    for (var i = 0; i < methods.length; i++){
+      try{ win.console[methods[i]] = noop; }catch(e){}
+    }
+    setInterval(function(){
+      try{ if (win.console && win.console.clear) win.console.clear(); }catch(e){}
+    }, 2500);
+  }
+
+
+  /* ==========================================================
+     6. DEBUGGER TRAP (opt-in)
+     ========================================================== */
+  function debuggerTrap(){
+    if (!ACP.debuggerTrap) return;
+    (function loop(){
+      var t0 = (win.performance && performance.now) ? performance.now() : Date.now();
+      // eslint-disable-next-line no-debugger
+      debugger;
+      var t1 = (win.performance && performance.now) ? performance.now() : Date.now();
+      if (t1 - t0 > 120) { /* DevTools likely paused execution */ }
+      setTimeout(loop, 200);
+    })();
+  }
+
+
+  /* ==========================================================
+     7. CLIPBOARD POISON + PRINTSCREEN TRAP
+     ========================================================== */
+  function clipboardPoison(e){
+    if (!ACP.clipboardPoison) return false;
+    try{
+      var msg = "⛔ Content protected — copying is not permitted. " +
+                (win.location.hostname || "");
+      if (e && e.clipboardData && e.clipboardData.setData){
+        e.clipboardData.setData("text/plain", msg);
+      } else if (win.clipboardData && win.clipboardData.setData){
+        win.clipboardData.setData("text", msg);
+      }
+    }catch(err){}
+    toast(ACP.toastText);
+    return true;
+  }
+
+  function printScreenTrap(){
+    if (!ACP.printScreenTrap) return;
+    on(win, "keyup", function(e){
+      var k = (e.key || "").toLowerCase();
+      if (k === "printscreen" || e.keyCode === 44){
+        try{
+          if (navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText("⛔ Screenshot content is protected.");
+          }
+        }catch(err){}
+        toast("Screenshot blocked by protection policy.");
+      }
+    }, true);
+  }
+
+
+  /* ==========================================================
+     8. FOCUS LOSS BLUR
+     ========================================================== */
+  function focusBlur(){
+    if (!ACP.blurOnBlur) return;
+    function apply(){ if (doc.body) doc.body.classList.add("acp-blur"); }
+    function remove(){ if (doc.body) doc.body.classList.remove("acp-blur"); }
+    on(win, "blur", apply);
+    on(win, "focus", remove);
+    on(doc, "visibilitychange", function(){
+      if (doc.hidden) apply(); else remove();
+    });
+  }
+
+
+  /* ==========================================================
+     9. KEYBOARD SHIELD
+     ========================================================== */
+  function keyboardShield(){
+    on(doc, "keydown", function(e){
+      var k     = (e.key || "").toUpperCase();
+      var code  = e.keyCode || e.which || 0;
+      var ctrl  = e.ctrlKey || e.metaKey;
+      var shift = e.shiftKey;
+      var alt   = e.altKey;
+      var editable = ACP.keepFormsUsable && isEditable(e.target);
+
+      if (ACP.printScreenTrap && (k === "PRINTSCREEN" || code === 44)){
+        toast("Screenshot key is blocked.");
+        return block(e);
+      }
+      if (ACP.devtoolsKeys && (code === 123 || k === "F12")) return block(e);
+      if (ACP.devtoolsKeys && ctrl && shift &&
+          (k === "I" || k === "J" || k === "C" || k === "K" || k === "E")) return block(e);
+      if (ACP.devtoolsKeys && ctrl && alt &&
+          (k === "I" || k === "J" || k === "C" || k === "U")) return block(e);
+      if (ACP.viewSource && ctrl && !shift && k === "U") return block(e);
+      if (ACP.savePage   && ctrl && k === "S") return block(e);
+      if (ACP.printKeys  && ctrl && k === "P") return block(e);
+      if (ACP.findOnPage && ctrl && (k === "F" || k === "G")) return block(e);
+
+      if (editable) return true;
+
+      if (ACP.selectAll && ctrl && k === "A") return block(e);
+      if (ACP.copyCutPaste && ctrl && (k === "C" || k === "X" || k === "V")){
+        toast(ACP.toastText);
+        return block(e);
+      }
+      return true;
+    }, true);
+  }
+
+
+  /* ==========================================================
+     10. POINTER / CONTEXT / SELECTION / DRAG
+     ========================================================== */
+  function pointerShield(){
+
+    if (ACP.rightClick){
+      on(doc, "contextmenu", function(e){
+        if (ACP.keepFormsUsable && isEditable(e.target)) return true;
+        toast(ACP.toastText);
+        return block(e);
+      }, true);
+    }
+
+    if (ACP.selection){
+      on(doc, "mousedown", function(e){
+        if (e.detail > 1){
+          if (ACP.keepFormsUsable && isEditable(e.target)) return true;
+          return block(e);
+        }
+        return true;
+      }, true);
+
+      on(doc, "selectstart", function(e){
+        if (ACP.keepFormsUsable && isEditable(e.target)) return true;
+        return block(e);
+      }, true);
+
+      if (typeof doc.onselectstart !== "undefined"){
+        doc.onselectstart = function(){ return false; };
+      }
+    }
+
+    if (ACP.copyCutPaste){
+      on(doc, "copy", function(e){
+        if (ACP.keepFormsUsable && isEditable(e.target)) return true;
+        clipboardPoison(e);
+        return block(e);
+      }, true);
+      on(doc, "cut", function(e){
+        if (ACP.keepFormsUsable && isEditable(e.target)) return true;
+        return block(e);
+      }, true);
+      on(doc, "paste", function(e){
+        if (ACP.keepFormsUsable && isEditable(e.target)) return true;
+        return block(e);
+      }, true);
+    }
+
+    if (ACP.dragDrop){
+      on(doc, "dragstart", function(e){
+        var t = e.target;
+        if (t && (t.tagName === "IMG" || t.tagName === "A")) return block(e);
+        return true;
+      }, true);
+      on(doc, "drop", function(e){
+        if (ACP.keepFormsUsable && isEditable(e.target)) return true;
+        return block(e);
+      }, true);
+    }
+
+    if (ACP.killDrop){
+      on(win, "dragover", function(e){ return block(e); }, true);
+      on(win, "drop",     function(e){ return block(e); }, true);
+    }
+
+    if (ACP.disableImgMenu){
+      on(doc, "mousedown", function(e){
+        if (e.target && e.target.tagName === "IMG" && e.button === 2){
+          toast("Images are protected.");
+          return block(e);
+        }
+        return true;
+      }, true);
+    }
+
+    if (ACP.contextPoison){
+      on(doc, "contextmenu", function(e){
+        if (e.defaultPrevented) return block(e);
+        return true;
+      }, false);
+    }
+  }
+
+
+  /* ==========================================================
+     11. DEVTOOLS DETECTOR v2
+     ========================================================== */
+  function devtoolsDetect(){
+    if (!ACP.devtoolsDetect) return;
+    if (win.innerWidth < 768) return;
+    if ("ontouchstart" in win) return;
+    if (!doc.body) return;
+
+    var locked = false;
+
+    function check(){
+      var wDiff = win.outerWidth  - win.innerWidth;
+      var hDiff = win.outerHeight - win.innerHeight;
+      var open  = (wDiff > 160 || hDiff > 160);
+
+      if (open !== locked){
+        locked = open;
+        if (open) doc.body.classList.add("acp-locked");
+        else      doc.body.classList.remove("acp-locked");
+      }
+    }
+
+    setInterval(check, 900);
+    on(win, "resize", check);
+  }
+
+
+  /* ==========================================================
+     BOOT
+     ========================================================== */
+  function bootExtras(){
+    var yr = doc.getElementById("yr");
+    if (yr) yr.textContent = new Date().getFullYear();
+  }
+
+  function init(){
+    injectWidgetStyles();
+    loadFontAwesome();
+
+    antiFrame();
+    buildUI();
+    buildWatermark();
+    hardenImages(doc);
+    mutationGuard();
+    consoleTrap();
+    debuggerTrap();
+    printScreenTrap();
+    focusBlur();
+    keyboardShield();
+    pointerShield();
+    devtoolsDetect();
+    bootExtras();
+
+    win.ACP = ACP;
+  }
+
+  if (doc.readyState === "loading"){
+    on(doc, "DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+
+
+
+    
 <script>
 // Disable right-click
 document.addEventListener('contextmenu', (e) => e.preventDefault());
