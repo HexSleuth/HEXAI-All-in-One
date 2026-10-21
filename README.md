@@ -289,4 +289,3 @@ Distributed under the terms described in the repository LICENSE file.
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,25:2c5364,50:00c6ff,75:7f00ff,100:0f2027&height=140&section=footer&animation=twinkling" width="100%" alt="Footer Wave"/>
 
 </div>
-```
