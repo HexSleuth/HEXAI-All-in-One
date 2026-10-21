@@ -290,15 +290,3 @@ Distributed under the terms described in the repository LICENSE file.
 
 </div>
 ```
-### Animated README Modules & Live Badges
-
-Everything here runs on external badge services, so there's no JavaScript or CSS to maintain — the page stays animated and current automatically.
-
-· Animated header banner — A gradient wave from capsule-render gives the page a futuristic feel right away. The typing SVG beneath it cycles through the project's core messages like “Unified AI Orchestration” and “Privacy-First | Local-First” to keep the intro dynamic.
-· Real-time badge strip — Three rows of shields.io badges pull live GitHub data: stars, forks, watchers, issues, PRs, last commit, repo size, contributors, license, build status, release version, and profile views. Numbers update on every page load.
-· Live repo stats — GitHub Readme Stats cards show commit activity, top languages, streak stats, and an activity graph, all styled with a dark gradient theme to match the header.
-· Structured content blocks — Feature cards, a tech-stack icon row, installation steps, project tree, roadmap checkboxes, and contribution buttons are organized for quick scanning.
-
----
-
-Optimization Tip: You can replace “deploy.yml” in the Build Status badge URL with your actual workflow filename from the .github/workflows/ folder to ensure the badge resolves correctly.
